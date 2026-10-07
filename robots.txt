@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.verifiedmoversandpackers.world/sitemap.xml
+Sitemap: https://verifiedmoversandpackers.world/sitemap.xml

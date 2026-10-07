@@ -57,7 +57,7 @@ past a certain point — you become the bottleneck for every single match.
 ## Part 2 — The full business model (the "loop" this is supposed to become)
 
 ```
-CUSTOMER                    SHIFTSLIP                      VENDOR
+CUSTOMER                    VERIFIED MOVERS & PACKERS                      VENDOR
    |                            |                             |
    | 1. Files a move request    |                             |
    |--------------------------->|                             |
@@ -107,7 +107,7 @@ value, collected from the vendor, not the customer.
 
 ## Part 3 — What "fully working" actually requires (and why I can't build it as static HTML)
 
-Everything on `shiftslip.in` right now is static files — HTML, CSS, and
+Everything on `verifiedmoversandpackers.world` right now is static files — HTML, CSS, and
 JavaScript that runs entirely in the visitor's browser. That's why it can
 be hosted anywhere for free and loads instantly, but it also means:
 
