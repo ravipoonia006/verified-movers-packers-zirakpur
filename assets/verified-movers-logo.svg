@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 110" role="img" aria-labelledby="title desc">
+<title id="title">Verified Movers &amp; Packers</title>
+<desc id="desc">Original red circular verification mark with a moving box and checkmark.</desc>
+<defs><linearGradient id="r" x1="0" x2="1"><stop offset="0" stop-color="#B31F2A"/><stop offset="1" stop-color="#8D1520"/></linearGradient></defs>
+<circle cx="52" cy="55" r="43" fill="url(#r)"/>
+<path d="M23 44 52 29l29 15-29 15z" fill="#fff" opacity=".95"/>
+<path d="M23 44v30l29 17V59zM81 44v30L52 91V59z" fill="#F4D7D9"/>
+<path d="m35 58 10 10 21-24" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="110" y="46" font-family="Arial, Helvetica, sans-serif" font-size="29" font-weight="800" fill="#172436">VERIFIED MOVERS</text>
+<text x="110" y="78" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" letter-spacing="2.2" fill="#B31F2A">&amp; PACKERS · ZIRAKPUR</text>
+</svg>
