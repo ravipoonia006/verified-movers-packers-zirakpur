@@ -134,6 +134,18 @@
     <form class="slip-form" id="quoteForm" novalidate>
       <div class="field-row">
         <div class="field">
+          <label for="name">Customer name</label>
+          <input id="name" name="name" type="text" placeholder="e.g. Anuj Sharma" autocomplete="name">
+          <div class="field-error"></div>
+        </div>
+        <div class="field">
+          <label for="phone">WhatsApp / mobile</label>
+          <input id="phone" name="phone" type="tel" placeholder="10-digit mobile, for quote delivery only" autocomplete="tel">
+          <div class="field-error"></div>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
           <label for="from">From</label>
           <input id="from" name="from" type="text" placeholder="e.g. local neighbourhoods" autocomplete="off">
           <div class="field-error"></div>
@@ -148,22 +160,39 @@
         <div class="field">
           <label for="size">Move size</label>
           <select id="size" name="size">
-            <option value="">Select</option>
-            <option>1 RK</option><option>1 BHK</option><option>2 BHK</option>
-            <option>3 BHK</option><option>4 BHK+</option><option>Office</option>
-          </select>
+<option value="">Select</option>
+<option>1 RK</option><option>1 BHK</option><option>2 BHK</option>
+<option>3 BHK</option><option>4 BHK+</option><option>Office</option>
+</select>
           <div class="field-error"></div>
         </div>
+        <div class="field">
+          <label for="service">Service needed</label>
+          <select id="service" name="service"><option value="">Select</option>
+            <option>Full packing + loading + transport + unloading</option>
+            <option>Transport only</option>
+            <option>Packing only</option>
+            <option>Office / commercial relocation</option>
+            <option>Vehicle transport</option></select>
+          <div class="field-error"></div>
+        </div>
+      </div>
+      <div class="field-row">
         <div class="field">
           <label for="date">Move date</label>
           <input id="date" name="date" type="date">
           <div class="field-error"></div>
         </div>
+        <div class="field">
+          <label for="email">Email (optional)</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email">
+          <div class="field-error"></div>
+        </div>
       </div>
       <div class="field-row" style="grid-template-columns:1fr;">
         <div class="field">
-          <label for="phone">Phone number</label>
-          <input id="phone" name="phone" type="tel" placeholder="10-digit mobile, for quote delivery only">
+          <label for="notes">Extra instructions</label>
+          <input id="notes" name="notes" type="text" placeholder="Lift, stairs, fragile items, preferred timing…">
           <div class="field-error"></div>
         </div>
       </div>
@@ -173,9 +202,22 @@
 
     <div class="slip-success" id="slipSuccess">
       <div class="big-tick">✓</div>
-      <h4>Slip filed.</h4>
-      <p>We're routing this to verified movers serving Mumbai. Quotes arrive by SMS — take a look at a sample comparison below.</p>
-      <div class="ref mono">Reference: <span id="refEcho"></span></div>
+      <h4>Request ready.</h4>
+      <p>WhatsApp opens with your completed request pre-filled. Press <strong>Send</strong> in WhatsApp to deliver the details to our desk.</p>
+      <div class="result-grid">
+        <div><span>Reference</span><strong id="refEcho"></strong></div>
+        <div><span>Customer</span><strong id="resultCustomer"></strong></div>
+        <div><span>Route</span><strong id="resultRoute"></strong></div>
+        <div><span>Move date</span><strong id="resultDate"></strong></div>
+        <div><span>Move size</span><strong id="resultSize"></strong></div>
+        <div><span>Service</span><strong id="resultService"></strong></div>
+        <div><span>WhatsApp</span><strong id="resultPhone"></strong></div>
+      </div>
+      <div class="result-actions">
+        <button type="button" class="demo-btn" id="resendWhatsApp">SEND AGAIN</button>
+        <button type="button" class="demo-btn" id="copySlip">COPY DETAILS</button>
+        <button type="button" class="demo-btn" id="printSlip">PRINT / SAVE PDF</button>
+      </div>
     </div>
   </div>
 </section>

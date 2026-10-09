@@ -23,7 +23,7 @@
     return d.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
   }
 
-  /* ---------- Quote request form ---------- */
+  /* ---------- Quote request form (supports the home form and compact city forms) ---------- */
   var form = document.getElementById('quoteForm');
   if (form) {
     var submitBtn = form.querySelector('.slip-submit');
@@ -41,7 +41,7 @@
     }
 
     function validatePhone(v) {
-      var digits = v.replace(/\D/g, '');
+      var digits = String(v || '').replace(/\D/g, '');
       return digits.length >= 10;
     }
 
@@ -50,7 +50,8 @@
       if (input.dataset.allowPast === 'true') return true;
       var today = new Date();
       today.setHours(0, 0, 0, 0);
-      return new Date(input.value + 'T00:00:00') >= today;
+      var selected = new Date(input.value + 'T00:00:00');
+      return !Number.isNaN(selected.getTime()) && selected >= today;
     }
 
     function randomSlipNo(prefix) {
@@ -60,6 +61,22 @@
     function setResult(id, text) {
       var el = document.getElementById(id);
       if (el) el.textContent = text || 'Not specified';
+    }
+
+    function pageContext() {
+      var heading = document.querySelector('h1.headline') || document.querySelector('main h1');
+      return (heading ? heading.textContent : document.title).replace(/\s+/g, ' ').trim();
+    }
+
+    function addWhatsAppFallback(message) {
+      if (!successBox || successBox.querySelector('.quote-whatsapp-fallback')) return;
+      var link = document.createElement('a');
+      link.className = 'slip-submit quote-whatsapp-fallback';
+      link.href = waLink(message);
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.textContent = 'OPEN WHATSAPP AGAIN';
+      successBox.appendChild(link);
     }
 
     form.addEventListener('submit', function (e) {
@@ -74,71 +91,89 @@
       var email = form.querySelector('[name="email"]');
       var service = form.querySelector('[name="service"]');
 
-      if (name && !name.value.trim()) { fieldError(name, 'Required'); valid = false; } else fieldError(name);
-      if (!from.value.trim()) { fieldError(from, 'Required'); valid = false; } else fieldError(from);
-      if (!to.value.trim()) { fieldError(to, 'Required'); valid = false; } else fieldError(to);
-      if (!size.value) { fieldError(size, 'Select one'); valid = false; } else fieldError(size);
-      if (!service.value) { fieldError(service, 'Select one'); valid = false; } else fieldError(service);
-      if (!validateDate(date)) { fieldError(date, 'Pick a valid date'); valid = false; } else fieldError(date);
-      if (!validatePhone(phone.value)) { fieldError(phone, 'Enter 10-digit number'); valid = false; } else fieldError(phone);
+      // The homepage has name/service fields; city landing pages intentionally use a compact form.
+      // Validate fields when present, rather than throwing when a field is not part of that page.
+      if (name) { if (!name.value.trim()) { fieldError(name, 'Required'); valid = false; } else fieldError(name); }
+      if (from) { if (!from.value.trim()) { fieldError(from, 'Required'); valid = false; } else fieldError(from); }
+      if (to) { if (!to.value.trim()) { fieldError(to, 'Required'); valid = false; } else fieldError(to); }
+      if (size) { if (!size.value) { fieldError(size, 'Select one'); valid = false; } else fieldError(size); }
+      if (service) { if (!service.value) { fieldError(service, 'Select one'); valid = false; } else fieldError(service); }
+      if (date) { if (!validateDate(date)) { fieldError(date, 'Pick a valid date'); valid = false; } else fieldError(date); }
+      if (phone) { if (!validatePhone(phone.value)) { fieldError(phone, 'Enter 10-digit number'); valid = false; } else fieldError(phone); }
       if (email && email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) { fieldError(email, 'Enter a valid email'); valid = false; } else fieldError(email);
-
       if (!valid) return;
-
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'PREPARING WHATSAPP…';
 
       var slipNo = randomSlipNo(formKind === 'vendor' ? 'VMP-V' : 'VMP');
       var moveDate = prettyDate(val(form, 'date'));
-      var customerName = val(form, 'name');
-      var customerPhone = val(form, 'phone');
+      var customerName = val(form, 'name') || 'Not provided on this page';
+      var customerPhone = val(form, 'phone') || 'Not provided';
       var customerEmail = val(form, 'email') || 'Not provided';
-      var serviceType = val(form, 'service');
-      var extra = val(form, 'notes') || 'None';
+      var serviceType = val(form, 'service') || 'Not selected on this page — please confirm';
+      var extra = val(form, 'notes') || 'None specified';
+      var context = pageContext();
 
-      var message =
-        '📦 NEW QUOTE REQUEST\n' +
-        '━━━━━━━━━━━━━━━━━━━━\n' +
-        'Reference: ' + slipNo + '\n' +
-        'Customer: ' + customerName + '\n' +
-        'WhatsApp/Mobile: ' + customerPhone + '\n' +
-        'Email: ' + customerEmail + '\n' +
-        'Pickup: ' + val(form, 'from') + '\n' +
-        'Drop: ' + val(form, 'to') + '\n' +
-        'Move date: ' + moveDate + '\n' +
-        'Move size: ' + val(form, 'size') + '\n' +
-        'Service: ' + serviceType + '\n' +
-        'Extra instructions: ' + extra + '\n' +
-        '━━━━━━━━━━━━━━━━━━━━\n' +
-        BUSINESS_NAME;
+      var messageLines = [
+        '📦 NEW QUOTE REQUEST',
+        '━━━━━━━━━━━━━━━━━━━━',
+        'Reference: ' + slipNo,
+        'Page: ' + context,
+        'Customer: ' + customerName,
+        'WhatsApp/Mobile: ' + customerPhone,
+        'Email: ' + customerEmail,
+        'Pickup: ' + (val(form, 'from') || 'Not specified'),
+        'Drop: ' + (val(form, 'to') || 'Not specified'),
+        'Move date: ' + moveDate,
+        'Move size: ' + (val(form, 'size') || 'Not specified'),
+        'Service: ' + serviceType,
+        'Extra instructions: ' + extra
+      ];
 
-      setTimeout(function () {
-        if (slipNoEl) slipNoEl.textContent = slipNo;
-        if (stampTag) { stampTag.textContent = 'READY'; stampTag.classList.add('done'); }
+      // Include any additional named fields added to a page later, so their values are not lost.
+      var standardNames = ['name', 'phone', 'email', 'from', 'to', 'date', 'size', 'service', 'notes'];
+      Array.prototype.forEach.call(form.querySelectorAll('input[name], select[name], textarea[name]'), function (el) {
+        if (standardNames.indexOf(el.name) !== -1 || ['submit', 'button', 'reset', 'hidden'].indexOf((el.type || '').toLowerCase()) !== -1) return;
+        var value = (el.value || '').trim();
+        if (!value) return;
+        var field = el.closest('.field');
+        var label = field && field.querySelector('label');
+        var labelText = label ? label.textContent.replace(/\s+/g, ' ').trim() : el.name;
+        messageLines.push(labelText + ': ' + value);
+      });
+      messageLines.push('━━━━━━━━━━━━━━━━━━━━', BUSINESS_NAME, 'Contact: ' + PHONE_DISPLAY + ' · ' + BUSINESS_EMAIL);
+      var message = messageLines.join('\n');
 
-        setResult('resultCustomer', customerName);
-        setResult('resultRoute', val(form, 'from') + ' → ' + val(form, 'to'));
-        setResult('resultDate', moveDate);
-        setResult('resultPhone', customerPhone);
-        setResult('resultService', serviceType);
-        setResult('resultSize', val(form, 'size'));
-        setResult('refEcho', slipNo);
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'OPENING WHATSAPP…';
+      }
+      if (slipNoEl) slipNoEl.textContent = slipNo;
+      if (stampTag) { stampTag.textContent = 'READY'; stampTag.classList.add('done'); }
+      setResult('resultCustomer', customerName);
+      setResult('resultRoute', (val(form, 'from') || 'Not specified') + ' → ' + (val(form, 'to') || 'Not specified'));
+      setResult('resultDate', moveDate);
+      setResult('resultPhone', customerPhone);
+      setResult('resultService', serviceType);
+      setResult('resultSize', val(form, 'size'));
+      setResult('refEcho', slipNo);
+      window._latestQuoteMessage = message;
+      if (form) form.style.display = 'none';
+      if (successBox) successBox.classList.add('show');
 
-        form.style.display = 'none';
-        if (successBox) successBox.classList.add('show');
-        window._latestQuoteMessage = message;
-        window.open(waLink(message), '_blank');
+      // Open WhatsApp in the original submit gesture; delaying this with setTimeout can trigger popup blockers.
+      var waWindow = window.open(waLink(message), '_blank');
+      if (waWindow) {
+        try { waWindow.opener = null; } catch (ignore) { /* cross-browser hardening only */ }
+      } else {
+        addWhatsAppFallback(message);
+      }
 
-        var compareSection = document.getElementById('compare');
-        if (compareSection && formKind !== 'vendor') {
-          setTimeout(function () {
-            compareSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            if (typeof runDemoQuotes === 'function') runDemoQuotes();
-          }, 500);
-        }
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'GENERATE MY SLIP →';
-      }, 350);
+      var compareSection = document.getElementById('compare');
+      if (compareSection && formKind !== 'vendor') {
+        window.setTimeout(function () {
+          compareSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          if (typeof runDemoQuotes === 'function') runDemoQuotes();
+        }, 500);
+      }
     });
   }
 
