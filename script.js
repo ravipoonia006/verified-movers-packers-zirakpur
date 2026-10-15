@@ -443,4 +443,51 @@
       if (!reduceMotion) button.classList.add('wa-first-glance');
     });
   })();
+
+  /* Reading progress + back-to-top utilities. These are decorative navigation aids only. */
+  (function initScrollUtilities() {
+    if (!document.body || document.querySelector('.reading-progress')) return;
+
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var progress = document.createElement('div');
+    progress.className = 'reading-progress';
+    progress.setAttribute('aria-hidden', 'true');
+    progress.innerHTML = '<span></span>';
+
+    var topButton = document.createElement('button');
+    topButton.className = 'back-to-top';
+    topButton.type = 'button';
+    topButton.setAttribute('aria-label', 'Back to top');
+    topButton.setAttribute('title', 'Back to top');
+    topButton.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+    document.body.appendChild(progress);
+    document.body.appendChild(topButton);
+
+    var progressFill = progress.querySelector('span');
+    var ticking = false;
+    function updateScrollUI() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || 0;
+      var scrollHeight = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+      var amount = scrollHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / scrollHeight) * 100)) : 0;
+      progressFill.style.width = amount + '%';
+      topButton.classList.toggle('is-visible', scrollTop > 420);
+      topButton.setAttribute('aria-hidden', scrollTop > 420 ? 'false' : 'true');
+      ticking = false;
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(updateScrollUI);
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    topButton.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+    });
+    updateScrollUI();
+  })();
 })();
