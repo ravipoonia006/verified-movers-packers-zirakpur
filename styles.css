@@ -4794,3 +4794,36 @@ html body footer .footer-col-title {
   .back-to-top:hover { transform: none; }
 }
 
+
+/* ============================================================
+   MOBILE CONTACT CLEANUP
+   Keep one always-available contact control on phones: the bottom
+   Call / WhatsApp bar. Remove duplicate header buttons and the
+   floating WhatsApp bubble only on pages that already have the bar.
+   Desktop contact controls remain unchanged.
+   ============================================================ */
+@media (max-width: 760px) {
+  body:has(.mobile-callbar) > nav:not(.footer-links) {
+    grid-template-areas: "brand quote" !important;
+    grid-template-rows: auto !important;
+  }
+
+  body:has(.mobile-callbar) > nav:not(.footer-links) > .contact-bar {
+    display: none !important;
+  }
+
+  body:has(.mobile-callbar) .wa-float {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  body:has(.mobile-callbar) .mobile-callbar {
+    display: flex !important;
+    position: fixed !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    z-index: 150 !important;
+  }
+}
