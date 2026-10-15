@@ -319,6 +319,8 @@
       '.br-card', '.br-value', '.contact-tile', '.contact-form-card',
       '.quote-card', '.quote-intro', '.hours-strip',
       '.split-panel', '.stamp-item', '.chip',
+      '.route-stop', '.svc-img', '.svc-box', '.svc-cta', '.hub-card', '.service-card',
+      '.br-section > *', '.contact-tile', '.packing-compare', '.packing-step',
       'footer .footer-col', '.footer-brand',
       '.page-hero-br', '.truck-road'
     ].join(', ');
@@ -352,4 +354,93 @@
     revealTargets.forEach(function (el) { revealObserver.observe(el); });
   })();
 
+
+  /* Additive motion experiences: house-to-house journey + packing comparison slider.
+     Existing contact, quote validation, and WhatsApp submission code remains untouched. */
+  (function initMovingExperienceEnhancements() {
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // A small animated journey visual below the existing four-step process on the homepage.
+    var route = document.querySelector('#how .route');
+    if (route && !document.querySelector('.moving-journey')) {
+      var journey = document.createElement('div');
+      journey.className = 'moving-journey';
+      journey.setAttribute('role', 'img');
+      journey.setAttribute('aria-label', 'Illustrated moving truck travelling from the pickup home to the new home');
+      journey.innerHTML =
+        '<div class="moving-journey__stop moving-journey__stop--start">' +
+          '<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M4 18 20 5l16 13v17H23V24h-7v11H4Z" fill="currentColor" opacity=".18"/><path d="M4 18 20 5l16 13M8 16v19h24V16M16 35V24h8v11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+          '<span>Pickup home</span>' +
+        '</div>' +
+        '<div class="moving-journey__track"><span class="moving-journey__route-line"></span><img class="moving-journey__truck" src="assets/truck-mini.svg" width="100" height="40" alt="" loading="lazy" decoding="async"></div>' +
+        '<div class="moving-journey__stop moving-journey__stop--end">' +
+          '<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M4 18 20 5l16 13v17H23V24h-7v11H4Z" fill="currentColor" opacity=".18"/><path d="M4 18 20 5l16 13M8 16v19h24V16M16 35V24h8v11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+          '<span>New home</span>' +
+        '</div>';
+      route.insertAdjacentElement('afterend', journey);
+      if (reduceMotion) journey.classList.add('motion-static');
+    }
+
+    // Before/after packing comparison on the existing packing service page only.
+    var packingPage = document.body.classList.contains('theme-svc-packing') || /service-packing-services\.html$/i.test(window.location.pathname);
+    var packingImage = document.querySelector('.svc-body .svc-img');
+    if (packingPage && packingImage && !document.querySelector('.packing-compare')) {
+      var compare = document.createElement('section');
+      compare.className = 'packing-compare';
+      compare.setAttribute('aria-labelledby', 'packing-compare-heading');
+      compare.innerHTML =
+        '<div class="packing-compare__intro">' +
+          '<span class="packing-compare__eyebrow">Interactive packing preview</span>' +
+          '<h2 id="packing-compare-heading">Compare furniture before and after protection</h2>' +
+          '<p>Drag the slider to compare an unwrapped living-room setup with a protected, move-ready illustration.</p>' +
+        '</div>' +
+        '<div class="packing-compare__stage" style="--compare-split:50%">' +
+          '<div class="packing-compare__image packing-compare__image--before"><img src="assets/packing-before.svg" alt="Illustration of furniture before protective packing" width="800" height="400" loading="lazy" decoding="async"><span class="packing-compare__label">BEFORE PROTECTION</span></div>' +
+          '<div class="packing-compare__image packing-compare__image--after"><img src="assets/packing-after.svg" alt="Illustration of furniture protected with wrapping and packed cartons" width="800" height="400" loading="lazy" decoding="async"><span class="packing-compare__label">AFTER PROTECTION</span></div>' +
+          '<div class="packing-compare__divider" aria-hidden="true"><span>↔</span></div>' +
+          '<input class="packing-compare__range" type="range" min="0" max="100" value="50" aria-label="Move slider to compare before and after protective packing">' +
+        '</div>' +
+        '<div class="packing-steps" aria-label="Packing sequence">' +
+          '<div class="packing-step"><span class="packing-step__number">01</span><div><strong>Wrap</strong><p>Prepare furniture and delicate surfaces.</p></div></div>' +
+          '<div class="packing-step"><span class="packing-step__number">02</span><div><strong>Protect</strong><p>Add cushioning and secure loose parts.</p></div></div>' +
+          '<div class="packing-step"><span class="packing-step__number">03</span><div><strong>Ready to move</strong><p>Keep packed items organized for handling.</p></div></div>' +
+        '</div>';
+      packingImage.insertAdjacentElement('afterend', compare);
+
+      var slider = compare.querySelector('.packing-compare__range');
+      var stage = compare.querySelector('.packing-compare__stage');
+      var divider = compare.querySelector('.packing-compare__divider');
+      function updatePackingSplit() {
+        var value = Math.max(0, Math.min(100, Number(slider.value) || 0));
+        stage.style.setProperty('--compare-split', value + '%');
+        if (divider) divider.setAttribute('aria-valuenow', String(value));
+      }
+      slider.addEventListener('input', updatePackingSplit);
+      updatePackingSplit();
+
+      if (!reduceMotion && 'IntersectionObserver' in window) {
+        var stepObserver = new IntersectionObserver(function (entries, observer) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('packing-step--visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.18 });
+        compare.querySelectorAll('.packing-step').forEach(function (step) { stepObserver.observe(step); });
+      } else {
+        compare.querySelectorAll('.packing-step').forEach(function (step) { step.classList.add('packing-step--visible'); });
+      }
+    }
+
+    // Add classes only; existing quote submit/WhatsApp code continues to own form behavior.
+    document.querySelectorAll('form.slip-form').forEach(function (quoteForm) {
+      quoteForm.classList.add('quote-form-motion');
+    });
+
+    // The floating WhatsApp control gets a single gentle halo on entry, never a constant pulse.
+    document.querySelectorAll('.wa-float').forEach(function (button) {
+      if (!reduceMotion) button.classList.add('wa-first-glance');
+    });
+  })();
 })();
