@@ -4827,3 +4827,105 @@ html body footer .footer-col-title {
     z-index: 150 !important;
   }
 }
+
+
+/* ================================================================
+   Conversion + trust upgrades (2026-10): multi-step quote, honest
+   feedback, moving checklist, and responsive 6-card illustration gallery.
+   ================================================================ */
+.visual-gallery__head {
+  max-width: 790px;
+  margin: 0 auto 22px;
+  padding: 0 18px;
+  text-align: center;
+}
+.visual-gallery__head .section-title { margin: 6px 0 10px; }
+.visual-gallery__head .section-title-sub { max-width: 680px; margin-inline: auto; }
+.visual-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.visual-card:last-child { grid-column: auto; max-width: none; margin: 0; }
+.visual-card figcaption { min-height: 44px; display: flex; align-items: center; justify-content: center; }
+
+.move-trust-checklist,
+.honest-feedback {
+  width: min(1160px, calc(100% - 36px));
+  margin: 30px auto;
+  padding: clamp(22px, 4vw, 42px);
+  border-radius: 24px;
+}
+.move-trust-checklist { background: linear-gradient(135deg, #f4f8ff, #ffffff); border: 1px solid #dce6f4; }
+.trust-checklist__intro { max-width: 760px; margin: 0 auto 26px; text-align: center; }
+.trust-checklist__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.trust-checklist__item { display: flex; align-items: flex-start; gap: 14px; padding: 18px; border: 1px solid #e0e8f3; border-radius: 16px; background: rgba(255,255,255,.92); box-shadow: 0 8px 24px rgba(16,42,86,.045); }
+.trust-checklist__icon { display: inline-grid; place-items: center; flex: 0 0 42px; width: 42px; height: 42px; border-radius: 12px; background: #102a56; color: #ffc247; font-weight: 800; font-size: 12px; }
+.trust-checklist__item h3 { margin: 0 0 6px; color: #102a56; font-size: 16px; }
+.trust-checklist__item p { margin: 0; color: #566579; font-size: 14px; line-height: 1.65; }
+.trust-checklist__note { margin-top: 20px; padding: 16px 18px; border-left: 4px solid #ffc247; border-radius: 0 12px 12px 0; background: #fff; color: #44536a; line-height: 1.65; font-size: 14px; }
+.trust-checklist__actions { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 22px; }
+.trust-action { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 46px; padding: 12px 18px; border-radius: 12px; font-weight: 800; text-decoration: none; transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
+.trust-action:hover { transform: translateY(-2px); }
+.trust-action--primary { color: #fff; background: #102a56; box-shadow: 0 8px 18px rgba(16,42,86,.18); }
+.trust-action--primary:hover { background: #1769d2; }
+.trust-action--secondary { color: #075b45; background: #e7f7ef; border: 1px solid #b8e5ce; }
+.trust-action--secondary:hover { background: #d4f1e2; }
+
+.honest-feedback { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(260px, .7fr); gap: clamp(22px, 4vw, 48px); align-items: center; background: linear-gradient(135deg, #0d1e38, #173c60); color: #fff; }
+.honest-feedback .section-eyebrow { color: #ffc247; }
+.honest-feedback .section-title { color: #fff; margin: 7px 0 15px; }
+.honest-feedback__copy p { max-width: 660px; color: rgba(255,255,255,.78); line-height: 1.7; }
+.feedback-cta { display: inline-flex; align-items: center; gap: 12px; margin-top: 9px; padding: 13px 17px; border-radius: 12px; background: #25d366; color: #073b25; font-weight: 800; text-decoration: none; transition: transform .2s ease, box-shadow .2s ease; }
+.feedback-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(37,211,102,.25); }
+.honest-feedback__side { display: grid; gap: 12px; }
+.feedback-principle { display: flex; gap: 12px; padding: 15px; border: 1px solid rgba(255,255,255,.15); border-radius: 14px; background: rgba(255,255,255,.06); }
+.feedback-principle > span { display: grid; place-items: center; width: 28px; height: 28px; flex: 0 0 28px; border-radius: 50%; color: #092b22; background: #b9f3d2; font-weight: 900; }
+.feedback-principle strong { display: block; color: #fff; margin: 2px 0 4px; }
+.feedback-principle p { color: rgba(255,255,255,.72); font-size: 13px; line-height: 1.5; margin: 0; }
+
+/* Progressive multi-step quote wizard. Original fields and submit logic are retained. */
+form.quote-wizard-enabled { position: relative; }
+.quote-wizard-progress { display: flex; align-items: center; gap: 9px; margin: 0 0 8px; padding: 0 0 12px; }
+.quote-wizard-progress__step { display: flex; align-items: center; gap: 7px; color: #7a8798; font-size: 12px; font-weight: 700; white-space: nowrap; }
+.quote-wizard-progress__step b { display: grid; place-items: center; width: 28px; height: 28px; border: 1px solid #cbd5e2; border-radius: 50%; color: #637186; background: #f7f9fc; font-size: 12px; transition: background .2s ease, color .2s ease, border-color .2s ease; }
+.quote-wizard-progress__step.is-current { color: #102a56; }
+.quote-wizard-progress__step.is-current b { color: #fff; background: #1769d2; border-color: #1769d2; box-shadow: 0 0 0 4px rgba(23,105,210,.12); }
+.quote-wizard-progress__step.is-complete { color: #147750; }
+.quote-wizard-progress__step.is-complete b { color: #fff; background: #16845f; border-color: #16845f; }
+.quote-wizard-progress__line { height: 2px; min-width: 12px; flex: 1; background: #e1e7ef; }
+.quote-wizard-status { margin: 0 0 14px; color: #607086; font-size: 12px; }
+.quote-wizard-step[hidden] { display: none !important; }
+.quote-wizard-step { animation: quoteStepIn .24s ease both; }
+.quote-wizard-step__title { margin: 0 0 5px; color: #102a56; font-size: 19px; line-height: 1.3; font-weight: 800; }
+.quote-wizard-step__note { margin: 0 0 15px; color: #66758a; font-size: 13px; line-height: 1.55; }
+.quote-wizard-controls { display: flex; align-items: stretch; justify-content: space-between; gap: 10px; margin-top: 16px; }
+.quote-wizard-controls .slip-submit { flex: 1 1 auto; margin: 0; }
+.quote-wizard-next, .quote-wizard-back { min-height: 46px; padding: 11px 15px; border-radius: 11px; border: 1px solid #d5dfec; cursor: pointer; font: inherit; font-size: 13px; font-weight: 800; transition: transform .18s ease, background .18s ease, box-shadow .18s ease; }
+.quote-wizard-next { color: #fff; border-color: #1769d2; background: linear-gradient(135deg, #1769d2, #102a56); box-shadow: 0 6px 15px rgba(23,105,210,.18); }
+.quote-wizard-back { color: #33455d; background: #f2f5f9; }
+.quote-wizard-next:hover, .quote-wizard-back:hover { transform: translateY(-1px); }
+.quote-wizard-next:focus-visible, .quote-wizard-back:focus-visible, .trust-action:focus-visible, .feedback-cta:focus-visible { outline: 3px solid #ffc247; outline-offset: 3px; }
+.quote-wizard-step .field-row { margin-bottom: 12px; }
+.quote-wizard-step .field { min-width: 0; }
+@keyframes quoteStepIn { from { opacity: .45; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 760px) {
+  .visual-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .visual-card:last-child { grid-column: auto; }
+  .trust-checklist__grid { grid-template-columns: 1fr; }
+  .honest-feedback { grid-template-columns: 1fr; }
+  .quote-wizard-progress { gap: 5px; }
+  .quote-wizard-progress__step { gap: 5px; font-size: 11px; }
+  .quote-wizard-progress__step b { width: 26px; height: 26px; }
+  .quote-wizard-controls { gap: 8px; }
+  .quote-wizard-next, .quote-wizard-back { padding: 10px 11px; font-size: 12px; }
+}
+@media (max-width: 380px) {
+  .quote-wizard-progress__step span { display: none; }
+  .quote-wizard-progress__step b { width: 28px; height: 28px; }
+  .move-trust-checklist, .honest-feedback { width: calc(100% - 22px); padding: 20px 15px; border-radius: 18px; }
+  .quote-wizard-controls { flex-wrap: wrap; }
+  .quote-wizard-controls .slip-submit, .quote-wizard-next { flex: 1 1 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .quote-wizard-step { animation: none !important; }
+  .trust-action, .feedback-cta, .quote-wizard-next, .quote-wizard-back, .quote-wizard-progress__step b { transition: none !important; }
+}
+

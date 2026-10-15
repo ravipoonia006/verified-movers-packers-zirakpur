@@ -1,0 +1,20 @@
+{
+  "html_pages": 151,
+  "forms_with_shared_quote_id": 19,
+  "images_total": 314,
+  "images_missing_a11y_or_perf_attributes": 0,
+  "missing_metadata": [],
+  "canonical_mismatches": [],
+  "duplicate_id_pages": [],
+  "invalid_jsonld": [],
+  "broken_local_targets": [],
+  "broken_local_target_count": 0,
+  "broken_anchor_links": [],
+  "broken_anchor_count": 0,
+  "sitemap_urls": 151,
+  "sitemap_unique_urls": 151,
+  "sitemap_missing_routes": [],
+  "sitemap_extras": [],
+  "css_top_level_parse_errors": [],
+  "google_ads_id_configured": false
+}

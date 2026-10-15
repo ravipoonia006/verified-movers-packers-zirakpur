@@ -106,6 +106,9 @@
       if (email && email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) { fieldError(email, 'Enter a valid email'); valid = false; } else fieldError(email);
       if (!valid) return;
 
+      // Track quote intent without passing customer details or claiming WhatsApp was sent.
+      if (typeof window.vmpTrackEvent === 'function') { window.vmpTrackEvent('vmp_quote_request_ready', { form_kind: formKind, page_path: window.location.pathname }); }
+
       var slipNo = randomSlipNo(formKind === 'vendor' ? 'VMP-V' : 'VMP');
       var moveDate = prettyDate(val(form, 'date'));
       var customerName = val(form, 'name') || 'Not provided on this page';
@@ -491,3 +494,235 @@
     updateScrollUI();
   })();
 })();
+
+/* Conversion event hooks + accessible, progressive multi-step quote forms.
+   No analytics IDs are invented. Events work with Google Tag Manager dataLayer;
+   optional Google Ads conversion send_to values can be configured by the site owner. */
+(function initVMPAnalyticsAndQuoteWizard() {
+  'use strict';
+  window.dataLayer = window.dataLayer || [];
+  window.VMP_ANALYTICS_CONFIG = window.VMP_ANALYTICS_CONFIG || {};
+  window.VMP_ANALYTICS_CONFIG.googleAds = window.VMP_ANALYTICS_CONFIG.googleAds || {
+    callClickSendTo: '',
+    whatsappClickSendTo: '',
+    quoteReadySendTo: ''
+  };
+  var ads = window.VMP_ANALYTICS_CONFIG.googleAds;
+
+  window.vmpTrackEvent = function (eventName, params) {
+    var payload = { event: eventName, event_category: 'lead_intent', page_path: window.location.pathname };
+    if (params && typeof params === 'object') {
+      Object.keys(params).forEach(function (key) {
+        // Only accept non-sensitive scalar metadata; never send form values or PII.
+        var value = params[key];
+        if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') payload[key] = value;
+      });
+    }
+    window.dataLayer.push(payload);
+    if (typeof window.gtag === 'function') {
+      var gtagParams = {};
+      Object.keys(payload).forEach(function (key) { if (key !== 'event') gtagParams[key] = payload[key]; });
+      window.gtag('event', eventName, gtagParams);
+      var sendTo = '';
+      if (eventName === 'vmp_phone_click') sendTo = ads.callClickSendTo || '';
+      if (eventName === 'vmp_whatsapp_click') sendTo = ads.whatsappClickSendTo || '';
+      if (eventName === 'vmp_quote_request_ready') sendTo = ads.quoteReadySendTo || '';
+      if (sendTo) window.gtag('event', 'conversion', { send_to: sendTo });
+    }
+  };
+
+  // Delegated click tracking records the intent, not a completed call or sent WhatsApp message.
+  document.addEventListener('click', function (event) {
+    var target = event.target;
+    if (!target || !target.closest) return;
+    var callLink = target.closest('a[data-call]');
+    var whatsappLink = target.closest('a[data-wa]');
+    if (callLink) {
+      window.vmpTrackEvent('vmp_phone_click', { link_area: classifyArea(callLink) });
+    }
+    if (whatsappLink) {
+      window.vmpTrackEvent('vmp_whatsapp_click', { link_area: classifyArea(whatsappLink) });
+      if (whatsappLink.closest('.honest-feedback')) window.vmpTrackEvent('vmp_feedback_click', { link_area: 'customer_feedback' });
+    }
+  }, true);
+
+  function classifyArea(link) {
+    if (link.closest('nav')) return 'header';
+    if (link.closest('.mobile-callbar')) return 'mobile_bottom_bar';
+    if (link.closest('footer')) return 'footer';
+    if (link.closest('.wa-float')) return 'floating_contact';
+    if (link.closest('form')) return 'quote_form';
+    if (link.closest('.honest-feedback')) return 'customer_feedback';
+    if (link.closest('.contact-wrap, .contact-form-card')) return 'contact_page';
+    return 'content';
+  }
+
+  function isValidPhone(value) {
+    var digits = String(value || '').replace(/\D/g, '');
+    if (digits.length === 12 && digits.indexOf('91') === 0) digits = digits.slice(2);
+    if (digits.length === 11 && digits.charAt(0) === '0') digits = digits.slice(1);
+    return digits.length === 10 && /^[6-9]/.test(digits);
+  }
+  function isValidDate(value) {
+    if (!value) return false;
+    var selected = new Date(value + 'T00:00:00');
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return !Number.isNaN(selected.getTime()) && selected >= today;
+  }
+  function validateStep(panel) {
+    var okay = true;
+    var firstInvalid = null;
+    var fields = panel.querySelectorAll('input[name], select[name], textarea[name]');
+    Array.prototype.forEach.call(fields, function (input) {
+      var name = input.name;
+      var value = String(input.value || '').trim();
+      var message = '';
+      if ((name === 'name' || name === 'from' || name === 'to') && !value) message = 'Required';
+      else if ((name === 'size' || name === 'service') && !value) message = 'Select one';
+      else if (name === 'phone' && !isValidPhone(value)) message = 'Enter a valid 10-digit Indian mobile number';
+      else if (name === 'date' && !isValidDate(value)) message = 'Choose today or a future date';
+      else if (name === 'email' && value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) message = 'Enter a valid email address';
+      var field = input.closest('.field');
+      var error = field && field.querySelector('.field-error');
+      input.classList.toggle('has-error', !!message);
+      if (message) input.setAttribute('aria-invalid', 'true');
+      else input.removeAttribute('aria-invalid');
+      if (error) error.textContent = message;
+      if (message) { okay = false; if (!firstInvalid) firstInvalid = input; }
+    });
+    if (firstInvalid) {
+      firstInvalid.focus({ preventScroll: true });
+      firstInvalid.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' });
+    }
+    return okay;
+  }
+
+  function initWizard(form) {
+    if (form.getAttribute('data-vmp-wizard') === 'ready') return;
+    var requiredNames = ['name', 'phone', 'from', 'to', 'size', 'service', 'date'];
+    var found = requiredNames.every(function (name) { return !!form.querySelector('[name="' + name + '"]'); });
+    if (!found) return;
+    var rows = Array.prototype.slice.call(form.children).filter(function (node) { return node.classList && node.classList.contains('field-row'); });
+    if (rows.length < 3) return;
+
+    var submit = form.querySelector('button[type="submit"], input[type="submit"]');
+    var fine = form.querySelector('.slip-fine');
+    var rowsSet = new Set(rows);
+    var movedToEnd = new Set();
+    if (submit) movedToEnd.add(submit);
+    if (fine) movedToEnd.add(fine);
+    var extraFields = Array.prototype.slice.call(form.children).filter(function (node) {
+      return !rowsSet.has(node) && !movedToEnd.has(node) && !(node.matches && (node.matches('button[type="submit"]') || node.matches('input[type="submit"]') || node.matches('.slip-fine')));
+    });
+
+    var existingChildren = Array.prototype.slice.call(form.children);
+    existingChildren.forEach(function (node) { if (node.parentNode === form) form.removeChild(node); });
+
+    var titles = [
+      { title: 'Your contact details', note: 'How can the team reach you about this moving request?' },
+      { title: 'Tell us about the move', note: 'Add the pickup, destination, property size and service needed.' },
+      { title: 'Schedule and extra details', note: 'Choose the date and share any special instructions.' }
+    ];
+    var wizardId = (form.id || 'quote') + '-wizard';
+    var progress = document.createElement('div');
+    progress.className = 'quote-wizard-progress';
+    progress.setAttribute('role', 'group');
+    progress.setAttribute('aria-label', 'Quote form steps');
+    progress.innerHTML = '<span class="quote-wizard-progress__step" data-progress-step="0"><b>1</b><span>Contact</span></span><span class="quote-wizard-progress__line" aria-hidden="true"></span><span class="quote-wizard-progress__step" data-progress-step="1"><b>2</b><span>Move</span></span><span class="quote-wizard-progress__line" aria-hidden="true"></span><span class="quote-wizard-progress__step" data-progress-step="2"><b>3</b><span>Schedule</span></span>';
+    form.appendChild(progress);
+    var status = document.createElement('p');
+    status.className = 'quote-wizard-status';
+    status.setAttribute('aria-live', 'polite');
+    status.setAttribute('aria-atomic', 'true');
+    form.appendChild(status);
+
+    var panels = [];
+    for (var stepIndex = 0; stepIndex < 3; stepIndex++) {
+      var panel = document.createElement('section');
+      panel.className = 'quote-wizard-step';
+      panel.id = wizardId + '-step-' + (stepIndex + 1);
+      panel.setAttribute('data-wizard-step', String(stepIndex));
+      panel.setAttribute('aria-labelledby', wizardId + '-heading-' + (stepIndex + 1));
+      var heading = document.createElement('h3');
+      heading.className = 'quote-wizard-step__title';
+      heading.id = wizardId + '-heading-' + (stepIndex + 1);
+      heading.tabIndex = -1;
+      heading.textContent = titles[stepIndex].title;
+      var note = document.createElement('p');
+      note.className = 'quote-wizard-step__note';
+      note.textContent = titles[stepIndex].note;
+      panel.appendChild(heading);
+      panel.appendChild(note);
+      panels.push(panel);
+    }
+
+    rows.forEach(function (row, index) {
+      var group = index === 0 ? 0 : (index <= 2 ? 1 : 2);
+      panels[group].appendChild(row);
+    });
+    // Extra fields not laid out in a .field-row stay in the final step.
+    extraFields.forEach(function (node) { panels[2].appendChild(node); });
+    panels.forEach(function (panel) { form.appendChild(panel); });
+
+    var controls = panels.map(function (panel, index) {
+      var bar = document.createElement('div');
+      bar.className = 'quote-wizard-controls';
+      if (index > 0) {
+        var back = document.createElement('button');
+        back.type = 'button';
+        back.className = 'quote-wizard-back';
+        back.textContent = '← Back';
+        back.addEventListener('click', function () { showStep(index - 1, true); });
+        bar.appendChild(back);
+      }
+      if (index < panels.length - 1) {
+        var next = document.createElement('button');
+        next.type = 'button';
+        next.className = 'quote-wizard-next';
+        next.textContent = index === 0 ? 'Continue to move details →' : 'Continue to schedule →';
+        next.addEventListener('click', function () {
+          if (!validateStep(panel)) return;
+          if (typeof window.vmpTrackEvent === 'function') window.vmpTrackEvent('vmp_quote_step_completed', { step_number: index + 1, page_path: window.location.pathname });
+          showStep(index + 1, true);
+        });
+        bar.appendChild(next);
+      } else if (submit) {
+        bar.appendChild(submit);
+      }
+      panel.appendChild(bar);
+      return bar;
+    });
+    if (fine) panels[2].appendChild(fine);
+    // If the form has non-row hidden/helper nodes, retain them in the final panel.
+    existingChildren.forEach(function (node) {
+      if (!rowsSet.has(node) && !movedToEnd.has(node) && extraFields.indexOf(node) === -1) panels[2].appendChild(node);
+    });
+
+    var current = 0;
+    function showStep(nextIndex, moveFocus) {
+      current = Math.max(0, Math.min(panels.length - 1, nextIndex));
+      panels.forEach(function (panel, index) {
+        panel.hidden = index !== current;
+        panel.setAttribute('aria-hidden', index === current ? 'false' : 'true');
+      });
+      Array.prototype.forEach.call(progress.querySelectorAll('[data-progress-step]'), function (el, index) {
+        el.classList.toggle('is-current', index === current);
+        el.classList.toggle('is-complete', index < current);
+        if (index === current) el.setAttribute('aria-current', 'step');
+        else el.removeAttribute('aria-current');
+      });
+      status.textContent = 'Step ' + (current + 1) + ' of ' + panels.length + ': ' + titles[current].title;
+      if (moveFocus) {
+        panels[current].querySelector('.quote-wizard-step__title').focus({ preventScroll: true });
+        panels[current].scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
+      }
+    }
+    form.setAttribute('data-vmp-wizard', 'ready');
+    form.classList.add('quote-wizard-enabled');
+    showStep(0, false);
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('form.slip-form#quoteForm'), initWizard);
+})();
+

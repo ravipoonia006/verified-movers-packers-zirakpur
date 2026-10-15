@@ -19,6 +19,7 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -101,7 +102,7 @@
 <a class="skip-link" href="#main">Skip to content</a>
 
 <nav>
-  <a class="logo" href="index.html" aria-label="Verified Movers & Packers home"><img src="assets/verified-movers-logo.svg" alt="Verified Movers & Packers — Zirakpur" class="site-logo"></a>
+  <a class="logo" href="index.html" aria-label="Verified Movers & Packers home"><img src="assets/verified-movers-logo.svg" alt="Verified Movers & Packers — Zirakpur" class="site-logo" width="520" height="110" decoding="async" loading="eager"></a>
   <div class="nav-links">
     <a href="#how">How it works</a>
     <a href="services.html">Services</a>
@@ -134,7 +135,7 @@
     <p class="hero-sub">From home shifting to office relocation and vehicle transport, tell us what you need. We prepare your complete move request and open WhatsApp with every detail ready for a faster quote.</p>
     <!-- AI Image Added: Suggested AI prompt: “Professional packers and movers loading carefully packed household boxes into a branded moving truck outside a family home; warm natural light, trustworthy team, navy and orange accents, realistic editorial photography.” -->
     <figure class="moving-visual" aria-label="Professional packing and moving illustration">
-      <img src="assets/img-home-shifting.svg" alt="Illustration of professional movers loading secured household boxes into a moving truck outside a home" loading="lazy" decoding="async">
+      <img src="assets/img-home-shifting.svg" alt="Illustration of professional movers loading secured household boxes into a moving truck outside a home" decoding="async" width="800" height="400" loading="eager" fetchpriority="high">
     </figure>
     <div class="hero-stats">
       <div class="hero-stat"><div class="num mono">HOME</div><div class="lbl">House shifting</div></div>
@@ -265,11 +266,16 @@
 
 
 <div class="truck-road truck-road--hero" aria-hidden="true">
-  <img class="truck-runner" src="assets/truck-animated.svg" alt="" width="140" height="56" loading="lazy">
-  <img class="truck-runner truck-runner--delayed" src="assets/truck-mini.svg" alt="" width="100" height="40" loading="lazy">
+  <img class="truck-runner" src="assets/truck-animated.svg" alt="" width="140" height="56" loading="lazy" decoding="async">
+  <img class="truck-runner truck-runner--delayed" src="assets/truck-mini.svg" alt="" width="100" height="40" loading="lazy" decoding="async">
 </div>
 <!-- AI Images: compact branded visuals (mobile-friendly) -->
-<section class="section visual-gallery" id="visuals" aria-label="Moving services visuals">
+<section class="section visual-gallery" id="visuals" aria-label="Moving services illustrations">
+  <div class="visual-gallery__head">
+    <div class="section-eyebrow">Moving services at a glance</div>
+    <h2 class="section-title">Careful handling at every stage.</h2>
+    <p class="section-title-sub">Illustrative visuals of packing, loading, office moves and transport. Ask us about the service that fits your move.</p>
+  </div>
   <div class="visual-grid">
     <figure class="visual-card" data-reveal>
       <img src="assets/img-home-shifting.svg" alt="Verified Movers team loading boxes into branded truck" loading="lazy" decoding="async" width="400" height="225">
@@ -284,8 +290,16 @@
       <figcaption>Our verified team</figcaption>
     </figure>
     <figure class="visual-card" data-reveal>
-      <img src="assets/img-vehicle.svg" alt="Vehicle transport by Verified Movers" loading="lazy" decoding="async" width="400" height="225">
+      <img src="assets/img-vehicle.svg" alt="Illustration of vehicle transport as a moving service" loading="lazy" decoding="async" width="400" height="225">
       <figcaption><a href="service-vehicle-transportation.html" style="color:inherit;text-decoration:none;font-weight:700">Vehicle transport →</a></figcaption>
+    </figure>
+    <figure class="visual-card" data-reveal>
+      <img src="assets/img-office-move.svg" alt="Illustration of office furniture and equipment being moved" loading="lazy" decoding="async" width="400" height="225">
+      <figcaption><a href="service-office-commercial-shifting.html" style="color:inherit;text-decoration:none;font-weight:700">Office relocation →</a></figcaption>
+    </figure>
+    <figure class="visual-card" data-reveal>
+      <img src="assets/img-boxes-stack.svg" alt="Illustration of organized moving boxes and packing supplies" loading="lazy" decoding="async" width="400" height="225">
+      <figcaption><a href="service-packing-services.html" style="color:inherit;text-decoration:none;font-weight:700">Boxes &amp; packing →</a></figcaption>
     </figure>
   </div>
 </section>
@@ -350,15 +364,15 @@
   </div>
   <!-- AI Image Added: services banner -->
   <div class="section-photo-banner" data-reveal>
-    <img src="assets/img-home-shifting.svg" alt="Professional packers and movers services overview" loading="lazy" decoding="async">
+    <img src="assets/img-home-shifting.svg" alt="Professional packers and movers services overview" loading="lazy" decoding="async" width="800" height="400">
   </div>
   <div class="why-grid">
-    <a class="why-card why-card-link" href="service-local-house-shifting.html"><img class="card-photo" src="assets/img-home-shifting.svg" alt="Local house shifting" loading="lazy"><span class="num-tag">01</span><h4>Local house shifting</h4><p>Within-city moves — 1RK to 4BHK+, with packing and labor quoted as separate line items.</p><span class="area-cta">View service →</span></a>
-    <a class="why-card why-card-link" href="service-intercity-interstate-moves.html"><img class="card-photo" src="assets/img-map-route.svg" alt="Intercity and interstate moves" loading="lazy"><span class="num-tag">02</span><h4>Intercity &amp; interstate moves</h4><p>Longer relocations between cities, including the extra paperwork an interstate move can involve.</p><span class="area-cta">View service →</span></a>
-    <a class="why-card why-card-link" href="service-office-commercial-shifting.html"><img class="card-photo" src="assets/img-office-move.svg" alt="Office commercial shifting" loading="lazy"><span class="num-tag">03</span><h4>Office &amp; commercial shifting</h4><p>Desks, servers, and equipment — vendors quote loading-dock timing and IT-equipment handling separately.</p><span class="area-cta">View service →</span></a>
-    <a class="why-card why-card-link" href="service-vehicle-transportation.html"><img class="card-photo" src="assets/img-vehicle.svg" alt="Vehicle transportation" loading="lazy"><span class="num-tag">04</span><h4>Vehicle transportation</h4><p>Car and bike shifting alongside a household move, or as a standalone request.</p><span class="area-cta">View service →</span></a>
-    <a class="why-card why-card-link" href="service-storage-warehousing.html"><img class="card-photo" src="assets/img-boxes-stack.svg" alt="Storage and warehousing" loading="lazy"><span class="num-tag">05</span><h4>Storage &amp; warehousing</h4><p>Short-term storage between move-out and move-in dates, arranged through matched vendors on request.</p><span class="area-cta">View service →</span></a>
-    <a class="why-card why-card-link" href="service-specialty-item-handling.html"><img class="card-photo" src="assets/img-packing.svg" alt="Specialty item handling" loading="lazy"><span class="num-tag">06</span><h4>Specialty item handling</h4><p>Pianos, artwork, aquariums and other fragile or oversized items — mention them upfront for the right crew.</p><span class="area-cta">View service →</span></a>
+    <a class="why-card why-card-link" href="service-local-house-shifting.html"><img class="card-photo" src="assets/img-home-shifting.svg" alt="Local house shifting" loading="lazy" width="800" height="400" decoding="async"><span class="num-tag">01</span><h4>Local house shifting</h4><p>Within-city moves — 1RK to 4BHK+, with packing and labor quoted as separate line items.</p><span class="area-cta">View service →</span></a>
+    <a class="why-card why-card-link" href="service-intercity-interstate-moves.html"><img class="card-photo" src="assets/img-map-route.svg" alt="Intercity and interstate moves" loading="lazy" width="640" height="360" decoding="async"><span class="num-tag">02</span><h4>Intercity &amp; interstate moves</h4><p>Longer relocations between cities, including the extra paperwork an interstate move can involve.</p><span class="area-cta">View service →</span></a>
+    <a class="why-card why-card-link" href="service-office-commercial-shifting.html"><img class="card-photo" src="assets/img-office-move.svg" alt="Office commercial shifting" loading="lazy" width="640" height="360" decoding="async"><span class="num-tag">03</span><h4>Office &amp; commercial shifting</h4><p>Desks, servers, and equipment — vendors quote loading-dock timing and IT-equipment handling separately.</p><span class="area-cta">View service →</span></a>
+    <a class="why-card why-card-link" href="service-vehicle-transportation.html"><img class="card-photo" src="assets/img-vehicle.svg" alt="Vehicle transportation" loading="lazy" width="640" height="360" decoding="async"><span class="num-tag">04</span><h4>Vehicle transportation</h4><p>Car and bike shifting alongside a household move, or as a standalone request.</p><span class="area-cta">View service →</span></a>
+    <a class="why-card why-card-link" href="service-storage-warehousing.html"><img class="card-photo" src="assets/img-boxes-stack.svg" alt="Storage and warehousing" loading="lazy" width="640" height="360" decoding="async"><span class="num-tag">05</span><h4>Storage &amp; warehousing</h4><p>Short-term storage between move-out and move-in dates, arranged through matched vendors on request.</p><span class="area-cta">View service →</span></a>
+    <a class="why-card why-card-link" href="service-specialty-item-handling.html"><img class="card-photo" src="assets/img-packing.svg" alt="Specialty item handling" loading="lazy" width="800" height="400" decoding="async"><span class="num-tag">06</span><h4>Specialty item handling</h4><p>Pianos, artwork, aquariums and other fragile or oversized items — mention them upfront for the right crew.</p><span class="area-cta">View service →</span></a>
   </div>
 </section>
 
@@ -456,7 +470,7 @@
     <p class="section-title-sub">Every vendor sets their own materials and pricing — this is what to ask about when comparing quotes.</p>
   </div>
   <div class="section-photo-banner" data-reveal>
-    <img src="assets/img-packing.svg" alt="Packing materials and professional packing setup" loading="lazy" decoding="async">
+    <img src="assets/img-packing.svg" alt="Packing materials and professional packing setup" loading="lazy" decoding="async" width="800" height="400">
   </div>
   <div class="article">
     <p>Packing quality is one of the biggest swing factors between a smooth move and a damaged-goods dispute, so it's worth knowing what "good packing" actually involves before you compare quotes:</p>
@@ -486,6 +500,38 @@
   </div>
 </section>
 
+
+<section class="section move-trust-checklist" id="before-you-book" aria-labelledby="before-you-book-title">
+  <div class="trust-checklist__intro">
+    <div class="section-eyebrow">Clear expectations</div>
+    <h2 class="section-title" id="before-you-book-title">A better move starts before moving day.</h2>
+    <p class="section-title-sub">Before confirming a booking, use this quick checklist with the moving provider so you know what the quote includes.</p>
+  </div>
+  <div class="trust-checklist__grid">
+    <article class="trust-checklist__item"><span class="trust-checklist__icon" aria-hidden="true">01</span><div><h3>Get the price breakdown</h3><p>Confirm transport, labour, packing materials, taxes and any extra charges in writing.</p></div></article>
+    <article class="trust-checklist__item"><span class="trust-checklist__icon" aria-hidden="true">02</span><div><h3>Confirm what is packed</h3><p>Agree which items need special wrapping, who supplies materials and what is included in the quoted scope.</p></div></article>
+    <article class="trust-checklist__item"><span class="trust-checklist__icon" aria-hidden="true">03</span><div><h3>Discuss access and timing</h3><p>Share floor, lift, stairs, parking and carry-distance details at pickup and delivery.</p></div></article>
+    <article class="trust-checklist__item"><span class="trust-checklist__icon" aria-hidden="true">04</span><div><h3>Ask about transit protection</h3><p>Ask the provider whether insurance or transit protection is available, what it covers, and how claims are handled.</p></div></article>
+  </div>
+  <div class="trust-checklist__note"><strong>How this service works:</strong> Verified Movers &amp; Packers is a marketplace-style quote desk connecting customers with independent moving providers. Confirm the final scope, price, payment terms and service provider directly before booking.</div>
+  <div class="trust-checklist__actions"><a class="trust-action trust-action--primary" href="quote.html">Prepare a moving request</a><a class="trust-action trust-action--secondary" data-wa data-wa-msg="Hi Verified Movers & Packers, I would like to understand the moving quote process before booking." href="#" target="_blank" rel="noopener">Ask a question on WhatsApp</a></div>
+</section>
+
+<section class="section honest-feedback" id="customer-feedback" aria-labelledby="feedback-title">
+  <div class="honest-feedback__copy">
+    <div class="section-eyebrow">Customer feedback</div>
+    <h2 class="section-title" id="feedback-title">Real feedback deserves a real source.</h2>
+    <p>We only publish customer reviews when the feedback is genuine and we have permission to share it. No invented quotes, ratings or review counts.</p>
+    <p>If we've helped with your move, tell us what worked well or what could be better.</p>
+    <a class="feedback-cta" data-wa data-wa-msg="Hi Verified Movers & Packers, I would like to share feedback about my moving enquiry or service experience." href="#" target="_blank" rel="noopener">Share feedback on WhatsApp <span aria-hidden="true">→</span></a>
+  </div>
+  <div class="honest-feedback__side" aria-label="How customer feedback is handled">
+    <div class="feedback-principle"><span aria-hidden="true">✓</span><div><strong>Authentic</strong><p>Feedback should reflect a real customer experience.</p></div></div>
+    <div class="feedback-principle"><span aria-hidden="true">✓</span><div><strong>Permission-led</strong><p>Personal details are not published without permission.</p></div></div>
+    <div class="feedback-principle"><span aria-hidden="true">✓</span><div><strong>Transparent</strong><p>We won't display a star rating unless it can be verified.</p></div></div>
+  </div>
+</section>
+
 <div class="split" id="vendors">
   <div class="split-panel customers">
     <div class="split-eyebrow mono">For people moving</div>
@@ -508,7 +554,7 @@
   <div class="footer-inner">
     <div>
       <a class="logo footer-brand" href="index.html" aria-label="Verified Movers & Packers home">
-        <img src="assets/verified-movers-logo-light.svg" alt="Verified Movers & Packers — Zirakpur" class="site-logo site-logo-light">
+        <img src="assets/verified-movers-logo-light.svg" alt="Verified Movers & Packers — Zirakpur" class="site-logo site-logo-light" width="520" height="110" decoding="async" loading="eager">
         <span class="footer-brand-text">
           <strong>Verified Movers</strong>
           <span>&amp; Packers · Zirakpur</span>
