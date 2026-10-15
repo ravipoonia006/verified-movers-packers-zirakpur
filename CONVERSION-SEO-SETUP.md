@@ -43,3 +43,7 @@ The website has not been given a verified public review feed or Google review UR
 4. Test wizard validation, step back/continue, final WhatsApp opening, `tel:` links, and mobile sticky-contact controls.
 5. Add your actual Google Tag Manager/Google Ads identifiers before expecting account-level conversions.
 6. Deploy only after you confirm the new flow visually in a browser on desktop and mobile.
+
+
+## Random theme navigation bar
+The top navigation now follows the active visit palette: deep theme-coloured background, white navigation links, a highlighted current/hover state, and palette-accent Call/Quote buttons. The logo sits on a light badge for legibility; WhatsApp remains green. Footer navigation is excluded from these styles.

@@ -5240,3 +5240,85 @@ html[data-vmp-theme] footer .footer-contact a:hover { color: var(--vmp-highlight
     scroll-behavior: auto !important;
   }
 }
+
+
+/* NAV BAR THEME COLORS — random visit palette
+   The bar uses the active visit palette. The logo stays readable on a light
+   badge; navigation links are white; accent actions retain strong contrast.
+   Scoped to the main top-level navigation, never footer navigation. */
+html[data-vmp-theme] body > nav:not(.footer-links) {
+  background: linear-gradient(112deg, var(--vmp-primary-deep) 0%, var(--vmp-primary) 100%) !important;
+  color: #FFFFFF !important;
+  border-bottom: 3px solid var(--vmp-highlight) !important;
+  box-shadow: 0 6px 24px rgba(var(--vmp-rgb), .22) !important;
+}
+
+/* Keep the original branded logo legible over the coloured header. */
+html[data-vmp-theme] body > nav:not(.footer-links) > .logo {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, .75) !important;
+  border-radius: 12px !important;
+  padding: 5px 9px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .12) !important;
+}
+html[data-vmp-theme] body > nav:not(.footer-links) > .logo .site-logo {
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+/* Theme-coloured navigation text and visible active/hover states. */
+html[data-vmp-theme] body > nav:not(.footer-links) .nav-links,
+html[data-vmp-theme] body > nav:not(.footer-links) .nav-links a {
+  color: #FFFFFF !important;
+}
+html[data-vmp-theme] body > nav:not(.footer-links) .nav-links a {
+  text-decoration-color: transparent !important;
+  transition: color .2s ease, background-color .2s ease, opacity .2s ease !important;
+}
+html[data-vmp-theme] body > nav:not(.footer-links) .nav-links a:hover,
+html[data-vmp-theme] body > nav:not(.footer-links) .nav-links a[aria-current="page"],
+html[data-vmp-theme] body > nav:not(.footer-links) .nav-links a:focus-visible {
+  color: var(--vmp-highlight) !important;
+  background: rgba(255, 255, 255, .08) !important;
+  text-decoration-color: var(--vmp-highlight) !important;
+  outline-color: var(--vmp-highlight) !important;
+}
+
+/* The quote and phone actions use the palette highlight for clear separation. */
+html[data-vmp-theme] body > nav:not(.footer-links) > .nav-cta,
+html[data-vmp-theme] body > nav:not(.footer-links) .contact-btn.call {
+  background: var(--vmp-highlight) !important;
+  border: 2px solid var(--vmp-highlight) !important;
+  color: var(--vmp-text) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .16) !important;
+}
+html[data-vmp-theme] body > nav:not(.footer-links) .contact-btn.call .label,
+html[data-vmp-theme] body > nav:not(.footer-links) .contact-btn.call svg {
+  color: var(--vmp-text) !important;
+}
+html[data-vmp-theme] body > nav:not(.footer-links) > .nav-cta:hover,
+html[data-vmp-theme] body > nav:not(.footer-links) .contact-btn.call:hover {
+  filter: brightness(.96) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* WhatsApp remains recognizable green with high-contrast white content. */
+html[data-vmp-theme] body > nav:not(.footer-links) .contact-btn.wa {
+  background: #168451 !important;
+  border: 2px solid #168451 !important;
+  color: #FFFFFF !important;
+}
+html[data-vmp-theme] body > nav:not(.footer-links) .contact-btn.wa .label,
+html[data-vmp-theme] body > nav:not(.footer-links) .contact-btn.wa svg {
+  color: #FFFFFF !important;
+}
+
+@media (max-width: 760px) {
+  html[data-vmp-theme] body > nav:not(.footer-links) {
+    border-bottom-width: 3px !important;
+  }
+  html[data-vmp-theme] body > nav:not(.footer-links) > .logo {
+    padding: 4px 7px !important;
+    border-radius: 10px !important;
+  }
+}
