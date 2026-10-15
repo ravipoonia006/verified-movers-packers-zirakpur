@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 64" width="160" height="64" fill="none">
+  <!-- truck body -->
+  <rect x="8" y="22" width="88" height="28" rx="3" fill="#0A1628"/>
+  <rect x="12" y="26" width="48" height="16" rx="2" fill="#1a3352"/>
+  <text x="18" y="38" font-family="Arial,sans-serif" font-size="7" font-weight="700" fill="#F4A261">VERIFIED</text>
+  <!-- cabin -->
+  <path d="M96 28h28l12 14v8H96V28z" fill="#E63946"/>
+  <rect x="102" y="32" width="18" height="10" rx="1.5" fill="#7EC8E3" opacity="0.9"/>
+  <!-- wheels -->
+  <circle cx="28" cy="52" r="8" fill="#1a1a1a"/>
+  <circle cx="28" cy="52" r="3.5" fill="#888"/>
+  <circle cx="72" cy="52" r="8" fill="#1a1a1a"/>
+  <circle cx="72" cy="52" r="3.5" fill="#888"/>
+  <circle cx="120" cy="52" r="8" fill="#1a1a1a"/>
+  <circle cx="120" cy="52" r="3.5" fill="#888"/>
+  <!-- ground shadow -->
+  <ellipse cx="76" cy="60" rx="70" ry="3" fill="#0A1628" opacity="0.12"/>
+</svg>

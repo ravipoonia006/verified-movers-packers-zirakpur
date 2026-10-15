@@ -42,7 +42,10 @@
 
     function validatePhone(v) {
       var digits = String(v || '').replace(/\D/g, '');
-      return digits.length >= 10;
+      // Accept 10-digit Indian mobiles, or 12-digit with country code 91
+      if (digits.length === 12 && digits.indexOf('91') === 0) digits = digits.slice(2);
+      if (digits.length === 11 && digits.charAt(0) === '0') digits = digits.slice(1);
+      return digits.length === 10 && /^[6-9]/.test(digits);
     }
 
     function validateDate(input) {
@@ -159,12 +162,23 @@
       if (form) form.style.display = 'none';
       if (successBox) successBox.classList.add('show');
 
-      // Open WhatsApp in the original submit gesture; delaying this with setTimeout can trigger popup blockers.
-      var waWindow = window.open(waLink(message), '_blank');
+      // Open WhatsApp in the same user gesture (critical for mobile browsers).
+      // window.open can be blocked; fall back to same-tab navigation + on-page retry button.
+      var waUrl = waLink(message);
+      var waWindow = null;
+      try {
+        waWindow = window.open(waUrl, '_blank');
+      } catch (err) {
+        waWindow = null;
+      }
       if (waWindow) {
         try { waWindow.opener = null; } catch (ignore) { /* cross-browser hardening only */ }
       } else {
         addWhatsAppFallback(message);
+        // Last-resort: navigate this tab to WhatsApp (works when popups are blocked).
+        try {
+          window.location.href = waUrl;
+        } catch (navErr) { /* ignore */ }
       }
 
       var compareSection = document.getElementById('compare');
@@ -256,21 +270,74 @@
     });
   });
 
-  /* Animation Added: progressive scroll reveals; existing form and link behavior is unchanged. */
-  (function initScrollReveals() {
-    var revealTargets = document.querySelectorAll(
-      '.hero > div, .moving-visual, .section h2, .locality-card, .why-card, .compare-card, .city-card, .faq-item, .slip, .visual-card, .section-photo-banner'
-    );
+  /* Area / chip click → fill quote form + scroll (city pages) */
+  document.querySelectorAll('a.locality-card[data-area], a.chip[data-area]').forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      var area = el.getAttribute('data-area') || '';
+      var city = el.getAttribute('data-city') || '';
+      var form = document.getElementById('quoteForm');
+      var fromInput = form && form.querySelector('[name="from"]');
+      if (fromInput && area) {
+        // Prefer putting locality in From; keep readable
+        var label = area;
+        if (city && area.toLowerCase().indexOf(city.toLowerCase()) === -1 && area.indexOf('→') === -1 && area.indexOf('->') === -1) {
+          label = area + ', ' + city;
+        }
+        if (area.indexOf('→') !== -1 || area.indexOf('->') !== -1) {
+          // route chip: "Zirakpur → Mohali"
+          var parts = area.split(/→|->/).map(function (s) { return s.trim(); });
+          if (parts[0] && form.querySelector('[name="from"]')) form.querySelector('[name="from"]').value = parts[0];
+          if (parts[1] && form.querySelector('[name="to"]')) form.querySelector('[name="to"]').value = parts[1];
+        } else if (area.toLowerCase().indexOf('packers') !== -1 || area.toLowerCase().indexOf('shifting') !== -1) {
+          // search keyword chip — don't overwrite from; just scroll
+        } else {
+          fromInput.value = label;
+        }
+      }
+      // allow hash navigation to #hero-form
+    });
+  });
+
+  /* Full-site motion: page enter + expanded scroll reveals. Forms/WA unchanged. */
+  (function initMotionSystem() {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    document.documentElement.classList.add(reduce ? 'motion-reduce' : 'motion-ready');
+    if (!reduce) {
+      requestAnimationFrame(function () {
+        document.body.classList.add('page-entered');
+      });
+    } else {
+      document.body.classList.add('page-entered');
+    }
+
+    var selectors = [
+      '.hero > div', '.hero .headline', '.hero .sub', '.hero .eyebrow',
+      '.moving-visual', '.slip', '.slip-form',
+      '.section h2', '.section-title', '.section-title-sub', '.section-photo-banner',
+      '.locality-card', '.why-card', '.compare-card', '.city-card',
+      '.faq-item', '.visual-card', '.visual-gallery',
+      '.br-card', '.br-value', '.contact-tile', '.contact-form-card',
+      '.quote-card', '.quote-intro', '.hours-strip',
+      '.split-panel', '.stamp-item', '.chip',
+      'footer .footer-col', '.footer-brand',
+      '.page-hero-br', '.truck-road'
+    ].join(', ');
+
+    var revealTargets = document.querySelectorAll(selectors);
     if (!revealTargets.length) return;
 
-    if (!('IntersectionObserver' in window)) {
+    if (reduce || !('IntersectionObserver' in window)) {
       revealTargets.forEach(function (el) { el.classList.add('is-visible'); });
       return;
     }
 
     revealTargets.forEach(function (el, index) {
       el.setAttribute('data-reveal', '');
-      el.style.setProperty('--reveal-delay', (index % 4) * 70 + 'ms');
+      var dir = index % 3;
+      if (dir === 1) el.setAttribute('data-reveal-from', 'left');
+      else if (dir === 2) el.setAttribute('data-reveal-from', 'right');
+      else el.setAttribute('data-reveal-from', 'up');
+      el.style.setProperty('--reveal-delay', (index % 6) * 55 + 'ms');
     });
 
     var revealObserver = new IntersectionObserver(function (entries, observer) {
@@ -280,7 +347,7 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -24px 0px' });
+    }, { threshold: 0.1, rootMargin: '0px 0px -18px 0px' });
 
     revealTargets.forEach(function (el) { revealObserver.observe(el); });
   })();

@@ -2163,3 +2163,1079 @@ footer .footer-brand-text strong {
 footer .footer-brand-text span {
   color: #F4A261 !important;
 }
+
+/* ============================================================
+   PAGE-SPECIFIC THEMES — unique composition per page type
+   Shared brand: navy #0A1628 · red #E63946 · white · gold #F4A261
+   ============================================================ */
+
+/* ---------- HOMEPAGE: cinematic premium ---------- */
+body.theme-home {
+  background:
+    radial-gradient(ellipse 80% 50% at 10% -10%, rgba(230, 57, 70, 0.08), transparent 50%),
+    radial-gradient(ellipse 60% 40% at 100% 20%, rgba(10, 22, 40, 0.06), transparent 45%),
+    #F7F9FC;
+}
+body.theme-home .hero {
+  padding-top: 48px !important;
+}
+body.theme-home .hero .headline {
+  font-size: clamp(32px, 5vw, 52px) !important;
+}
+body.theme-home .stamps-strip {
+  background: linear-gradient(90deg, #0A1628, #12253F) !important;
+  border: none !important;
+  color: #fff !important;
+}
+body.theme-home .stamps-strip .stamp-item {
+  color: rgba(255,255,255,0.9) !important;
+}
+body.theme-home .stamps-strip .stamp-circle {
+  background: #E63946 !important;
+  color: #fff !important;
+  border-color: #E63946 !important;
+}
+body.theme-home .visual-gallery {
+  background: #fff;
+  border-radius: 0;
+  padding: 36px 0 !important;
+  border-top: 1px solid #E4EAF1;
+  border-bottom: 1px solid #E4EAF1;
+}
+body.theme-home .section:nth-of-type(odd) {
+  background: transparent;
+}
+body.theme-home #services {
+  background: linear-gradient(180deg, #fff 0%, #F0F4F8 100%);
+  border-radius: 24px;
+  margin: 12px clamp(12px, 3vw, 24px);
+  padding-left: clamp(16px, 3vw, 28px) !important;
+  padding-right: clamp(16px, 3vw, 28px) !important;
+}
+body.theme-home .why-card {
+  border-radius: 16px !important;
+  border: none !important;
+  box-shadow: 0 12px 32px rgba(10, 22, 40, 0.08) !important;
+}
+body.theme-home .split {
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 24px clamp(12px, 3vw, 24px);
+}
+
+/* ---------- ABOUT: editorial corporate ---------- */
+body.theme-about {
+  background: #FAFBFC;
+}
+body.theme-about .page-hero-br {
+  background: linear-gradient(160deg, #0A1628 0%, #1a3352 100%) !important;
+  border-bottom: 4px solid #E63946 !important;
+  padding: 64px clamp(20px, 5vw, 64px) 56px !important;
+}
+body.theme-about .br-section {
+  max-width: 720px !important;
+  padding-top: 40px !important;
+}
+body.theme-about .br-card {
+  border: none !important;
+  border-left: 4px solid #E63946 !important;
+  border-radius: 0 16px 16px 0 !important;
+  box-shadow: 0 4px 24px rgba(10, 22, 40, 0.05) !important;
+  background: #fff !important;
+  margin-bottom: 28px !important;
+}
+body.theme-about .br-card h2 {
+  font-size: 20px !important;
+  letter-spacing: -0.02em;
+}
+body.theme-about .br-values {
+  grid-template-columns: 1fr !important;
+  gap: 12px !important;
+}
+body.theme-about .br-value {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 16px;
+  align-items: start;
+  background: #F7F9FC !important;
+  color: #0A1628 !important;
+  border-top: none !important;
+  border-left: 3px solid #F4A261 !important;
+}
+body.theme-about .br-value strong {
+  color: #0A1628 !important;
+}
+body.theme-about .br-value p {
+  color: #5C6B7A !important;
+}
+@media (max-width: 620px) {
+  body.theme-about .br-value {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- CONTACT: conversion-first clean ---------- */
+body.theme-contact {
+  background: #FFFFFF;
+}
+body.theme-contact .page-hero-br {
+  background: #E63946 !important;
+  border-bottom: none !important;
+  text-align: center;
+  padding: 48px 20px 40px !important;
+}
+body.theme-contact .page-hero-br .eyebrow {
+  color: rgba(255,255,255,0.85) !important;
+}
+body.theme-contact .page-hero-br h1 em {
+  color: #fff !important;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+body.theme-contact .contact-wrap {
+  max-width: 900px !important;
+  margin-top: -24px;
+  position: relative;
+  z-index: 2;
+}
+body.theme-contact .contact-tile {
+  border-radius: 20px !important;
+  border: 2px solid #F0F2F5 !important;
+  text-align: center;
+  align-items: center;
+}
+body.theme-contact .contact-tile .icon-badge {
+  margin: 0 auto;
+}
+body.theme-contact .contact-form-card {
+  border: 2px solid #0A1628 !important;
+  border-radius: 20px !important;
+  box-shadow: 0 16px 48px rgba(10, 22, 40, 0.1) !important;
+}
+body.theme-contact .hours-strip {
+  background: #F7F9FC !important;
+  color: #0A1628 !important;
+  border-left: 4px solid #E63946 !important;
+}
+body.theme-contact .hours-strip strong {
+  color: #E63946 !important;
+}
+body.theme-contact .hours-strip span {
+  color: #3D4F63 !important;
+}
+
+/* ---------- QUOTE: minimal focus funnel ---------- */
+body.theme-quote {
+  background: #0A1628 !important;
+}
+body.theme-quote nav {
+  background: rgba(10, 22, 40, 0.95) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+}
+body.theme-quote .nav-links a {
+  color: rgba(255,255,255,0.75) !important;
+}
+body.theme-quote .nav-links a:hover,
+body.theme-quote .nav-links a[aria-current="page"] {
+  color: #fff !important;
+  background: rgba(255,255,255,0.08) !important;
+}
+body.theme-quote .site-logo {
+  filter: brightness(1.1);
+}
+body.theme-quote .quote-page {
+  background: transparent !important;
+  padding-top: 24px !important;
+}
+body.theme-quote .quote-card {
+  border: 3px solid #E63946 !important;
+  border-radius: 24px !important;
+}
+body.theme-quote footer {
+  background: #061018 !important;
+}
+
+/* ---------- ALL CITIES: directory / explorer ---------- */
+body.theme-cities {
+  background:
+    repeating-linear-gradient(
+      -12deg,
+      transparent,
+      transparent 40px,
+      rgba(10, 22, 40, 0.015) 40px,
+      rgba(10, 22, 40, 0.015) 41px
+    ),
+    #F4F7FB;
+}
+body.theme-cities main {
+  padding-top: 24px;
+}
+body.theme-cities .section-title {
+  text-align: center;
+}
+body.theme-cities .city-card,
+body.theme-cities a.city-card {
+  border-radius: 0 !important;
+  border: 2px solid #0A1628 !important;
+  box-shadow: 6px 6px 0 #E63946 !important;
+  background: #fff !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+body.theme-cities .city-card:hover,
+body.theme-cities a.city-card:hover {
+  transform: translate(-3px, -3px) !important;
+  box-shadow: 9px 9px 0 #E63946 !important;
+}
+body.theme-cities .stamp-circle-lg {
+  background: #0A1628 !important;
+  color: #F4A261 !important;
+}
+
+/* ---------- CITY LANDING: local focus (all movers-in-*) ---------- */
+body.theme-city {
+  background: #F8F6F3;
+}
+body.theme-city .hero {
+  background:
+    linear-gradient(135deg, rgba(10, 22, 40, 0.03) 0%, transparent 50%),
+    #F8F6F3 !important;
+  border-bottom: 1px dashed #C7AC7D;
+  padding-bottom: 40px !important;
+}
+body.theme-city .hero .eyebrow {
+  background: #0A1628;
+  color: #F4A261 !important;
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 6px;
+  letter-spacing: 0.08em;
+}
+body.theme-city .hero .eyebrow::before {
+  display: none !important;
+}
+body.theme-city .slip {
+  border: 2px solid #0A1628 !important;
+  border-radius: 4px !important;
+  box-shadow: 8px 8px 0 rgba(230, 57, 70, 0.35) !important;
+}
+body.theme-city .stamps-strip {
+  background: #fff;
+  border-top: 3px solid #E63946 !important;
+  border-bottom: 3px solid #E63946 !important;
+}
+body.theme-city .visual-gallery {
+  background: #0A1628;
+  padding: 28px 12px !important;
+  margin: 0;
+}
+body.theme-city .visual-card {
+  background: #12253F !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  box-shadow: none !important;
+}
+body.theme-city .visual-card figcaption {
+  color: #F4A261 !important;
+  background: transparent !important;
+}
+body.theme-city .section {
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+body.theme-city .faq-item {
+  border-left: 3px solid #E63946;
+  background: #fff;
+  border-radius: 0 12px 12px 0;
+  margin-bottom: 10px;
+  padding-left: 8px;
+}
+
+/* ---------- VENDOR SIGNUP: B2B dark accent ---------- */
+body.theme-vendor {
+  background: linear-gradient(180deg, #0A1628 0%, #12253F 180px, #EEF2F6 180px);
+}
+body.theme-vendor main,
+body.theme-vendor .wrap,
+body.theme-vendor > div {
+  color: inherit;
+}
+body.theme-vendor h1,
+body.theme-vendor .headline {
+  color: #fff !important;
+}
+body.theme-vendor .slip,
+body.theme-vendor form,
+body.theme-vendor .card {
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid #E4EAF1;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+}
+body.theme-vendor nav {
+  background: rgba(10, 22, 40, 0.92) !important;
+}
+body.theme-vendor .nav-links a {
+  color: rgba(255,255,255,0.8) !important;
+}
+
+/* Shared: ensure footer brand always readable on all themes */
+body.theme-home footer,
+body.theme-about footer,
+body.theme-contact footer,
+body.theme-city footer,
+body.theme-cities footer,
+body.theme-quote footer,
+body.theme-vendor footer {
+  background: linear-gradient(180deg, #0A1929 0%, #0B1D33 100%) !important;
+  color: #fff !important;
+}
+
+/* ============================================================
+   ANIMATED TRUCKS — left to right (subtle, reduced-motion safe)
+   ============================================================ */
+.truck-road {
+  position: relative;
+  width: 100%;
+  height: 72px;
+  overflow: hidden;
+  pointer-events: none;
+  margin: 0;
+  background: transparent;
+}
+.truck-road--strip {
+  height: 48px;
+  background: linear-gradient(180deg, transparent 0%, rgba(10,22,40,0.04) 50%, transparent 100%);
+}
+.truck-road--hero {
+  height: 80px;
+  margin-top: -8px;
+  margin-bottom: 8px;
+}
+.truck-road--footer {
+  height: 40px;
+  opacity: 0.55;
+  background: transparent;
+}
+
+.truck-runner {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  width: 140px;
+  height: auto;
+  will-change: transform;
+  animation: truckDriveLTR 18s linear infinite;
+}
+.truck-runner--mini {
+  width: 100px;
+  bottom: 4px;
+  animation-duration: 22s;
+}
+.truck-runner--slow {
+  animation-duration: 28s;
+  animation-delay: -8s;
+}
+.truck-runner--delayed {
+  animation-delay: -12s;
+  opacity: 0.7;
+  width: 110px;
+}
+
+@keyframes truckDriveLTR {
+  0%   { transform: translateX(-160px); }
+  100% { transform: translateX(calc(100vw + 40px)); }
+}
+
+/* Second truck slightly higher / different speed for depth */
+.truck-road .truck-runner:nth-child(2) {
+  bottom: 18px;
+  width: 100px;
+  opacity: 0.45;
+  animation-duration: 26s;
+  animation-delay: -14s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .truck-runner {
+    animation: none !important;
+    left: 12%;
+    opacity: 0.85;
+  }
+  .truck-road .truck-runner:nth-child(2) {
+    left: 55%;
+    opacity: 0.4;
+  }
+}
+
+@media (max-width: 600px) {
+  .truck-road { height: 56px; }
+  .truck-road--hero { height: 64px; }
+  .truck-runner { width: 110px; }
+  .truck-runner--mini { width: 80px; }
+}
+
+/* ============================================================
+   ALL IMAGES ANIMATED — float, pulse, gentle motion
+   Respects prefers-reduced-motion
+   ============================================================ */
+
+/* Hero / main illustration */
+.moving-visual img {
+  animation: imgFloat 4.5s ease-in-out infinite;
+  transform-origin: center center;
+}
+@keyframes imgFloat {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-8px) scale(1.02); }
+}
+
+/* Gallery cards — staggered float */
+.visual-card img {
+  animation: imgFloatSoft 5s ease-in-out infinite;
+}
+.visual-card:nth-child(1) img { animation-delay: 0s; }
+.visual-card:nth-child(2) img { animation-delay: 0.4s; }
+.visual-card:nth-child(3) img { animation-delay: 0.8s; }
+.visual-card:nth-child(4) img { animation-delay: 1.2s; }
+.visual-card:nth-child(5) img { animation-delay: 1.6s; }
+.visual-card:nth-child(6) img { animation-delay: 2s; }
+
+@keyframes imgFloatSoft {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* Service / why cards photos */
+.card-photo,
+.why-card img,
+.service-card img {
+  animation: imgPulse 4s ease-in-out infinite;
+  transform-origin: center bottom;
+}
+.why-card:nth-child(1) img,
+.why-card:nth-child(1) .card-photo { animation-delay: 0s; }
+.why-card:nth-child(2) img,
+.why-card:nth-child(2) .card-photo { animation-delay: 0.35s; }
+.why-card:nth-child(3) img,
+.why-card:nth-child(3) .card-photo { animation-delay: 0.7s; }
+.why-card:nth-child(4) img,
+.why-card:nth-child(4) .card-photo { animation-delay: 1.05s; }
+.why-card:nth-child(5) img,
+.why-card:nth-child(5) .card-photo { animation-delay: 1.4s; }
+.why-card:nth-child(6) img,
+.why-card:nth-child(6) .card-photo { animation-delay: 1.75s; }
+
+@keyframes imgPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+
+/* Section photo banners */
+.section-photo-banner img,
+.section-photo img {
+  animation: imgKenBurns 12s ease-in-out infinite alternate;
+}
+@keyframes imgKenBurns {
+  0% { transform: scale(1) translateX(0); }
+  100% { transform: scale(1.06) translateX(-2%); }
+}
+
+/* Logo — very subtle breathe */
+.site-logo:not(.site-logo-light) {
+  animation: logoBreathe 5s ease-in-out infinite;
+}
+@keyframes logoBreathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+footer .site-logo,
+footer .site-logo-light {
+  animation: none; /* keep footer stable */
+}
+
+/* Generic content images that are not logos/trucks */
+main img:not(.truck-runner):not(.site-logo):not(.site-logo-light) {
+  transition: transform 0.35s ease;
+}
+main img:not(.truck-runner):not(.site-logo):not(.site-logo-light):hover {
+  transform: scale(1.03);
+}
+
+/* Visual card container gentle glow pulse */
+.visual-card {
+  animation: cardGlow 6s ease-in-out infinite;
+}
+.visual-card:nth-child(odd) { animation-delay: 0s; }
+.visual-card:nth-child(even) { animation-delay: 3s; }
+@keyframes cardGlow {
+  0%, 100% { box-shadow: 0 8px 24px rgba(10, 22, 40, 0.08); }
+  50% { box-shadow: 0 12px 32px rgba(230, 57, 70, 0.12); }
+}
+
+/* Icon badges on contact — soft bounce */
+.contact-tile .icon-badge {
+  animation: badgeBounce 2.8s ease-in-out infinite;
+}
+.contact-tile:nth-child(2) .icon-badge { animation-delay: 0.4s; }
+.contact-tile:nth-child(3) .icon-badge { animation-delay: 0.8s; }
+.contact-tile:nth-child(4) .icon-badge { animation-delay: 1.2s; }
+@keyframes badgeBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Accessibility: stop continuous motion when requested */
+@media (prefers-reduced-motion: reduce) {
+  .moving-visual img,
+  .visual-card img,
+  .card-photo,
+  .why-card img,
+  .service-card img,
+  .section-photo-banner img,
+  .section-photo img,
+  .site-logo,
+  .visual-card,
+  .contact-tile .icon-badge {
+    animation: none !important;
+  }
+}
+
+/* ============================================================
+   FULL-SITE MOTION SYSTEM — intentional, performant, accessible
+   ============================================================ */
+
+/* Page load entrance (no blocking preloader) */
+body {
+  opacity: 1;
+}
+html.motion-ready body {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.45s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+html.motion-ready body.page-entered {
+  opacity: 1;
+  transform: none;
+}
+
+/* Nav slides in */
+html.motion-ready body:not(.page-entered) nav {
+  transform: translateY(-12px);
+  opacity: 0;
+}
+html.motion-ready nav {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.05s, opacity 0.45s ease 0.05s;
+}
+html.motion-ready body.page-entered nav {
+  transform: none;
+  opacity: 1;
+}
+
+/* Multi-direction scroll reveals */
+[data-reveal] {
+  opacity: 0;
+  transition:
+    opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms),
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+[data-reveal-from="up"] { transform: translateY(22px); }
+[data-reveal-from="left"] { transform: translateX(-28px); }
+[data-reveal-from="right"] { transform: translateX(28px); }
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hero text stagger boost */
+.hero .eyebrow.is-visible,
+.hero .headline.is-visible,
+.hero .sub.is-visible {
+  transition-duration: 0.65s;
+}
+
+/* Buttons — premium feedback */
+.slip-submit,
+.nav-cta,
+.br-cta,
+.cf-submit,
+.split-cta,
+.contact-btn,
+.demo-btn {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.25s ease,
+    background 0.2s ease,
+    filter 0.2s ease !important;
+}
+.slip-submit:hover,
+.nav-cta:hover,
+.br-cta-primary:hover,
+.cf-submit:hover,
+.split-cta:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
+.slip-submit:active,
+.nav-cta:active,
+.contact-btn:active,
+.cf-submit:active {
+  transform: scale(0.97);
+}
+
+/* Cards — lift */
+.why-card,
+.city-card,
+.visual-card,
+.locality-card,
+.contact-tile,
+.br-card {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease !important;
+}
+.why-card:hover,
+.city-card:hover,
+.locality-card:hover,
+.contact-tile:hover {
+  transform: translateY(-6px);
+}
+
+/* Form fields focus motion */
+.field input,
+.field select,
+.field textarea,
+.cf-field input,
+.cf-field select,
+.cf-field textarea {
+  transition: border-color 0.2s ease, box-shadow 0.25s ease, background 0.2s ease !important;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus,
+.cf-field input:focus,
+.cf-field select:focus,
+.cf-field textarea:focus {
+  transform: none;
+}
+
+/* Floating WA + mobile bar entrance */
+html.motion-ready .wa-float {
+  opacity: 0;
+  transform: scale(0.6) translateY(16px);
+  transition: opacity 0.4s ease 0.6s, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s, background 0.2s ease !important;
+}
+html.motion-ready body.page-entered .wa-float {
+  opacity: 1;
+  transform: none;
+}
+.wa-float:hover {
+  transform: scale(1.08) !important;
+}
+.wa-float:active {
+  transform: scale(0.95) !important;
+}
+
+html.motion-ready .mobile-callbar {
+  transform: translateY(100%);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.5s !important;
+}
+html.motion-ready body.page-entered .mobile-callbar {
+  transform: translateY(0);
+}
+
+/* FAQ open animation */
+.faq-a {
+  transition: max-height 0.3s ease, opacity 0.25s ease !important;
+}
+
+/* Page-theme motion accents */
+body.theme-home .hero .headline {
+  animation: none; /* controlled by reveal */
+}
+body.theme-quote .quote-card.is-visible {
+  animation: quotePop 0.55s cubic-bezier(0.34, 1.2, 0.64, 1) both;
+}
+@keyframes quotePop {
+  from { transform: scale(0.96); opacity: 0.8; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+body.theme-contact .contact-tile.is-visible {
+  transition-duration: 0.5s;
+}
+
+body.theme-city .slip.is-visible {
+  animation: slipSlide 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes slipSlide {
+  from { transform: translateX(16px) rotate(-0.5deg); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+
+/* Stamp items sequential feel */
+.stamp-item.is-visible {
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+/* Footer columns */
+footer .footer-col.is-visible,
+footer .footer-brand.is-visible {
+  transition-duration: 0.5s;
+}
+
+/* Reduced motion master override */
+html.motion-reduce body,
+html.motion-reduce nav,
+html.motion-reduce .wa-float,
+html.motion-reduce .mobile-callbar {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.motion-ready body {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .why-card:hover,
+  .city-card:hover,
+  .locality-card:hover {
+    transform: none !important;
+  }
+}
+
+/* ============================================================
+   BLANK-SPACE FIXES — collapse empty slots, tighten spacing
+   ============================================================ */
+
+/* Form errors: no reserved blank strip until there is a message */
+.field-error {
+  min-height: 0 !important;
+  height: auto !important;
+  margin-top: 0 !important;
+  line-height: 1.3;
+  overflow: hidden;
+}
+.field-error:not(:empty) {
+  min-height: 14px !important;
+  margin-top: 4px !important;
+}
+
+/* Decorative perforations: keep thin, never leave a tall gap */
+.slip-perf {
+  height: 10px !important;
+  margin: 0 !important;
+  flex-shrink: 0;
+}
+
+/* Truck road: slightly shorter so it doesn't feel like empty band */
+.truck-road {
+  height: 56px !important;
+}
+.truck-road--hero {
+  height: 64px !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+.truck-road--strip {
+  height: 44px !important;
+}
+
+/* Section padding: less empty air, especially mobile */
+.section {
+  padding-top: clamp(36px, 6vw, 72px) !important;
+  padding-bottom: clamp(36px, 6vw, 72px) !important;
+}
+@media (max-width: 600px) {
+  .section {
+    padding-top: 28px !important;
+    padding-bottom: 28px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  .split-panel {
+    padding: 36px 20px !important;
+  }
+  .page-hero-br {
+    padding: 40px 18px 32px !important;
+  }
+  .br-section {
+    padding: 28px 16px !important;
+  }
+  .contact-wrap {
+    padding: 24px 14px 40px !important;
+  }
+  .visual-gallery {
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+  }
+  .hero {
+    padding-bottom: 24px !important;
+  }
+}
+
+/* Zigzag decorative: smaller footprint */
+.zigzag {
+  height: 14px !important;
+}
+
+/* Success panel only takes space when shown */
+.slip-success:not(.show) {
+  display: none !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Reveal: avoid long invisible content — shorter travel distance */
+[data-reveal-from="up"] { transform: translateY(14px); }
+[data-reveal-from="left"] { transform: translateX(-16px); }
+[data-reveal-from="right"] { transform: translateX(16px); }
+
+/* Page enter: never leave a white void longer than a blink */
+html.motion-ready body {
+  transition-duration: 0.35s !important;
+}
+
+/* Collapse empty footer barcode row spacing if any */
+.barcode {
+  margin-top: 6px !important;
+  height: 20px !important;
+}
+
+/* Result grid empty strongs shouldn't expand weirdly before fill */
+.result-grid strong:empty::before {
+  content: '—';
+  opacity: 0.35;
+}
+
+/* ============================================================
+   CITY PAGES: denser layout + truck whitespace fix + clickable areas
+   ============================================================ */
+body.theme-city .hero {
+  padding-bottom: 16px !important;
+  border-bottom: none !important;
+}
+body.theme-city .stamps-strip {
+  padding: 10px 12px !important;
+  margin: 0 !important;
+  border-top: 2px solid #E63946 !important;
+  border-bottom: none !important;
+}
+body.theme-city .stamps-row {
+  gap: 8px 16px !important;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+body.theme-city .truck-road {
+  height: 40px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: linear-gradient(180deg, #F8F6F3 0%, #0A1628 100%) !important;
+}
+body.theme-city .truck-road--strip {
+  height: 40px !important;
+}
+body.theme-city .visual-gallery {
+  margin-top: 0 !important;
+  padding-top: 16px !important;
+  padding-bottom: 16px !important;
+}
+body.theme-city .section {
+  padding-top: 28px !important;
+  padding-bottom: 28px !important;
+  max-width: 1100px;
+}
+body.theme-city .section-head {
+  margin-bottom: 14px !important;
+}
+body.theme-city .section-title {
+  font-size: clamp(22px, 3.5vw, 28px) !important;
+  margin-bottom: 6px !important;
+}
+body.theme-city .section-title-sub {
+  font-size: 14px !important;
+  margin-bottom: 0 !important;
+}
+
+/* Dense clickable locality cards */
+body.theme-city .locality-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)) !important;
+  gap: 10px !important;
+}
+a.locality-card,
+.locality-card {
+  display: block !important;
+  text-decoration: none !important;
+  color: inherit !important;
+  padding: 14px 12px !important;
+  background: #fff !important;
+  border: 1.5px solid #0A1628 !important;
+  border-radius: 10px !important;
+  box-shadow: 3px 3px 0 rgba(230, 57, 70, 0.25) !important;
+  cursor: pointer !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease !important;
+}
+a.locality-card:hover,
+.locality-card:hover {
+  transform: translate(-2px, -2px) !important;
+  box-shadow: 5px 5px 0 #E63946 !important;
+  background: #FFF8F8 !important;
+}
+a.locality-card h4,
+.locality-card h4 {
+  font-size: 14px !important;
+  font-weight: 800 !important;
+  color: #0A1628 !important;
+  margin: 0 0 4px !important;
+}
+a.locality-card p,
+.locality-card p {
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+  color: #5C6B7A !important;
+  margin: 0 !important;
+}
+a.locality-card .area-cta {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #E63946;
+  letter-spacing: 0.02em;
+}
+
+/* Clickable chips denser */
+body.theme-city .chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px !important;
+  margin-top: 10px;
+}
+a.chip,
+.chip {
+  display: inline-flex !important;
+  align-items: center;
+  text-decoration: none !important;
+  padding: 8px 12px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  border-radius: 999px !important;
+  border: 1.5px solid #0A1628 !important;
+  background: #fff !important;
+  color: #0A1628 !important;
+  cursor: pointer !important;
+  transition: background 0.2s, color 0.2s, transform 0.15s !important;
+}
+a.chip:hover,
+.chip:hover {
+  background: #0A1628 !important;
+  color: #fff !important;
+  transform: translateY(-1px);
+}
+
+/* SEO area intro denser */
+.area-seo-block {
+  background: #fff;
+  border-left: 4px solid #E63946;
+  padding: 14px 16px;
+  margin: 12px 0 16px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #3D4F63;
+  border-radius: 0 10px 10px 0;
+}
+.area-seo-block strong { color: #0A1628; }
+
+body.theme-city .faq-item {
+  margin-bottom: 6px !important;
+  padding: 4px 8px !important;
+}
+body.theme-city .why-card {
+  padding: 14px !important;
+}
+@media (max-width: 600px) {
+  body.theme-city .locality-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+  }
+  body.theme-city .section {
+    padding-top: 22px !important;
+    padding-bottom: 22px !important;
+  }
+  body.theme-city .truck-road {
+    height: 36px !important;
+  }
+}
+body.theme-city .stamps-strip {
+  padding: 8px 10px !important;
+  min-height: 0 !important;
+}
+body.theme-city .stamp-item {
+  font-size: 12px !important;
+  gap: 6px !important;
+}
+body.theme-city .stamp-circle {
+  width: 22px !important;
+  height: 22px !important;
+  font-size: 11px !important;
+}
+
+/* ============================================================
+   MOBILE: kill white space above truck on city pages
+   ============================================================ */
+@media (max-width: 700px) {
+  body.theme-city .hero {
+    padding-bottom: 8px !important;
+    padding-top: 12px !important;
+    margin-bottom: 0 !important;
+  }
+  body.theme-city .hero .moving-visual {
+    margin: 8px 0 6px !important;
+    max-height: 140px !important;
+  }
+  body.theme-city .stamps-strip {
+    padding: 6px 8px !important;
+    margin: 0 !important;
+    border: none !important;
+    border-top: 2px solid #E63946 !important;
+  }
+  body.theme-city .stamps-row {
+    gap: 4px 10px !important;
+  }
+  body.theme-city .stamp-item {
+    font-size: 11px !important;
+    line-height: 1.2 !important;
+  }
+  body.theme-city .truck-road,
+  body.theme-city .truck-road--strip {
+    height: 32px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #0A1628 !important;
+  }
+  body.theme-city .visual-gallery {
+    margin: 0 !important;
+    padding: 12px 10px !important;
+  }
+  body.theme-city .section {
+    padding-top: 18px !important;
+    padding-bottom: 18px !important;
+  }
+  /* Collapse any accidental gap between hero section end and stamps */
+  body.theme-city section.hero + .stamps-strip {
+    margin-top: 0 !important;
+  }
+  body.theme-city .stamps-strip + .truck-road {
+    margin-top: 0 !important;
+  }
+  body.theme-city .truck-road + .visual-gallery {
+    margin-top: 0 !important;
+  }
+}
