@@ -3811,3 +3811,149 @@ body.theme-quote .site-logo {
   .nav-links { display: none !important; }
   nav .nav-cta { padding: 8px 12px !important; font-size: 12px !important; }
 }
+
+/* ============================================================
+   FINAL FIX — header & footer colors on ALL pages (wins last)
+   ============================================================ */
+
+/* Header: pure white on every theme including quote & vendor */
+html body nav,
+html body.theme-home nav,
+html body.theme-about nav,
+html body.theme-contact nav,
+html body.theme-quote nav,
+html body.theme-vendor nav,
+html body.theme-services-hub nav,
+html body.theme-cities nav,
+html body.theme-city nav,
+html body.theme-svc-local nav,
+html body.theme-svc-intercity nav,
+html body.theme-svc-office nav,
+html body.theme-svc-packing nav,
+html body.theme-svc-vehicle nav,
+html body.theme-svc-storage nav,
+html body.theme-svc-specialty nav,
+html body.theme-area nav,
+html body[class*="theme-"] nav {
+  background: #FFFFFF !important;
+  border-bottom: 1px solid #E4EAF1 !important;
+  box-shadow: 0 4px 18px rgba(10, 22, 40, 0.08) !important;
+  color: #0A1628 !important;
+}
+
+html body nav .nav-links a,
+html body[class*="theme-"] nav .nav-links a {
+  color: #0A1628 !important;
+  background: transparent !important;
+}
+html body nav .nav-links a:hover,
+html body nav .nav-links a[aria-current="page"],
+html body[class*="theme-"] nav .nav-links a:hover,
+html body[class*="theme-"] nav .nav-links a[aria-current="page"] {
+  color: #E63946 !important;
+  background: transparent !important;
+}
+
+html body nav .site-logo,
+html body.theme-quote .site-logo,
+html body.theme-vendor .site-logo,
+html body[class*="theme-"] nav .site-logo {
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+/* Call button — navy + white text everywhere */
+html body nav .contact-btn.call,
+html body .contact-bar .contact-btn.call,
+html body[class*="theme-"] nav .contact-btn.call {
+  background: #0A1628 !important;
+  color: #FFFFFF !important;
+  border: 2px solid #0A1628 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+html body nav .contact-btn.call .label,
+html body .contact-bar .contact-btn.call .label {
+  color: #FFFFFF !important;
+}
+
+/* WhatsApp — green + white text everywhere */
+html body nav .contact-btn.wa,
+html body .contact-bar .contact-btn.wa,
+html body[class*="theme-"] nav .contact-btn.wa {
+  background: #25D366 !important;
+  color: #FFFFFF !important;
+  border: 2px solid #1ebe57 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+html body nav .contact-btn.wa .label,
+html body .contact-bar .contact-btn.wa .label {
+  color: #FFFFFF !important;
+}
+
+/* Free Quote CTA — red + white */
+html body nav .nav-cta,
+html body[class*="theme-"] nav .nav-cta {
+  background: linear-gradient(135deg, #E63946, #C1121F) !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Footer — dark navy + white text on every page */
+html body footer,
+html body[class*="theme-"] footer,
+html body.theme-home footer,
+html body.theme-about footer,
+html body.theme-contact footer,
+html body.theme-quote footer,
+html body.theme-vendor footer,
+html body.theme-services-hub footer,
+html body.theme-cities footer,
+html body.theme-city footer,
+html body.theme-area footer,
+html body.theme-svc-local footer,
+html body.theme-svc-intercity footer,
+html body.theme-svc-office footer,
+html body.theme-svc-packing footer,
+html body.theme-svc-vehicle footer,
+html body.theme-svc-storage footer,
+html body.theme-svc-specialty footer {
+  background: linear-gradient(180deg, #0A1628 0%, #061018 100%) !important;
+  color: #FFFFFF !important;
+  border-top: 4px solid #E63946 !important;
+}
+
+html body footer a,
+html body footer .footer-links a,
+html body footer .footer-contact a,
+html body[class*="theme-"] footer a {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+html body footer a:hover,
+html body[class*="theme-"] footer a:hover {
+  color: #FFC247 !important;
+}
+html body footer .footer-col-title,
+html body[class*="theme-"] footer .footer-col-title {
+  color: #F4A261 !important;
+}
+html body footer .footer-fine,
+html body[class*="theme-"] footer .footer-fine {
+  color: rgba(255, 255, 255, 0.55) !important;
+  border-top-color: rgba(255, 255, 255, 0.12) !important;
+}
+html body footer .footer-actions a.f-call {
+  background: #1769D2 !important;
+  color: #FFFFFF !important;
+}
+html body footer .footer-actions a.f-wa {
+  background: #25D366 !important;
+  color: #FFFFFF !important;
+}
+html body footer .footer-actions a.f-quote {
+  background: #E63946 !important;
+  color: #FFFFFF !important;
+}
