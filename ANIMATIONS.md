@@ -23,3 +23,10 @@ All HTML routes: home, about, contact, quote, all-cities, vendor, 17 city landin
 ## Files
 - `script.js` — `initMotionSystem`
 - `styles.css` — motion system + image/truck animations
+
+## Extra motion pass (October 2026)
+- Animated road markings underneath existing truck routes.
+- Lightweight CSS parcel drift and route-trace accents on service, local-area, About, and Contact heroes.
+- Hover-only icon nudges and button highlight sweeps.
+- Hover lift for service and location cards.
+- New effects respect `prefers-reduced-motion` and are hidden/reduced on narrow screens where they could collide with content.

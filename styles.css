@@ -4194,3 +4194,228 @@ html body footer .footer-col-title {
     font-size: 11px !important;
   }
 }
+
+/* ============================================================
+   EXTRA MOVEMENT ANIMATIONS — route, parcels, and micro-interactions
+   Additive only: existing content, forms, links, and layout remain intact.
+   ============================================================ */
+
+/* The road itself now moves beneath the existing left-to-right trucks. */
+.truck-road {
+  isolation: isolate;
+}
+.truck-road::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  right: 0;
+  bottom: 5px;
+  height: 2px;
+  pointer-events: none;
+  opacity: .6;
+  background: repeating-linear-gradient(90deg, rgba(10,22,40,.28) 0 18px, transparent 18px 34px);
+  animation: routeRoadMarks 1.15s linear infinite;
+}
+.truck-road .truck-runner {
+  z-index: 1;
+}
+@keyframes routeRoadMarks {
+  from { background-position: 0 0; }
+  to   { background-position: -34px 0; }
+}
+
+/* A small CSS-drawn parcel glides gently beside service/location heroes. */
+.svc-hero,
+.area-hero {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.svc-hero > *,
+.area-hero > *,
+.page-hero-br > * {
+  position: relative;
+  z-index: 1;
+}
+.svc-hero::before,
+.area-hero::before,
+.page-hero-br::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  left: 0;
+  bottom: 12px;
+  width: 48%;
+  height: 2px;
+  opacity: .42;
+  transform-origin: left center;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,.08) 12%, rgba(255,255,255,.75) 70%, transparent 100%);
+  animation: heroRouteTrace 4.8s ease-in-out infinite alternate;
+}
+.svc-hero::after,
+.area-hero::after,
+.page-hero-br::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  right: clamp(28px, 8vw, 120px);
+  bottom: 23px;
+  width: 42px;
+  height: 34px;
+  border: 1px solid rgba(255,255,255,.28);
+  border-radius: 4px 4px 6px 6px;
+  background:
+    linear-gradient(90deg, transparent 44%, rgba(255,248,226,.9) 45% 55%, transparent 56%),
+    linear-gradient(135deg, #E8BD83 0%, #C98B4E 100%);
+  box-shadow: 0 8px 16px rgba(0,0,0,.12), inset 0 1px 0 rgba(255,255,255,.42);
+  transform-origin: center bottom;
+  animation: parcelDelivery 4.2s ease-in-out infinite;
+}
+@keyframes heroRouteTrace {
+  0%   { transform: scaleX(.32); opacity: .18; }
+  55%  { transform: scaleX(.72); opacity: .48; }
+  100% { transform: scaleX(1); opacity: .3; }
+}
+@keyframes parcelDelivery {
+  0%, 100% { transform: translate3d(0,0,0) rotate(0deg); }
+  26%      { transform: translate3d(-12px,-4px,0) rotate(-2deg); }
+  54%      { transform: translate3d(-34px,0,0) rotate(1deg); }
+  76%      { transform: translate3d(-20px,-3px,0) rotate(0deg); }
+}
+
+/* Contact and quote actions receive a little feedback, only on interaction. */
+.contact-btn,
+.nav-cta,
+.svc-cta a,
+.btn-wa,
+.btn-red,
+.btn-navy,
+.btn-out {
+  transform-origin: center;
+  transition: transform .22s cubic-bezier(.2,.7,.2,1), box-shadow .22s ease, filter .22s ease;
+}
+.contact-btn:hover,
+.nav-cta:hover,
+.svc-cta a:hover,
+.btn-wa:hover,
+.btn-red:hover,
+.btn-navy:hover,
+.btn-out:hover {
+  filter: saturate(1.06);
+  box-shadow: 0 9px 22px rgba(10,22,40,.14);
+}
+.contact-btn:hover svg {
+  animation: contactIconNudge .45s ease both;
+}
+@keyframes contactIconNudge {
+  0%, 100% { transform: translateX(0) rotate(0); }
+  45% { transform: translateX(2px) rotate(-5deg); }
+}
+
+/* Service/location cards lift on hover, with no movement until interaction. */
+.why-card,
+.visual-card,
+.area-box,
+.svc-box,
+.hub-card,
+.service-card {
+  transition: transform .28s cubic-bezier(.2,.7,.2,1), box-shadow .28s ease, border-color .28s ease;
+}
+.why-card:hover,
+.visual-card:hover,
+.area-box:hover,
+.svc-box:hover,
+.hub-card:hover,
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 34px rgba(10,22,40,.13);
+}
+
+/* A lightweight highlight sweeps across buttons on hover, not at rest. */
+.nav-cta,
+.svc-cta a,
+.contact-btn {
+  position: relative;
+  overflow: hidden;
+}
+.nav-cta::after,
+.svc-cta a::after,
+.contact-btn::after {
+  content: "";
+  position: absolute;
+  top: -40%;
+  bottom: -40%;
+  left: -130%;
+  width: 52%;
+  pointer-events: none;
+  transform: skewX(-22deg);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.3), transparent);
+}
+.nav-cta:hover::after,
+.svc-cta a:hover::after,
+.contact-btn:hover::after {
+  animation: buttonShine .65s ease both;
+}
+@keyframes buttonShine {
+  from { left: -130%; }
+  to   { left: 160%; }
+}
+
+/* The theme-specific hero ornaments are decorative and disappear on narrow screens. */
+@media (max-width: 760px) {
+  .svc-hero::after,
+  .area-hero::after,
+  .page-hero-br::after {
+    display: none;
+  }
+  .svc-hero::before,
+  .area-hero::before,
+  .page-hero-br::before {
+    width: 36%;
+    bottom: 8px;
+    opacity: .22;
+  }
+  .why-card:hover,
+  .visual-card:hover,
+  .area-box:hover,
+  .svc-box:hover,
+  .hub-card:hover,
+  .service-card:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* Always honor the visitor's reduced-motion preference for every added effect. */
+@media (prefers-reduced-motion: reduce) {
+  .truck-road::before,
+  .svc-hero::before,
+  .area-hero::before,
+  .page-hero-br::before,
+  .svc-hero::after,
+  .area-hero::after,
+  .page-hero-br::after,
+  .contact-btn:hover svg,
+  .nav-cta:hover::after,
+  .svc-cta a:hover::after,
+  .contact-btn:hover::after {
+    animation: none !important;
+  }
+  .why-card,
+  .visual-card,
+  .area-box,
+  .svc-box,
+  .hub-card,
+  .service-card,
+  .contact-btn,
+  .nav-cta,
+  .svc-cta a,
+  .btn-wa,
+  .btn-red,
+  .btn-navy,
+  .btn-out {
+    transition: none !important;
+  }
+}
