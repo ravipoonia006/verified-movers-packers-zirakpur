@@ -3239,3 +3239,345 @@ body.theme-city .stamp-circle {
     margin-top: 0 !important;
   }
 }
+
+/* Clickable service cards */
+a.why-card-link {
+  text-decoration: none !important;
+  color: inherit !important;
+  display: block;
+  cursor: pointer;
+}
+a.why-card-link:hover {
+  transform: translateY(-4px);
+}
+a.why-card-link .area-cta {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #E63946;
+}
+
+/* ============================================================
+   UNIQUE PAGE THEMES — distinct palette + layout per page type
+   ============================================================ */
+
+/* --- HOME: Premium Navy + Electric Blue + Yellow --- */
+body.theme-home {
+  --page-primary: #102A56;
+  --page-accent: #1769D2;
+  --page-highlight: #FFC247;
+  --page-bg: #F5F8FE;
+  --page-text: #13233F;
+  background: var(--page-bg) !important;
+  color: var(--page-text);
+}
+body.theme-home nav {
+  background: rgba(255,255,255,0.92) !important;
+  border-bottom: 2px solid #1769D2 !important;
+}
+body.theme-home .nav-cta,
+body.theme-home .slip-submit {
+  background: linear-gradient(135deg, #1769D2, #102A56) !important;
+  box-shadow: 0 8px 24px rgba(23,105,210,0.35) !important;
+}
+body.theme-home .hero .headline em,
+body.theme-home .section-eyebrow { color: #1769D2 !important; }
+body.theme-home .stamps-strip {
+  background: #102A56 !important;
+  color: #fff !important;
+}
+body.theme-home .stamp-circle { background: #FFC247 !important; color: #102A56 !important; }
+
+/* --- ABOUT: Forest Green + Ivory + Gold --- */
+body.theme-about {
+  --page-primary: #174D3C;
+  --page-accent: #2C8062;
+  --page-highlight: #C5A45D;
+  --page-bg: #F7F3E8;
+  background: var(--page-bg) !important;
+  color: #203B32;
+}
+body.theme-about .page-hero-br {
+  background: linear-gradient(160deg, #174D3C, #2C8062) !important;
+  border-bottom: 4px solid #C5A45D !important;
+}
+body.theme-about .br-card {
+  border-left-color: #2C8062 !important;
+  background: #FFFBF5 !important;
+}
+body.theme-about .br-cta-primary {
+  background: linear-gradient(135deg, #2C8062, #174D3C) !important;
+}
+body.theme-about nav { border-bottom: 2px solid #C5A45D !important; }
+
+/* --- CONTACT: Emerald + White --- */
+body.theme-contact {
+  background: #E7F7EF !important;
+  color: #18372D;
+}
+body.theme-contact .page-hero-br {
+  background: linear-gradient(145deg, #087F5B, #075B45) !important;
+  border-bottom: none !important;
+}
+body.theme-contact .contact-form-card {
+  border-color: #087F5B !important;
+  box-shadow: 0 16px 40px rgba(8,127,91,0.15) !important;
+}
+body.theme-contact .cf-submit {
+  background: linear-gradient(135deg, #087F5B, #075B45) !important;
+}
+body.theme-contact .icon-badge.red { background: #087F5B !important; }
+
+/* --- QUOTE: Midnight + Burnt Orange --- */
+body.theme-quote {
+  background: #14233B !important;
+}
+body.theme-quote .quote-card {
+  border-color: #D86B35 !important;
+  box-shadow: 0 20px 50px rgba(216,107,53,0.25) !important;
+}
+body.theme-quote .slip-submit {
+  background: linear-gradient(135deg, #D86B35, #b35428) !important;
+}
+body.theme-quote .quote-intro h1 em { color: #D86B35 !important; }
+
+/* --- SERVICES HUB: Deep Teal + Coral --- */
+body.theme-services-hub {
+  background: #F0F8F7 !important;
+  color: #18363D;
+}
+body.theme-services-hub .hub-hero {
+  background: linear-gradient(145deg, #123D46, #197D82) !important;
+  border-bottom: 4px solid #FF786B !important;
+}
+body.theme-services-hub a.hub-card {
+  border-color: #123D46 !important;
+  box-shadow: 4px 4px 0 #FF786B !important;
+}
+body.theme-services-hub a.hub-card:hover {
+  box-shadow: 7px 7px 0 #197D82 !important;
+}
+body.theme-services-hub a.hub-card .go { color: #FF786B !important; }
+
+/* --- ALL CITIES: Indigo + Lime --- */
+body.theme-cities {
+  background: #F4F5FF !important;
+  color: #252B58;
+}
+body.theme-cities .city-card,
+body.theme-cities a.city-card {
+  border-color: #343B91 !important;
+  box-shadow: 6px 6px 0 #C4DF68 !important;
+}
+body.theme-cities .city-card:hover {
+  box-shadow: 9px 9px 0 #5266D5 !important;
+}
+
+/* --- VENDOR: Charcoal + Cobalt --- */
+body.theme-vendor {
+  background: linear-gradient(180deg, #252B35 0%, #252B35 160px, #E8EDF4 160px) !important;
+}
+body.theme-vendor .section-title { color: #fff !important; }
+body.theme-vendor .split-cta,
+body.theme-vendor a.split-cta {
+  background: #3157C9 !important;
+}
+
+/* --- SERVICE: Local (Sage + Sand) --- */
+body.theme-svc-local {
+  background: #FFF9F0 !important;
+  color: #263B2D;
+}
+body.theme-svc-local .svc-hero {
+  background: linear-gradient(145deg, #345542, #64866A) !important;
+  border-bottom-color: #C4A574 !important;
+}
+body.theme-svc-local .btn-red { background: linear-gradient(135deg, #64866A, #345542) !important; }
+body.theme-svc-local .svc-box { border-left-color: #64866A !important; }
+
+/* --- SERVICE: Intercity (Midnight + Orange) --- */
+body.theme-svc-intercity {
+  background: #E8EEF7 !important;
+  color: #1E2C43;
+}
+body.theme-svc-intercity .svc-hero {
+  background: linear-gradient(145deg, #14233B, #2a3f5c) !important;
+  border-bottom-color: #D86B35 !important;
+}
+body.theme-svc-intercity .btn-red { background: linear-gradient(135deg, #D86B35, #b35428) !important; }
+body.theme-svc-intercity .svc-box { border-left-color: #D86B35 !important; }
+
+/* --- SERVICE: Office (Charcoal + Cobalt) --- */
+body.theme-svc-office {
+  background: #E8EDF4 !important;
+  color: #252B35;
+}
+body.theme-svc-office .svc-hero {
+  background: linear-gradient(145deg, #252B35, #3157C9) !important;
+  border-bottom-color: #70C9E8 !important;
+}
+body.theme-svc-office .btn-red { background: linear-gradient(135deg, #3157C9, #252B35) !important; }
+body.theme-svc-office .svc-box { border-left-color: #3157C9 !important; }
+
+/* --- SERVICE: Packing (Burgundy + Champagne) --- */
+body.theme-svc-packing {
+  background: #FFFBF6 !important;
+  color: #442631;
+}
+body.theme-svc-packing .svc-hero {
+  background: linear-gradient(145deg, #742B42, #B65C70) !important;
+  border-bottom-color: #F2E2C8 !important;
+}
+body.theme-svc-packing .btn-red { background: linear-gradient(135deg, #B65C70, #742B42) !important; }
+body.theme-svc-packing .svc-box { border-left-color: #B65C70 !important; background: #FFF8F0 !important; }
+
+/* --- SERVICE: Vehicle (Indigo) --- */
+body.theme-svc-vehicle {
+  background: #F4F5FF !important;
+  color: #252B58;
+}
+body.theme-svc-vehicle .svc-hero {
+  background: linear-gradient(145deg, #343B91, #5266D5) !important;
+  border-bottom-color: #C4DF68 !important;
+}
+body.theme-svc-vehicle .btn-red { background: linear-gradient(135deg, #5266D5, #343B91) !important; }
+
+/* --- SERVICE: Storage (Slate + Mint) --- */
+body.theme-svc-storage {
+  background: #F1F5F6 !important;
+  color: #24343E;
+}
+body.theme-svc-storage .svc-hero {
+  background: linear-gradient(145deg, #354552, #236B68) !important;
+  border-bottom-color: #BFE6D5 !important;
+}
+body.theme-svc-storage .btn-red { background: linear-gradient(135deg, #236B68, #354552) !important; }
+
+/* --- SERVICE: Specialty (Plum + Gold) --- */
+body.theme-svc-specialty {
+  background: #F8F4FA !important;
+  color: #34263A;
+}
+body.theme-svc-specialty .svc-hero {
+  background: linear-gradient(145deg, #56365F, #805B91) !important;
+  border-bottom-color: #E7C477 !important;
+}
+body.theme-svc-specialty .btn-red { background: linear-gradient(135deg, #805B91, #56365F) !important; }
+
+/* --- CITY base + per-city accents --- */
+body.theme-city { background: #F8F6F3; }
+body.theme-city-zirakpur {
+  background: #FFF5F0 !important;
+}
+body.theme-city-zirakpur .hero .eyebrow { background: #C1121F !important; color: #fff !important; }
+body.theme-city-zirakpur .slip { border-color: #C1121F !important; box-shadow: 8px 8px 0 rgba(193,18,31,0.25) !important; }
+body.theme-city-zirakpur .stamps-strip { border-top-color: #C1121F !important; }
+
+body.theme-city-mohali {
+  background: #F0F7F4 !important;
+}
+body.theme-city-mohali .hero .eyebrow { background: #2C8062 !important; color: #fff !important; }
+body.theme-city-mohali .slip { border-color: #174D3C !important; box-shadow: 8px 8px 0 rgba(44,128,98,0.3) !important; }
+
+body.theme-city-chandigarh {
+  background: #F0F4FF !important;
+}
+body.theme-city-chandigarh .hero .eyebrow { background: #3157C9 !important; color: #fff !important; }
+body.theme-city-chandigarh .slip { border-color: #102A56 !important; box-shadow: 8px 8px 0 rgba(49,87,201,0.3) !important; }
+
+body.theme-city-panchkula {
+  background: #F5F0FA !important;
+}
+body.theme-city-panchkula .hero .eyebrow { background: #56365F !important; color: #E7C477 !important; }
+body.theme-city-panchkula .slip { border-color: #56365F !important; box-shadow: 8px 8px 0 rgba(86,54,95,0.25) !important; }
+
+body.theme-city-kharar {
+  background: #F4F8F0 !important;
+}
+body.theme-city-kharar .hero .eyebrow { background: #64866A !important; color: #fff !important; }
+
+body.theme-city-derabassi {
+  background: #FFF8F0 !important;
+}
+body.theme-city-derabassi .hero .eyebrow { background: #D86B35 !important; color: #fff !important; }
+
+body.theme-city-delhi {
+  background: #F2F4F8 !important;
+}
+body.theme-city-delhi .hero .eyebrow { background: #252B35 !important; color: #70C9E8 !important; }
+
+body.theme-city-gurgaon {
+  background: #F5F7FF !important;
+}
+body.theme-city-gurgaon .hero .eyebrow { background: #343B91 !important; color: #C4DF68 !important; }
+
+body.theme-city-noida {
+  background: #F0F9F8 !important;
+}
+body.theme-city-noida .hero .eyebrow { background: #197D82 !important; color: #fff !important; }
+
+body.theme-city-newchd {
+  background: #F7F3E8 !important;
+}
+body.theme-city-newchd .hero .eyebrow { background: #C5A45D !important; color: #174D3C !important; }
+
+body.theme-city-generic {
+  background: #F7F9FC !important;
+}
+body.theme-city-generic .hero .eyebrow { background: #102A56 !important; color: #FFC247 !important; }
+
+/* --- AREA pages: warm editorial --- */
+body.theme-area {
+  background: #F7F3E8 !important;
+  color: #203B32;
+}
+body.theme-area .area-hero {
+  background: linear-gradient(145deg, #174D3C, #2C8062) !important;
+  border-bottom: 4px solid #C5A45D !important;
+}
+body.theme-area .btn-red {
+  background: linear-gradient(135deg, #2C8062, #174D3C) !important;
+}
+body.theme-area .area-box {
+  border-color: #174D3C !important;
+  box-shadow: 4px 4px 0 rgba(197,164,93,0.4) !important;
+}
+
+/* Layout personality differences */
+body.theme-about .br-section { max-width: 680px !important; }
+body.theme-contact .contact-wrap { max-width: 920px !important; }
+body.theme-services-hub .hub-grid { gap: 18px !important; }
+body.theme-home #services .why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+body.theme-svc-office .svc-body { max-width: 760px !important; }
+body.theme-svc-packing .svc-img {
+  border-radius: 4px !important;
+  border-color: #742B42 !important;
+}
+body.theme-svc-local .svc-img {
+  border-radius: 20px !important;
+  border-color: #64866A !important;
+}
+
+/* Footer adapts slightly but stays dark for contrast */
+body.theme-home footer,
+body.theme-about footer,
+body.theme-contact footer,
+body.theme-services-hub footer,
+body.theme-cities footer,
+body.theme-city footer,
+body.theme-svc-local footer,
+body.theme-svc-intercity footer,
+body.theme-svc-office footer,
+body.theme-svc-packing footer,
+body.theme-svc-vehicle footer,
+body.theme-svc-storage footer,
+body.theme-svc-specialty footer,
+body.theme-area footer {
+  background: #0A1628 !important;
+  color: #fff !important;
+}
