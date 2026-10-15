@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img"><title>Happy family after move</title>
+<defs><linearGradient id="h" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f0f6f0"/><stop offset="1" stop-color="#d8e8d8"/></linearGradient></defs>
+<rect width="640" height="360" fill="url(#h)"/>
+<rect x="0" y="270" width="640" height="90" fill="#b8c9a8"/>
+<!-- house -->
+<rect x="380" y="120" width="180" height="150" fill="#f5f0e6" stroke="#2c2416" stroke-width="2"/>
+<polygon points="380,120 470,55 560,120" fill="#c45c26" stroke="#2c2416" stroke-width="2"/>
+<rect x="420" y="180" width="40" height="90" fill="#1e3a5f"/>
+<rect x="490" y="160" width="45" height="40" fill="#a8d4e8" stroke="#2c2416" stroke-width="1"/>
+<!-- family figures -->
+<circle cx="160" cy="160" r="22" fill="#e8c4a0"/>
+<rect x="140" y="182" width="40" height="55" rx="4" fill="#1e3a5f"/>
+<rect x="140" y="237" width="16" height="35" fill="#2c2416"/>
+<rect x="164" y="237" width="16" height="35" fill="#2c2416"/>
+<circle cx="230" cy="165" r="20" fill="#d4a88a"/>
+<rect x="212" y="185" width="36" height="50" rx="4" fill="#c45c26"/>
+<rect x="212" y="235" width="14" height="35" fill="#2c2416"/>
+<rect x="234" y="235" width="14" height="35" fill="#2c2416"/>
+<!-- small child -->
+<circle cx="200" cy="210" r="14" fill="#e8c4a0"/>
+<rect x="188" y="224" width="24" height="30" rx="3" fill="#3d8b5f"/>
+<!-- box -->
+<rect x="280" y="220" width="50" height="40" fill="#d4a85a" stroke="#2c2416" stroke-width="1.5"/>
+<!-- check badge -->
+<circle cx="100" cy="100" r="32" fill="#1e3a5f"/>
+<path d="M88 100 l8 10 l18 -20" fill="none" stroke="#e8d44a" stroke-width="5" stroke-linecap="round"/>
+</svg>

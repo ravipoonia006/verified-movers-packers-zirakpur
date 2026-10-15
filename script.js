@@ -255,4 +255,34 @@
       item.classList.toggle('open', !isOpen);
     });
   });
+
+  /* Animation Added: progressive scroll reveals; existing form and link behavior is unchanged. */
+  (function initScrollReveals() {
+    var revealTargets = document.querySelectorAll(
+      '.hero > div, .moving-visual, .section h2, .locality-card, .why-card, .compare-card, .city-card, .faq-item, .slip, .visual-card, .section-photo-banner'
+    );
+    if (!revealTargets.length) return;
+
+    if (!('IntersectionObserver' in window)) {
+      revealTargets.forEach(function (el) { el.classList.add('is-visible'); });
+      return;
+    }
+
+    revealTargets.forEach(function (el, index) {
+      el.setAttribute('data-reveal', '');
+      el.style.setProperty('--reveal-delay', (index % 4) * 70 + 'ms');
+    });
+
+    var revealObserver = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -24px 0px' });
+
+    revealTargets.forEach(function (el) { revealObserver.observe(el); });
+  })();
+
 })();

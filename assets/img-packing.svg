@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" role="img">
+  <defs><linearGradient id="pbg" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#FAF6F0"/><stop offset="1" stop-color="#E8DFD0"/></linearGradient></defs>
+  <rect width="800" height="400" fill="url(#pbg)"/>
+  <rect x="0" y="310" width="800" height="90" fill="#C4B498"/>
+  <!-- mover packing -->
+  <circle cx="200" cy="160" r="28" fill="#E8C4A0"/>
+  <rect x="172" y="188" width="56" height="70" rx="5" fill="#0B1D33"/>
+  <text x="180" y="228" fill="#E63946" font-family="Arial,sans-serif" font-size="9" font-weight="900">VERIFIED</text>
+  <rect x="175" y="258" width="20" height="35" fill="#2A2A2A"/>
+  <rect x="205" y="258" width="20" height="35" fill="#2A2A2A"/>
+  <!-- boxes -->
+  <rect x="280" y="180" width="140" height="120" fill="#D4A85A" stroke="#2A2A2A" stroke-width="2"/>
+  <line x1="280" y1="240" x2="420" y2="240" stroke="#2A2A2A"/>
+  <line x1="350" y1="180" x2="350" y2="300" stroke="#2A2A2A"/>
+  <rect x="300" y="200" width="55" height="22" rx="3" fill="#E63946"/>
+  <text x="308" y="216" fill="#fff" font-family="Arial,sans-serif" font-size="11" font-weight="700">FRAGILE</text>
+  <rect x="450" y="200" width="110" height="100" fill="#C9923A" stroke="#2A2A2A" stroke-width="2"/>
+  <rect x="480" y="140" width="90" height="60" fill="#E0B86A" stroke="#2A2A2A" stroke-width="2"/>
+  <rect x="600" y="180" width="100" height="120" fill="#D4A85A" stroke="#2A2A2A" stroke-width="2"/>
+  <text x="615" y="250" fill="#0B1D33" font-family="Arial,sans-serif" font-size="12" font-weight="800">VERIFIED</text>
+  <!-- tape -->
+  <rect x="280" y="230" width="140" height="16" fill="#F5E6C8" opacity=".9"/>
+</svg>

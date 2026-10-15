@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
+<title id="title">Professional packing and moving illustration</title>
+<desc id="desc">Two professional movers load secured cardboard boxes into a navy moving truck outside a home.</desc>
+<defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fffaf0"/><stop offset="1" stop-color="#f3e7cf"/></linearGradient>
+  <linearGradient id="truck" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#214b77"/><stop offset="1" stop-color="#102e50"/></linearGradient>
+  <linearGradient id="box" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e7c38a"/><stop offset="1" stop-color="#c89b5c"/></linearGradient>
+</defs>
+<rect width="960" height="420" rx="24" fill="url(#sky)"/>
+<circle cx="810" cy="76" r="36" fill="#f4c45d" opacity=".5"/>
+<path d="M0 310 Q150 265 300 312 T610 300 T960 286 V420 H0Z" fill="#e5d6b8"/>
+<!-- Home -->
+<path d="M48 204 L160 112 L272 204 V323 H48Z" fill="#fff" stroke="#d3b986" stroke-width="6" stroke-linejoin="round"/>
+<path d="M28 208 L160 94 L292 208" fill="none" stroke="#214b77" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="83" y="224" width="48" height="49" rx="3" fill="#cfe0e9"/><path d="M107 224V273M83 248H131" stroke="#fff" stroke-width="5"/>
+<rect x="177" y="222" width="58" height="101" rx="4" fill="#d8ad70"/><circle cx="222" cy="274" r="4" fill="#214b77"/>
+<!-- Truck body -->
+<rect x="330" y="145" width="370" height="175" rx="14" fill="url(#truck)"/>
+<path d="M700 205 H780 Q800 205 815 226 L854 275 V320 H700Z" fill="#244f7b"/>
+<path d="M741 221 H781 Q791 221 800 234 L825 264 H741Z" fill="#cde5f1"/>
+<path d="M752 226 H780 Q788 226 795 237 L812 257 H752Z" fill="#9ec6dc"/>
+<rect x="354" y="170" width="320" height="127" rx="6" fill="#f9f3e6"/>
+<path d="M354 170H674V297H354Z" fill="#fffaf1"/>
+<path d="M354 170H674" stroke="#e1c89b" stroke-width="6"/>
+<path d="M512 170V297" stroke="#e1c89b" stroke-width="4" stroke-dasharray="7 7"/>
+<g fill="#214b77"><path d="M414 210l23-18 23 18v25h-46z" fill="none" stroke="#214b77" stroke-width="5" stroke-linejoin="round"/><text x="480" y="254" font-family="Arial,sans-serif" font-size="22" font-weight="700" text-anchor="middle">VERIFIED</text><text x="480" y="276" font-family="Arial,sans-serif" font-size="12" letter-spacing="2" text-anchor="middle">MOVERS &amp; PACKERS</text></g>
+<!-- Wheels -->
+<circle cx="423" cy="323" r="34" fill="#172c3f"/><circle cx="423" cy="323" r="17" fill="#e6e0d3"/><circle cx="423" cy="323" r="8" fill="#8c9aa5"/>
+<circle cx="753" cy="323" r="34" fill="#172c3f"/><circle cx="753" cy="323" r="17" fill="#e6e0d3"/><circle cx="753" cy="323" r="8" fill="#8c9aa5"/>
+<!-- Boxes foreground -->
+<g stroke="#b9874d" stroke-width="3" stroke-linejoin="round">
+<path d="M584 276l54-17 53 17-53 20z" fill="#f1d5a4"/><path d="M584 276v58l54 21v-59z" fill="url(#box)"/><path d="M638 296v59l53-22v-57z" fill="#d6aa6d"/><path d="M622 264l17 9 16-8" fill="none"/>
+<path d="M672 304l40-13 40 13-40 15z" fill="#f1d5a4"/><path d="M672 304v43l40 16v-44z" fill="url(#box)"/><path d="M712 319v44l40-16v-43z" fill="#d6aa6d"/>
+</g>
+<!-- Movers -->
+<g stroke-linecap="round" stroke-linejoin="round">
+<!-- mover one -->
+<circle cx="292" cy="173" r="20" fill="#b9784f"/><path d="M271 171q4-28 31-19l13 15-4 9-11-10-29 8" fill="#173b63"/>
+<path d="M274 197q19-15 37 2l20 61-21 11-28-41-6 36-26-4 7-46q3-13 17-19" fill="#1f5d91"/>
+<path d="M270 215l-31 42-30 10" fill="none" stroke="#b9784f" stroke-width="13"/><path d="M312 221l23 27 20 7" fill="none" stroke="#b9784f" stroke-width="13"/>
+<path d="M270 260l-11 49-22 12" fill="none" stroke="#173b63" stroke-width="17"/><path d="M295 263l12 43 23 13" fill="none" stroke="#173b63" stroke-width="17"/>
+<path d="M233 321h-23M330 321h-24" stroke="#172c3f" stroke-width="12"/>
+<!-- mover two -->
+<circle cx="176" cy="205" r="17" fill="#9e6545"/><path d="M159 203q3-24 25-18l12 12-7 7-10-7-20 9" fill="#173b63"/>
+<path d="M160 226q16-12 30 4l17 48-20 8-23-31-7 28-21-3 7-37q3-12 17-17" fill="#ef8b27"/>
+<path d="M164 240l-24 30-19 5M194 244l23 21 19 3" fill="none" stroke="#9e6545" stroke-width="11"/>
+<path d="M164 278l-9 36-17 8M185 281l10 31 19 10" fill="none" stroke="#173b63" stroke-width="15"/>
+<path d="M135 322h-18M216 322h-19" stroke="#172c3f" stroke-width="10"/>
+</g>
+<path d="M35 370H925" stroke="#c5ad80" stroke-width="3" stroke-linecap="round"/>
+<g font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#214b77"><text x="42" y="397">SAFE PACKING</text><text x="420" y="397">SECURE TRANSPORT</text><text x="766" y="397">ON-TIME DELIVERY</text></g>
+</svg>

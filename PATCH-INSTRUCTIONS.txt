@@ -1,0 +1,33 @@
+VERIFIED MOVERS & PACKERS — SAFE FIX PATCH
+
+This patch changes only:
+- styles.css
+- script.js
+- the 17 existing movers-in-*.html city pages
+
+What it fixes:
+1. Footer white flash: global nav styling was making the footer's own navigation sticky and white. The footer navigation now stays in normal page flow and retains the dark footer background.
+2. Color consistency: final theme variables and key action colors are normalized.
+3. Larger call and WhatsApp controls: header contact buttons, quote CTA, floating WhatsApp button, and mobile call bar have larger tap targets.
+4. WhatsApp quote flow: the previous shared JavaScript dereferenced a `service` field that the city forms did not include, which could stop the submission before WhatsApp opened. City forms now include the homepage's customer name, phone, pickup, destination, move size, service, date, email, and notes fields.
+5. Each city form now gets the same confirmation slip layout with reference, route, date, service, phone, send-again, copy-details, and print/save-PDF controls.
+6. WhatsApp opens synchronously from the submit event to reduce popup-blocking. If a browser blocks it, an “Open WhatsApp Again” link is added.
+7. WhatsApp messages include the page name/reference and every supplied form field, plus a fallback for future extra named fields.
+
+AI-generated photos are intentionally NOT included in this patch, as requested; they can be added tomorrow.
+
+SAFE APPLY TO YOUR EXISTING REPOSITORY:
+1. Extract this ZIP to a temporary folder.
+2. Copy/overwrite the included files into your existing `Verified` project folder. Do not delete `.git` and do not replace the whole project folder.
+3. Open PowerShell in your existing `Verified` folder and run:
+   git status
+   git diff --name-only
+   Review the list. If you had no unrelated local changes, the expected changed files are styles.css, script.js, and the 17 movers-in-*.html files.
+4. Stage only the files in this patch:
+   git add styles.css script.js movers-in-*.html
+5. Commit and push:
+   git commit -m "Fix footer styling and WhatsApp quote forms"
+   git push
+6. Wait for Vercel's deployment to become Ready, then test the homepage quote and at least one city-page quote on desktop and mobile.
+
+The patch ZIP does not contain `.git`, and it does not replace the homepage, logo, sitemap.xml, robots.txt, Vercel config, or package files.
