@@ -1,5 +1,51 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Partner With Verified Movers &amp; Packers | Zirakpur</title><meta name="description" content="Partner with Verified Movers & Packers for relocation leads in Zirakpur, Mohali and Chandigarh Tricity.">
-<link rel="canonical" href="https://verifiedmoversandpackers.world/vendor-signup.html"><link rel="stylesheet" href="styles.css"><link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://verifiedmoversandpackers.world/vendor-signup.html"><script>
+/* Pick one accessible colour palette per browsing session. The palette stays
+   consistent while navigating pages and changes on the next fresh visit. */
+(function () {
+  'use strict';
+  var sessionKey = 'vmp-theme-session-v1';
+  var previousKey = 'vmp-theme-previous-v1';
+  var themes = [
+    { id: 'ocean-sun', color: '#153E6E' },
+    { id: 'evergreen-copper', color: '#145B46' },
+    { id: 'plum-rose', color: '#623B67' },
+    { id: 'teal-coral', color: '#135A63' },
+    { id: 'burgundy-champagne', color: '#762B3C' },
+    { id: 'indigo-lime', color: '#34428F' },
+    { id: 'slate-orange', color: '#344B5E' },
+    { id: 'jade-saffron', color: '#28685B' },
+    { id: 'cobalt-apricot', color: '#1557A6' },
+    { id: 'charcoal-mint', color: '#36434F' }
+  ];
+  var selected = '';
+  try {
+    selected = window.sessionStorage.getItem(sessionKey) || '';
+    if (!themes.some(function (theme) { return theme.id === selected; })) {
+      var previous = window.localStorage.getItem(previousKey) || '';
+      var choices = themes.filter(function (theme) { return theme.id !== previous; });
+      if (!choices.length) choices = themes;
+      var index = Math.floor(Math.random() * choices.length);
+      selected = choices[index].id;
+      window.sessionStorage.setItem(sessionKey, selected);
+      window.localStorage.setItem(previousKey, selected);
+    }
+  } catch (storageError) {
+    /* Browsing in private/restricted mode still gets a palette, without storage. */
+    selected = themes[Math.floor(Math.random() * themes.length)].id;
+  }
+  document.documentElement.setAttribute('data-vmp-theme', selected);
+  var meta = document.querySelector('meta[name="theme-color"]');
+  if (!meta) {
+    meta = document.createElement('meta');
+    meta.name = 'theme-color';
+    document.head.appendChild(meta);
+  }
+  var matched = themes.find(function (theme) { return theme.id === selected; });
+  if (matched) meta.content = matched.color;
+})();
+</script>
+<link rel="stylesheet" href="styles.css"><link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/favicon.svg"><meta property="og:url" content="https://verifiedmoversandpackers.world/vendor-signup.html">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">

@@ -4929,3 +4929,314 @@ form.quote-wizard-enabled { position: relative; }
   .trust-action, .feedback-cta, .quote-wizard-next, .quote-wizard-back, .quote-wizard-progress__step b { transition: none !important; }
 }
 
+
+
+/* ============================================================
+   RANDOM VISIT THEMES
+   One palette is selected before first paint and is consistent across
+   the current browsing session. A fresh visit receives a different palette.
+   Layout, imagery, content, forms, and WhatsApp green are preserved.
+   ============================================================ */
+html[data-vmp-theme="ocean-sun"] {
+  --vmp-primary: #153E6E; --vmp-primary-deep: #0B2645; --vmp-accent: #875800; --vmp-highlight: #F3C65E;
+  --vmp-bg: #F5F8FC; --vmp-soft: #E9F0FA; --vmp-surface: #FFFFFF; --vmp-header: #F9FBFE;
+  --vmp-text: #192B41; --vmp-muted: #5A6C80; --vmp-border: #D7E1ED; --vmp-rgb: 21,62,110;
+}
+html[data-vmp-theme="evergreen-copper"] {
+  --vmp-primary: #145B46; --vmp-primary-deep: #0B392B; --vmp-accent: #A84725; --vmp-highlight: #F0BB79;
+  --vmp-bg: #F4F9F5; --vmp-soft: #E3F2E7; --vmp-surface: #FFFFFF; --vmp-header: #F8FCF9;
+  --vmp-text: #1D352C; --vmp-muted: #5A7569; --vmp-border: #D6E7DC; --vmp-rgb: 20,91,70;
+}
+html[data-vmp-theme="plum-rose"] {
+  --vmp-primary: #623B67; --vmp-primary-deep: #39213E; --vmp-accent: #B53C56; --vmp-highlight: #EEA9A8;
+  --vmp-bg: #FBF5FA; --vmp-soft: #F1E6F2; --vmp-surface: #FFFFFF; --vmp-header: #FDF9FD;
+  --vmp-text: #34263A; --vmp-muted: #74627A; --vmp-border: #E7D9E9; --vmp-rgb: 98,59,103;
+}
+html[data-vmp-theme="teal-coral"] {
+  --vmp-primary: #135A63; --vmp-primary-deep: #083941; --vmp-accent: #B93F2B; --vmp-highlight: #F7B089;
+  --vmp-bg: #F1F9FA; --vmp-soft: #DFF0F1; --vmp-surface: #FFFFFF; --vmp-header: #F8FCFC;
+  --vmp-text: #1C3336; --vmp-muted: #5B7475; --vmp-border: #D3E7E8; --vmp-rgb: 19,90,99;
+}
+html[data-vmp-theme="burgundy-champagne"] {
+  --vmp-primary: #762B3C; --vmp-primary-deep: #461522; --vmp-accent: #8E4F0D; --vmp-highlight: #E8C98B;
+  --vmp-bg: #FCF6F4; --vmp-soft: #F3E5E4; --vmp-surface: #FFFFFF; --vmp-header: #FFFAF8;
+  --vmp-text: #42232B; --vmp-muted: #7C6268; --vmp-border: #EAD8D8; --vmp-rgb: 118,43,60;
+}
+html[data-vmp-theme="indigo-lime"] {
+  --vmp-primary: #34428F; --vmp-primary-deep: #222C68; --vmp-accent: #53680A; --vmp-highlight: #CEDF83;
+  --vmp-bg: #F6F7FE; --vmp-soft: #E7EAFB; --vmp-surface: #FFFFFF; --vmp-header: #FAFAFF;
+  --vmp-text: #252B58; --vmp-muted: #636C91; --vmp-border: #D9DDF4; --vmp-rgb: 52,66,143;
+}
+html[data-vmp-theme="slate-orange"] {
+  --vmp-primary: #344B5E; --vmp-primary-deep: #1D2D3A; --vmp-accent: #A9430A; --vmp-highlight: #F2AF78;
+  --vmp-bg: #F5F7F9; --vmp-soft: #E6EDF1; --vmp-surface: #FFFFFF; --vmp-header: #FAFBFC;
+  --vmp-text: #273744; --vmp-muted: #60717C; --vmp-border: #D9E1E6; --vmp-rgb: 52,75,94;
+}
+html[data-vmp-theme="jade-saffron"] {
+  --vmp-primary: #28685B; --vmp-primary-deep: #17453B; --vmp-accent: #795900; --vmp-highlight: #E7CE70;
+  --vmp-bg: #F6F8F0; --vmp-soft: #E8EEDB; --vmp-surface: #FFFFFF; --vmp-header: #FAFCF6;
+  --vmp-text: #243A32; --vmp-muted: #657969; --vmp-border: #DCE5D0; --vmp-rgb: 40,104,91;
+}
+html[data-vmp-theme="cobalt-apricot"] {
+  --vmp-primary: #1557A6; --vmp-primary-deep: #0A326B; --vmp-accent: #A74125; --vmp-highlight: #F4AE8C;
+  --vmp-bg: #F2F7FD; --vmp-soft: #E1EDFC; --vmp-surface: #FFFFFF; --vmp-header: #F8FBFF;
+  --vmp-text: #1C2F47; --vmp-muted: #5C7089; --vmp-border: #D5E2F2; --vmp-rgb: 21,87,166;
+}
+html[data-vmp-theme="charcoal-mint"] {
+  --vmp-primary: #36434F; --vmp-primary-deep: #1E2830; --vmp-accent: #197562; --vmp-highlight: #95D9C3;
+  --vmp-bg: #F5F8F7; --vmp-soft: #E2F1ED; --vmp-surface: #FFFFFF; --vmp-header: #FAFCFB;
+  --vmp-text: #26353D; --vmp-muted: #61737A; --vmp-border: #D7E6E1; --vmp-rgb: 54,67,79;
+}
+
+/* Main canvas and typography adapt to the visit's palette. */
+html[data-vmp-theme] body {
+  background: linear-gradient(135deg, var(--vmp-bg) 0%, var(--vmp-soft) 100%) !important;
+  background-color: var(--vmp-bg) !important;
+  color: var(--vmp-text) !important;
+}
+html[data-vmp-theme] body > nav:not(.footer-links),
+html[data-vmp-theme] body.theme-quote nav,
+html[data-vmp-theme] body.theme-vendor nav {
+  background: var(--vmp-header) !important;
+  color: var(--vmp-text) !important;
+  border-bottom-color: var(--vmp-border) !important;
+  box-shadow: 0 4px 24px rgba(var(--vmp-rgb), .09) !important;
+}
+html[data-vmp-theme] .nav-links,
+html[data-vmp-theme] .nav-links a,
+html[data-vmp-theme] .breadcrumb { color: var(--vmp-muted) !important; }
+html[data-vmp-theme] .nav-links a:hover,
+html[data-vmp-theme] .nav-links a[aria-current="page"],
+html[data-vmp-theme] .breadcrumb a:hover,
+html[data-vmp-theme] a:not(.nav-cta):not(.contact-btn):not(.btn-wa):not(.btn-red):not(.btn-navy):not(.btn-out):not(.feedback-cta):hover {
+  color: var(--vmp-accent);
+}
+html[data-vmp-theme] .headline,
+html[data-vmp-theme] h1.headline,
+html[data-vmp-theme] .section-title,
+html[data-vmp-theme] .br-card h2,
+html[data-vmp-theme] .quote-wizard-step__title,
+html[data-vmp-theme] .trust-checklist__item h3 {
+  color: var(--vmp-text) !important;
+}
+html[data-vmp-theme] .headline em,
+html[data-vmp-theme] h1.headline em,
+html[data-vmp-theme] .eyebrow,
+html[data-vmp-theme] .section-eyebrow,
+html[data-vmp-theme] .why-card .num-tag,
+html[data-vmp-theme] .city-card .go,
+html[data-vmp-theme] .city-card .num-tag,
+html[data-vmp-theme] .badge-inline,
+html[data-vmp-theme] .br-value strong {
+  color: var(--vmp-accent) !important;
+}
+html[data-vmp-theme] .eyebrow::before { background: var(--vmp-highlight) !important; }
+html[data-vmp-theme] .hero .eyebrow,
+html[data-vmp-theme] .theme-city .hero .eyebrow,
+html[data-vmp-theme] body.theme-city-generic .hero .eyebrow,
+html[data-vmp-theme] body.theme-city-zirakpur .hero .eyebrow,
+html[data-vmp-theme] body.theme-city-mohali .hero .eyebrow,
+html[data-vmp-theme] body.theme-city-chandigarh .hero .eyebrow,
+html[data-vmp-theme] body.theme-city-panchkula .hero .eyebrow,
+html[data-vmp-theme] body.theme-city-kharar .hero .eyebrow,
+html[data-vmp-theme] body.theme-city-derabassi .hero .eyebrow,
+html[data-vmp-theme] body.theme-city-delhi .hero .eyebrow,
+html[data-vmp-theme] body.theme-city-gurgaon .hero .eyebrow,
+html[data-vmp-theme] body.theme-city-noida .hero .eyebrow,
+html[data-vmp-theme] body.theme-city-newchd .hero .eyebrow {
+  background: var(--vmp-primary) !important;
+  color: var(--vmp-highlight) !important;
+}
+
+/* Shared actions receive the current accent; WhatsApp stays recognizably green. */
+html[data-vmp-theme] .nav-cta,
+html[data-vmp-theme] .slip-submit,
+html[data-vmp-theme] .demo-btn,
+html[data-vmp-theme] .quote-wizard-next,
+html[data-vmp-theme] .trust-action--primary,
+html[data-vmp-theme] .btn-red,
+html[data-vmp-theme] .btn-navy,
+html[data-vmp-theme] .svc-cta .btn-red,
+html[data-vmp-theme] .hub-hero .btn-red {
+  background: var(--vmp-primary) !important;
+  border-color: var(--vmp-primary) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 8px 20px rgba(var(--vmp-rgb), .16) !important;
+}
+html[data-vmp-theme] .nav-cta:hover,
+html[data-vmp-theme] .slip-submit:hover,
+html[data-vmp-theme] .demo-btn:hover,
+html[data-vmp-theme] .quote-wizard-next:hover,
+html[data-vmp-theme] .trust-action--primary:hover,
+html[data-vmp-theme] .btn-red:hover,
+html[data-vmp-theme] .btn-navy:hover {
+  background: var(--vmp-primary-deep) !important;
+  border-color: var(--vmp-primary-deep) !important;
+}
+html[data-vmp-theme] .contact-btn.call,
+html[data-vmp-theme] .mobile-callbar a.call,
+html[data-vmp-theme] .f-call {
+  background: var(--vmp-primary) !important;
+  border-color: var(--vmp-primary) !important;
+  color: #FFFFFF !important;
+}
+html[data-vmp-theme] .contact-btn.wa,
+html[data-vmp-theme] .mobile-callbar a.wa,
+html[data-vmp-theme] .f-wa,
+html[data-vmp-theme] .feedback-cta { background: #168451 !important; border-color: #168451 !important; color: #FFFFFF !important; }
+
+/* Cards and forms adopt palette tints without changing their layouts. */
+html[data-vmp-theme] .slip,
+html[data-vmp-theme] .why-card,
+html[data-vmp-theme] .city-card,
+html[data-vmp-theme] a.city-card,
+html[data-vmp-theme] .br-card,
+html[data-vmp-theme] .br-value,
+html[data-vmp-theme] .contact-tile,
+html[data-vmp-theme] .contact-form-card,
+html[data-vmp-theme] .quote-card,
+html[data-vmp-theme] .faq-item,
+html[data-vmp-theme] .service-card,
+html[data-vmp-theme] .area-box,
+html[data-vmp-theme] .svc-box,
+html[data-vmp-theme] .hub-card,
+html[data-vmp-theme] .visual-card,
+html[data-vmp-theme] .trust-checklist__item {
+  background-color: var(--vmp-surface) !important;
+  border-color: var(--vmp-border) !important;
+  box-shadow: 0 12px 30px rgba(var(--vmp-rgb), .07) !important;
+  color: var(--vmp-text);
+}
+html[data-vmp-theme] .br-card,
+html[data-vmp-theme] .area-box,
+html[data-vmp-theme] .svc-box { border-left-color: var(--vmp-accent) !important; }
+html[data-vmp-theme] .stamp-circle,
+html[data-vmp-theme] .route-dot,
+html[data-vmp-theme] .stamp-circle-lg,
+html[data-vmp-theme] .contact-tile .icon-badge {
+  border-color: var(--vmp-accent) !important;
+  color: var(--vmp-primary) !important;
+}
+html[data-vmp-theme] .slip,
+html[data-vmp-theme] .contact-form-card,
+html[data-vmp-theme] .quote-card { border-color: var(--vmp-border) !important; }
+html[data-vmp-theme] .field input:focus,
+html[data-vmp-theme] .field select:focus,
+html[data-vmp-theme] .field textarea:focus { border-bottom-color: var(--vmp-accent) !important; }
+html[data-vmp-theme] .field-error,
+html[data-vmp-theme] .field input.has-error,
+html[data-vmp-theme] .field select.has-error { color: #B42332; }
+html[data-vmp-theme] .field input:focus-visible,
+html[data-vmp-theme] .field select:focus-visible,
+html[data-vmp-theme] .field textarea:focus-visible { outline-color: var(--vmp-accent); }
+
+/* Branded hero bands and section accents use the active palette. */
+html[data-vmp-theme] .page-hero-br,
+html[data-vmp-theme] .area-hero,
+html[data-vmp-theme] .svc-hero,
+html[data-vmp-theme] .hub-hero {
+  background: linear-gradient(135deg, var(--vmp-primary-deep), var(--vmp-primary)) !important;
+  border-bottom-color: var(--vmp-highlight) !important;
+  color: #FFFFFF !important;
+}
+html[data-vmp-theme] .page-hero-br h1,
+html[data-vmp-theme] .page-hero-br h1 em,
+html[data-vmp-theme] .page-hero-br p,
+html[data-vmp-theme] .page-hero-br .eyebrow,
+html[data-vmp-theme] .area-hero h1,
+html[data-vmp-theme] .area-hero p,
+html[data-vmp-theme] .area-hero .eyebrow,
+html[data-vmp-theme] .svc-hero h1,
+html[data-vmp-theme] .svc-hero p,
+html[data-vmp-theme] .svc-hero .eyebrow,
+html[data-vmp-theme] .hub-hero h1,
+html[data-vmp-theme] .hub-hero p,
+html[data-vmp-theme] .hub-hero .eyebrow { color: #FFFFFF !important; }
+html[data-vmp-theme] .page-hero-br h1 em { text-decoration-color: var(--vmp-highlight) !important; }
+html[data-vmp-theme] .page-hero-br .eyebrow::before,
+html[data-vmp-theme] .svc-hero .eyebrow::before,
+html[data-vmp-theme] .area-hero .eyebrow::before { background: var(--vmp-highlight) !important; }
+html[data-vmp-theme] body.theme-city .hero,
+html[data-vmp-theme] body.theme-city .hero .slip { background-color: var(--vmp-bg) !important; }
+html[data-vmp-theme] body.theme-home #services,
+html[data-vmp-theme] .move-trust-checklist,
+html[data-vmp-theme] .hours-strip,
+html[data-vmp-theme] .br-values,
+html[data-vmp-theme] .br-value,
+html[data-vmp-theme] .quote-wizard-back {
+  background: var(--vmp-soft) !important;
+  color: var(--vmp-text) !important;
+  border-color: var(--vmp-border) !important;
+}
+html[data-vmp-theme] .stamps-strip {
+  background: linear-gradient(135deg, var(--vmp-primary-deep), var(--vmp-primary)) !important;
+  border-color: var(--vmp-highlight) !important;
+  color: #FFFFFF !important;
+}
+html[data-vmp-theme] .stamps-strip .stamp-item { color: rgba(255,255,255,.93) !important; }
+html[data-vmp-theme] .stamps-strip .stamp-circle { background: var(--vmp-accent) !important; color: #FFFFFF !important; border-color: var(--vmp-highlight) !important; }
+html[data-vmp-theme] .visual-gallery { background: var(--vmp-soft) !important; border-color: var(--vmp-border) !important; }
+html[data-vmp-theme] .visual-card { border-color: var(--vmp-border) !important; }
+html[data-vmp-theme] .visual-card figcaption { color: var(--vmp-primary) !important; background: var(--vmp-surface) !important; }
+html[data-vmp-theme] .faq-item { border-left-color: var(--vmp-accent) !important; }
+html[data-vmp-theme] .city-card,
+html[data-vmp-theme] a.city-card { box-shadow: 5px 5px 0 var(--vmp-highlight) !important; }
+html[data-vmp-theme] .city-card:hover,
+html[data-vmp-theme] a.city-card:hover { box-shadow: 8px 8px 0 var(--vmp-accent) !important; }
+
+/* Trust panel, process, footer, and scroll controls all follow the same palette. */
+html[data-vmp-theme] .honest-feedback,
+html[data-vmp-theme] body.theme-vendor .split-panel.vendors,
+html[data-vmp-theme] .split-panel.vendors {
+  background: linear-gradient(135deg, var(--vmp-primary-deep), var(--vmp-primary)) !important;
+  color: #FFFFFF !important;
+}
+html[data-vmp-theme] .honest-feedback .section-title,
+html[data-vmp-theme] .honest-feedback .section-eyebrow,
+html[data-vmp-theme] .honest-feedback p,
+html[data-vmp-theme] .honest-feedback strong { color: #FFFFFF !important; }
+html[data-vmp-theme] .honest-feedback .section-eyebrow { color: var(--vmp-highlight) !important; }
+html[data-vmp-theme] .trust-checklist__icon { background: var(--vmp-primary) !important; color: var(--vmp-highlight) !important; }
+html[data-vmp-theme] .trust-checklist__note { background: var(--vmp-surface) !important; border-left-color: var(--vmp-accent) !important; color: var(--vmp-text) !important; }
+html[data-vmp-theme] .trust-action--secondary { background: var(--vmp-soft) !important; color: var(--vmp-primary) !important; border-color: var(--vmp-border) !important; }
+html[data-vmp-theme] .quote-wizard-progress__step.is-current,
+html[data-vmp-theme] .quote-wizard-progress__step.is-current b { color: var(--vmp-primary) !important; }
+html[data-vmp-theme] .quote-wizard-progress__step.is-current b,
+html[data-vmp-theme] .quote-wizard-progress__step.is-complete b { background: var(--vmp-primary) !important; border-color: var(--vmp-primary) !important; color: #fff !important; }
+html[data-vmp-theme] .quote-wizard-progress__step.is-complete { color: var(--vmp-primary) !important; }
+html[data-vmp-theme] .quote-wizard-progress__line { background: var(--vmp-border) !important; }
+html[data-vmp-theme] .quote-wizard-back { color: var(--vmp-primary) !important; }
+html[data-vmp-theme] .quote-wizard-next:focus-visible,
+html[data-vmp-theme] .quote-wizard-back:focus-visible,
+html[data-vmp-theme] .trust-action:focus-visible,
+html[data-vmp-theme] .feedback-cta:focus-visible { outline-color: var(--vmp-highlight) !important; }
+html[data-vmp-theme] .mobile-callbar { border-top-color: var(--vmp-border) !important; }
+html[data-vmp-theme] .reading-progress { background: rgba(var(--vmp-rgb), .12) !important; }
+html[data-vmp-theme] .reading-progress span { background: linear-gradient(90deg, var(--vmp-primary), var(--vmp-highlight)) !important; box-shadow: 0 0 8px rgba(var(--vmp-rgb), .25) !important; }
+html[data-vmp-theme] .back-to-top { background: var(--vmp-primary) !important; }
+html[data-vmp-theme] .back-to-top:hover { background: var(--vmp-primary-deep) !important; }
+html[data-vmp-theme] .back-to-top:focus-visible { outline-color: var(--vmp-highlight) !important; }
+html[data-vmp-theme] footer,
+html[data-vmp-theme] body.theme-quote footer,
+html[data-vmp-theme] body.theme-area footer,
+html[data-vmp-theme] body.theme-svc-local footer,
+html[data-vmp-theme] body.theme-svc-intercity footer,
+html[data-vmp-theme] body.theme-svc-office footer,
+html[data-vmp-theme] body.theme-svc-packing footer,
+html[data-vmp-theme] body.theme-svc-vehicle footer,
+html[data-vmp-theme] body.theme-svc-storage footer,
+html[data-vmp-theme] body.theme-svc-specialty footer {
+  background: linear-gradient(165deg, var(--vmp-primary-deep), var(--vmp-primary)) !important;
+  border-top-color: var(--vmp-accent) !important;
+  color: #FFFFFF !important;
+}
+html[data-vmp-theme] footer .footer-brand-text span { color: var(--vmp-highlight) !important; }
+html[data-vmp-theme] footer .footer-links a:hover,
+html[data-vmp-theme] footer .footer-contact a:hover { color: var(--vmp-highlight) !important; }
+
+/* Reduced motion: palette changes are immediate; all original motion rules remain. */
+@media (prefers-reduced-motion: reduce) {
+  html[data-vmp-theme] *, html[data-vmp-theme] *::before, html[data-vmp-theme] *::after {
+    scroll-behavior: auto !important;
+  }
+}

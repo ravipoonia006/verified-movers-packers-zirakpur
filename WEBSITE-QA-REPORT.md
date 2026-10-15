@@ -49,3 +49,10 @@ At a 390px mobile viewport, the existing bottom contact bar remained visible, th
 - **Public reviews:** add the verified Google Business Profile review URL and customer-approved review text before showing actual reviews or review-rating structured data.
 - **Real project photos:** the current gallery uses existing SVG illustrations. Replace/add authentic business photos when available; do not label stock/AI imagery as actual jobs performed.
 - **Production deployment:** test all forms and routes in a Vercel preview, then deploy only after approval.
+
+
+## Random visit colour themes
+- Added 10 curated palette variations selected before stylesheet paint.
+- The palette persists while navigating within the same browser session and avoids repeating the previous fresh-visit palette when storage is available.
+- Theme initialization is present on all HTML pages and does not use external requests or tracking.
+- Palette choice was validated statically; final browser visual review is still recommended before/after deployment.
