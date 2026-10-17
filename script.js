@@ -989,3 +989,135 @@
     if (event.target === modal) closeModal();
   });
 })();
+
+
+/* Visible homepage quote form. Separate handler so the modal form and its controls remain untouched. */
+(function initVisibleHomeQuoteForm() {
+  'use strict';
+  var form = document.getElementById('homeQuoteForm');
+  if (!form) return;
+  var status = document.getElementById('homeQuoteStatus');
+  var fallback = document.getElementById('homeQuoteFallback');
+  var submitButton = form.querySelector('button[type="submit"]');
+  var dateInput = form.querySelector('[name="date"]');
+  var dateStamp = document.getElementById('homeSlipDate');
+
+  function indiaISODate() {
+    var parts = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata', year: 'numeric', month: '2-digit', day: '2-digit' }).formatToParts(new Date());
+    var result = {};
+    parts.forEach(function (p) { if (p.type !== 'literal') result[p.type] = p.value; });
+    return result.year + '-' + result.month + '-' + result.day;
+  }
+  function refreshIndiaDate() {
+    var iso;
+    try { iso = indiaISODate(); } catch (err) {
+      var localNow = new Date();
+      iso = localNow.getFullYear() + '-' + String(localNow.getMonth() + 1).padStart(2, '0') + '-' + String(localNow.getDate()).padStart(2, '0');
+    }
+    var d = iso.split('-');
+    if (dateStamp) { dateStamp.dateTime = iso; dateStamp.textContent = d[2] + '/' + d[1] + '/' + d[0]; }
+    if (dateInput) dateInput.min = iso;
+    return iso;
+  }
+  refreshIndiaDate();
+
+  function getValue(name) {
+    var el = form.querySelector('[name="' + name + '"]');
+    return el ? String(el.value || '').trim() : '';
+  }
+  function getInput(name) { return form.querySelector('[name="' + name + '"]'); }
+  function setError(input, message) {
+    if (!input) return;
+    input.setAttribute('aria-invalid', message ? 'true' : 'false');
+    var field = input.closest('.home-quote-field');
+    var error = field && field.querySelector('.home-quote-field__error');
+    if (error) error.textContent = message || '';
+  }
+  function validPhone(value) {
+    var digits = String(value || '').replace(/\D/g, '');
+    if (digits.length === 12 && digits.slice(0, 2) === '91') digits = digits.slice(2);
+    if (digits.length === 11 && digits.charAt(0) === '0') digits = digits.slice(1);
+    return digits.length === 10 && /^[6-9]/.test(digits);
+  }
+  Array.prototype.forEach.call(form.querySelectorAll('input, select'), function (input) {
+    input.addEventListener('input', function () { setError(input, ''); });
+    input.addEventListener('change', function () { setError(input, ''); });
+  });
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    if (status) status.textContent = '';
+    if (fallback) fallback.hidden = true;
+    var valid = true;
+    var requiredFields = [
+      ['name', 'Enter your name.'], ['phone', 'Enter your mobile number.'],
+      ['from', 'Enter the pickup location.'], ['to', 'Enter the destination.'],
+      ['size', 'Select the move size.'], ['service', 'Select the service needed.'],
+      ['date', 'Choose a move date.']
+    ];
+    requiredFields.forEach(function (item) {
+      var input = getInput(item[0]);
+      var value = getValue(item[0]);
+      var message = value ? '' : item[1];
+      if (item[0] === 'phone' && value && !validPhone(value)) message = 'Enter a valid 10-digit Indian mobile number.';
+      if (item[0] === 'date' && value && value < refreshIndiaDate()) message = 'Choose today or a future date.';
+      setError(input, message);
+      if (message) valid = false;
+    });
+    var emailInput = getInput('email');
+    var email = getValue('email');
+    var emailError = email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? 'Enter a valid email address.' : '';
+    setError(emailInput, emailError);
+    if (emailError) valid = false;
+    if (!valid) {
+      if (status) status.textContent = 'Please review the highlighted fields.';
+      var firstInvalid = form.querySelector('[aria-invalid="true"]');
+      if (firstInvalid) firstInvalid.focus({ preventScroll: false });
+      return;
+    }
+
+    var ref = 'SS-00214';
+    var messageLines = [
+      '📦 NEW MOVE QUOTE REQUEST',
+      '━━━━━━━━━━━━━━━━━━━━',
+      'Reference: ' + ref,
+      'Date: ' + (dateStamp ? dateStamp.textContent : 'Not available'),
+      'Customer: ' + getValue('name'),
+      'WhatsApp/Mobile: ' + getValue('phone'),
+      'Email: ' + (email || 'Not provided'),
+      'Pickup: ' + getValue('from'),
+      'Destination: ' + getValue('to'),
+      'Move size: ' + getValue('size'),
+      'Service: ' + getValue('service'),
+      'Preferred move date: ' + getValue('date'),
+      'Extra instructions: ' + (getValue('notes') || 'None specified'),
+      '━━━━━━━━━━━━━━━━━━━━',
+      'Verified Movers & Packers',
+      'Contact: +91 86072 27219 · anujzirakpur@gmail.com'
+    ];
+    var waURL = window.VerifiedMoversWA && window.VerifiedMoversWA.link
+      ? window.VerifiedMoversWA.link(messageLines.join('\n'))
+      : 'https://wa.me/918607227219?text=' + encodeURIComponent(messageLines.join('\n'));
+    if (typeof window.vmpTrackEvent === 'function') {
+      window.vmpTrackEvent('vmp_quote_request_ready', { form_kind: 'homepage-inline-quote', page_path: window.location.pathname });
+    }
+    if (submitButton) { submitButton.disabled = true; submitButton.querySelector('span').textContent = 'Preparing WhatsApp…'; }
+    if (fallback) fallback.href = waURL;
+    var waWindow = null;
+    try { waWindow = window.open(waURL, '_blank'); } catch (err) { waWindow = null; }
+    if (waWindow) {
+      try { waWindow.opener = null; } catch (ignore) {}
+      if (status) status.textContent = 'WhatsApp opened with your quote details. Press Send in WhatsApp to submit your request.';
+    } else {
+      if (status) status.textContent = 'Your quote is ready. If WhatsApp did not open, use the link below.';
+      if (fallback) fallback.hidden = false;
+    }
+    if (submitButton) {
+      window.setTimeout(function () {
+        submitButton.disabled = false;
+        var label = submitButton.querySelector('span');
+        if (label) label.textContent = 'Prepare quote in WhatsApp';
+      }, 1500);
+    }
+  });
+})();

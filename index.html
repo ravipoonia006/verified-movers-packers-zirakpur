@@ -225,6 +225,90 @@
   </aside>
 </section>
 
+<!-- Visible homepage quote form: separate from the existing full-screen modal. -->
+<section class="home-quote-section" id="home-quote" aria-labelledby="homeQuoteTitle">
+  <div class="home-quote-section__ambient" aria-hidden="true"></div>
+  <div class="home-quote-section__inner">
+    <div class="home-quote-section__intro">
+      <div class="home-quote-section__eyebrow"><span class="home-quote-section__live-dot" aria-hidden="true"></span> MOVE REQUEST · WHATSAPP READY</div>
+      <h2 id="homeQuoteTitle">Move Quote Request</h2>
+      <p>Tell us a little about your move. Your details will be formatted into a WhatsApp request for you to review before sending.</p>
+      <div class="home-quote-section__trust"><span aria-hidden="true">✓</span> No online payment required to prepare your request</div>
+    </div>
+
+    <div class="home-quote-card">
+      <div class="home-quote-card__topline">
+        <div class="home-quote-card__mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 7.5h11.5v10H3zM14.5 11h3.4l3.1 3.1v3.4h-6.5zM7 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM18 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+        <div class="home-quote-card__meta">
+          <span class="home-quote-card__meta-title">CUSTOMER QUOTE SLIP</span>
+          <span class="home-quote-card__meta-sub">Secure details · Review before sending</span>
+        </div>
+        <div class="home-quote-card__reference">NO. <strong>SS-00214</strong><br><span>DATE: <time id="homeSlipDate" datetime="">--/--/----</time></span></div>
+      </div>
+
+      <form class="home-inline-quote-form" id="homeQuoteForm" novalidate>
+        <div class="home-quote-fields">
+          <div class="home-quote-field">
+            <label for="homeQuoteName">Customer name <span aria-hidden="true">*</span></label>
+            <input id="homeQuoteName" name="name" type="text" placeholder="e.g. Anuj Sharma" autocomplete="name" required>
+            <span class="home-quote-field__error" aria-live="polite"></span>
+          </div>
+          <div class="home-quote-field">
+            <label for="homeQuotePhone">WhatsApp / mobile <span aria-hidden="true">*</span></label>
+            <input id="homeQuotePhone" name="phone" type="tel" inputmode="tel" placeholder="10-digit mobile number" autocomplete="tel" required>
+            <span class="home-quote-field__error" aria-live="polite"></span>
+          </div>
+          <div class="home-quote-field">
+            <label for="homeQuoteFrom">Pickup location <span aria-hidden="true">*</span></label>
+            <input id="homeQuoteFrom" name="from" type="text" placeholder="Area, city" autocomplete="address-level2" required>
+            <span class="home-quote-field__error" aria-live="polite"></span>
+          </div>
+          <div class="home-quote-field">
+            <label for="homeQuoteTo">Drop location <span aria-hidden="true">*</span></label>
+            <input id="homeQuoteTo" name="to" type="text" placeholder="Destination area, city" required>
+            <span class="home-quote-field__error" aria-live="polite"></span>
+          </div>
+          <div class="home-quote-field">
+            <label for="homeQuoteSize">Move size <span aria-hidden="true">*</span></label>
+            <select id="homeQuoteSize" name="size" required>
+              <option value="">Select move size</option>
+              <option>1 RK</option><option>1 BHK</option><option>2 BHK</option><option>3 BHK</option><option>4 BHK+</option><option>Office</option><option>Shop / Commercial</option>
+            </select>
+            <span class="home-quote-field__error" aria-live="polite"></span>
+          </div>
+          <div class="home-quote-field">
+            <label for="homeQuoteService">Service needed <span aria-hidden="true">*</span></label>
+            <select id="homeQuoteService" name="service" required>
+              <option value="">Select a service</option>
+              <option>Full packing + loading + transport + unloading</option><option>Transport only</option><option>Packing only</option><option>Office / commercial relocation</option><option>Vehicle transport</option>
+            </select>
+            <span class="home-quote-field__error" aria-live="polite"></span>
+          </div>
+          <div class="home-quote-field">
+            <label for="homeQuoteDate">Preferred move date <span aria-hidden="true">*</span></label>
+            <input id="homeQuoteDate" name="date" type="date" required>
+            <span class="home-quote-field__error" aria-live="polite"></span>
+          </div>
+          <div class="home-quote-field">
+            <label for="homeQuoteEmail">Email <span class="home-quote-field__optional">Optional</span></label>
+            <input id="homeQuoteEmail" name="email" type="email" placeholder="you@example.com" autocomplete="email">
+            <span class="home-quote-field__error" aria-live="polite"></span>
+          </div>
+          <div class="home-quote-field home-quote-field--wide">
+            <label for="homeQuoteNotes">Extra instructions <span class="home-quote-field__optional">Optional</span></label>
+            <input id="homeQuoteNotes" name="notes" type="text" placeholder="Lift, stairs, fragile items, preferred timing…">
+            <span class="home-quote-field__error" aria-live="polite"></span>
+          </div>
+        </div>
+        <button class="home-quote-submit" type="submit"><span>Prepare quote in WhatsApp</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <p class="home-quote-legal">Your message will open in WhatsApp with the details above. You must press <strong>Send</strong> in WhatsApp to submit your request.</p>
+        <div class="home-quote-status" id="homeQuoteStatus" role="status" aria-live="polite"></div>
+        <a class="home-quote-fallback" id="homeQuoteFallback" href="#" target="_blank" rel="noopener noreferrer" hidden>Open WhatsApp with your quote details ↗</a>
+      </form>
+    </div>
+  </div>
+</section>
+
 <div class="stamps-strip">
   <div class="stamps-row">
     <div class="stamp-item"><span class="stamp-circle">✓</span> GST verified vendors</div>
