@@ -7443,3 +7443,1376 @@ html body footer .footer-fine {
   html[data-vmp-theme] body.theme-area .area-cta-row a,
   html body footer .footer-actions a { transition: none !important; }
 }
+
+
+/* ===========================================================================
+   CITY + AREA PAGE PRESENTATION REPAIR
+   Purpose: give all city guides and locality guides a coherent, polished content
+   hierarchy while preserving the existing copy, links, quote flow and contact UI.
+   Theme variables remain driven by the visitor's existing 30-palette session theme.
+   =========================================================================== */
+
+/* Location accents: a small signature colour for the city family; the visit's
+   selected palette still supplies the page's primary/background/text colours. */
+html[data-vmp-theme] body.theme-city,
+html[data-vmp-theme] body.theme-area {
+  --vmp-local-accent: var(--vmp-accent, #1769D2);
+  color: var(--vmp-text, #223247) !important;
+  background:
+    radial-gradient(ellipse at 8% 2%, rgba(var(--vmp-rgb, 21,62,110), .095), transparent 33%),
+    radial-gradient(ellipse at 94% 24%, rgba(var(--vmp-rgb, 21,62,110), .055), transparent 30%),
+    linear-gradient(180deg, var(--vmp-bg, #F5F8FC) 0%, var(--vmp-soft, #E9F0FA) 100%) !important;
+}
+
+html[data-vmp-theme] body.city-region--zirakpur,
+html[data-vmp-theme] body.area-region--zirakpur { --vmp-local-accent: #E36A4F; }
+html[data-vmp-theme] body.city-region--mohali,
+html[data-vmp-theme] body.area-region--mohali { --vmp-local-accent: #2C9D8F; }
+html[data-vmp-theme] body.city-region--chandigarh,
+html[data-vmp-theme] body.area-region--chandigarh { --vmp-local-accent: #5379D2; }
+html[data-vmp-theme] body.city-region--panchkula,
+html[data-vmp-theme] body.area-region--panchkula { --vmp-local-accent: #8D68BE; }
+html[data-vmp-theme] body.city-region--kharar,
+html[data-vmp-theme] body.area-region--kharar { --vmp-local-accent: #7A9253; }
+html[data-vmp-theme] body.city-region--derabassi,
+html[data-vmp-theme] body.area-region--derabassi { --vmp-local-accent: #D77938; }
+html[data-vmp-theme] body.city-region--new-chandigarh,
+html[data-vmp-theme] body.area-region--new-chandigarh { --vmp-local-accent: #B48A32; }
+html[data-vmp-theme] body.city-region--delhi,
+html[data-vmp-theme] body.area-region--delhi { --vmp-local-accent: #3D83B9; }
+html[data-vmp-theme] body.city-region--gurgaon,
+html[data-vmp-theme] body.area-region--gurgaon { --vmp-local-accent: #7B70D6; }
+html[data-vmp-theme] body.city-region--noida,
+html[data-vmp-theme] body.area-region--noida { --vmp-local-accent: #159C94; }
+html[data-vmp-theme] body.city-region--ahmedabad,
+html[data-vmp-theme] body.area-region--ahmedabad { --vmp-local-accent: #B45D35; }
+html[data-vmp-theme] body.city-region--bangalore,
+html[data-vmp-theme] body.area-region--bangalore { --vmp-local-accent: #2D8962; }
+html[data-vmp-theme] body.city-region--chennai,
+html[data-vmp-theme] body.area-region--chennai { --vmp-local-accent: #1B7896; }
+html[data-vmp-theme] body.city-region--hyderabad,
+html[data-vmp-theme] body.area-region--hyderabad { --vmp-local-accent: #A36B25; }
+html[data-vmp-theme] body.city-region--kolkata,
+html[data-vmp-theme] body.area-region--kolkata { --vmp-local-accent: #A84155; }
+html[data-vmp-theme] body.city-region--mumbai,
+html[data-vmp-theme] body.area-region--mumbai { --vmp-local-accent: #3D63B8; }
+html[data-vmp-theme] body.city-region--pune,
+html[data-vmp-theme] body.area-region--pune { --vmp-local-accent: #8254A0; }
+
+/* CITY GUIDE: synchronize the page canvas, hero, stats and theme accents. */
+html[data-vmp-theme] body.theme-city {
+  min-height: 100vh;
+  background-color: var(--vmp-bg, #F5F8FC) !important;
+}
+html[data-vmp-theme] body.theme-city .hero {
+  isolation: isolate;
+  position: relative;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: clamp(38px, 5.4vw, 72px) max(18px, calc((100% - 1160px) / 2)) clamp(42px, 5.8vw, 78px) !important;
+  gap: clamp(28px, 4.5vw, 58px) !important;
+  background:
+    radial-gradient(ellipse at 12% 12%, rgba(var(--vmp-rgb), .10), transparent 36%),
+    radial-gradient(ellipse at 94% 84%, rgba(var(--vmp-rgb), .08), transparent 31%),
+    linear-gradient(135deg, var(--vmp-surface, #fff), var(--vmp-soft, #E9F0FA)) !important;
+  border-bottom: 1px solid var(--vmp-border, #D7E1ED) !important;
+}
+html[data-vmp-theme] body.theme-city .hero::before {
+  width: min(36vw, 420px) !important;
+  height: min(36vw, 420px) !important;
+  left: -110px !important;
+  top: auto !important;
+  bottom: -190px !important;
+  border: 1px solid rgba(var(--vmp-rgb), .08) !important;
+  background: radial-gradient(circle, rgba(var(--vmp-rgb), .08), transparent 70%) !important;
+  z-index: -1 !important;
+}
+html[data-vmp-theme] body.theme-city .hero::after {
+  width: clamp(220px, 32vw, 390px) !important;
+  height: clamp(220px, 32vw, 390px) !important;
+  right: -150px !important;
+  top: -165px !important;
+  border: 55px solid rgba(var(--vmp-rgb), .045) !important;
+  pointer-events: none !important;
+}
+html[data-vmp-theme] body.theme-city .hero h1.headline,
+html[data-vmp-theme] body.theme-city h1.headline {
+  color: var(--vmp-text, #192B41) !important;
+  font-size: clamp(36px, 5.5vw, 66px) !important;
+  line-height: 1.03 !important;
+  letter-spacing: -.052em !important;
+  text-wrap: balance;
+}
+html[data-vmp-theme] body.theme-city .hero h1.headline em,
+html[data-vmp-theme] body.theme-city h1.headline em {
+  color: var(--vmp-local-accent, var(--vmp-accent)) !important;
+  text-decoration-color: var(--vmp-highlight) !important;
+  text-decoration-thickness: .08em;
+  text-underline-offset: .12em;
+}
+html[data-vmp-theme] body.theme-city .hero .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid var(--vmp-border, #D7E1ED) !important;
+  border-radius: 999px !important;
+  background: var(--vmp-surface, #fff) !important;
+  color: var(--vmp-primary, #153E6E) !important;
+  padding: 9px 13px !important;
+  box-shadow: 0 6px 18px rgba(var(--vmp-rgb), .07) !important;
+  letter-spacing: .105em !important;
+  line-height: 1.4;
+}
+html[data-vmp-theme] body.theme-city .hero .eyebrow::before {
+  background: var(--vmp-local-accent, var(--vmp-highlight)) !important;
+  box-shadow: 0 0 0 4px rgba(var(--vmp-rgb), .09);
+}
+html[data-vmp-theme] body.theme-city .hero .hero-sub {
+  max-width: 650px !important;
+  color: var(--vmp-muted, #5A6C80) !important;
+  line-height: 1.78 !important;
+  font-size: clamp(15px, 1.4vw, 17px) !important;
+}
+html[data-vmp-theme] body.theme-city .hero-stat {
+  border: 1px solid var(--vmp-border, #D7E1ED) !important;
+  border-radius: 17px !important;
+  background: linear-gradient(145deg, rgba(255,255,255,.96), rgba(var(--vmp-rgb), .035)) !important;
+  box-shadow: 0 10px 25px rgba(var(--vmp-rgb), .055) !important;
+}
+html[data-vmp-theme] body.theme-city .hero-stat .num { color: var(--vmp-primary, #153E6E) !important; }
+html[data-vmp-theme] body.theme-city .hero-stat .lbl { color: var(--vmp-muted, #5A6C80) !important; line-height: 1.45; }
+html[data-vmp-theme] body.theme-city .quote-launch-card--universal {
+  border: 1px solid rgba(var(--vmp-rgb), .16) !important;
+  border-radius: 26px !important;
+  background: linear-gradient(150deg, rgba(255,255,255,.94), rgba(var(--vmp-rgb), .055)) !important;
+  box-shadow: 0 24px 58px rgba(var(--vmp-rgb), .12), inset 0 1px 0 rgba(255,255,255,.95) !important;
+  backdrop-filter: blur(18px) saturate(1.18);
+  -webkit-backdrop-filter: blur(18px) saturate(1.18);
+}
+html[data-vmp-theme] body.theme-city .stamps-strip {
+  background: linear-gradient(100deg, var(--vmp-primary-deep), var(--vmp-primary)) !important;
+  border-top: 1px solid rgba(255,255,255,.13) !important;
+  border-bottom: 1px solid rgba(var(--vmp-rgb), .18) !important;
+}
+html[data-vmp-theme] body.theme-city .stamps-strip .stamp-circle {
+  border-color: var(--vmp-highlight) !important;
+  background: rgba(255,255,255,.08) !important;
+  color: var(--vmp-highlight) !important;
+}
+html[data-vmp-theme] body.theme-city .visual-gallery {
+  max-width: 1160px !important;
+  width: calc(100% - 36px) !important;
+  margin: 28px auto !important;
+  padding: clamp(22px, 3.6vw, 38px) !important;
+  border: 1px solid var(--vmp-border, #D7E1ED) !important;
+  border-radius: 28px !important;
+  background: linear-gradient(145deg, var(--vmp-surface, #fff), var(--vmp-soft, #E9F0FA)) !important;
+  box-shadow: 0 16px 42px rgba(var(--vmp-rgb), .055) !important;
+}
+html[data-vmp-theme] body.theme-city .visual-gallery__head .section-title,
+html[data-vmp-theme] body.theme-city .visual-gallery .section-title { color: var(--vmp-text) !important; }
+
+/* CITY + AREA CONTENT BLOCKS: this was the missing visual layer behind the added SEO copy. */
+html[data-vmp-theme] body.theme-city .sitewide-related,
+html[data-vmp-theme] body.theme-area .sitewide-related {
+  position: relative !important;
+  isolation: isolate !important;
+  box-sizing: border-box !important;
+  width: calc(100% - clamp(24px, 5vw, 64px)) !important;
+  max-width: 1160px !important;
+  margin: clamp(18px, 2.8vw, 30px) auto !important;
+  padding: clamp(22px, 3.6vw, 40px) !important;
+  overflow: hidden !important;
+  border: 1px solid var(--vmp-border, #D7E1ED) !important;
+  border-radius: clamp(20px, 2.7vw, 28px) !important;
+  background:
+    radial-gradient(ellipse at 100% 0%, rgba(var(--vmp-rgb), .055), transparent 34%),
+    linear-gradient(145deg, rgba(255,255,255,.96), rgba(var(--vmp-rgb), .025)) !important;
+  box-shadow: 0 16px 40px rgba(var(--vmp-rgb), .055), inset 0 1px 0 rgba(255,255,255,.9) !important;
+}
+html[data-vmp-theme] body.theme-city .sitewide-related::before,
+html[data-vmp-theme] body.theme-area .sitewide-related::before {
+  content: "" !important;
+  position: absolute !important;
+  z-index: 0 !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 100% !important;
+  height: 3px !important;
+  opacity: .95 !important;
+  background: linear-gradient(90deg, var(--vmp-primary), var(--vmp-local-accent, var(--vmp-accent)), var(--vmp-highlight)) !important;
+}
+html[data-vmp-theme] body.theme-city .sitewide-related > *,
+html[data-vmp-theme] body.theme-area .sitewide-related > * {
+  position: relative !important;
+  z-index: 1 !important;
+}
+html[data-vmp-theme] .sitewide-related__head {
+  max-width: 820px !important;
+  margin: 0 0 24px !important;
+}
+html[data-vmp-theme] .sitewide-related__eyebrow {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin: 0 0 12px !important;
+  padding: 7px 10px !important;
+  border: 1px solid var(--vmp-border, #D7E1ED) !important;
+  border-radius: 999px !important;
+  background: var(--vmp-soft, #E9F0FA) !important;
+  color: var(--vmp-primary, #153E6E) !important;
+  font: 800 10px/1.35 'Work Sans', sans-serif !important;
+  letter-spacing: .13em !important;
+  text-transform: uppercase !important;
+}
+html[data-vmp-theme] .sitewide-related__eyebrow::before {
+  content: "" !important;
+  width: 6px !important;
+  height: 6px !important;
+  flex: 0 0 6px !important;
+  border-radius: 50% !important;
+  background: var(--vmp-local-accent, var(--vmp-accent)) !important;
+  box-shadow: 0 0 0 4px rgba(var(--vmp-rgb), .09) !important;
+}
+html[data-vmp-theme] .sitewide-related__head h2,
+html[data-vmp-theme] .sitewide-related__head h3 {
+  max-width: 800px !important;
+  margin: 0 0 12px !important;
+  color: var(--vmp-text, #192B41) !important;
+  font: 800 clamp(24px, 3vw, 34px)/1.14 'Plus Jakarta Sans', 'Work Sans', sans-serif !important;
+  letter-spacing: -.04em !important;
+  text-wrap: balance !important;
+}
+html[data-vmp-theme] .sitewide-related__head p {
+  max-width: 760px !important;
+  margin: 0 !important;
+  color: var(--vmp-muted, #5A6C80) !important;
+  font: 400 clamp(14px, 1.25vw, 16px)/1.75 'Work Sans', sans-serif !important;
+}
+html[data-vmp-theme] .sitewide-related__grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  align-items: stretch !important;
+  gap: 14px !important;
+  width: 100% !important;
+  margin: 0 !important;
+}
+html[data-vmp-theme] .sitewide-related__grid--three { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+html[data-vmp-theme] .sitewide-related__card {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  gap: 10px !important;
+  min-width: 0 !important;
+  min-height: 126px !important;
+  box-sizing: border-box !important;
+  padding: 18px 18px 17px !important;
+  overflow-wrap: anywhere !important;
+  border: 1px solid var(--vmp-border, #D7E1ED) !important;
+  border-radius: 17px !important;
+  background: linear-gradient(145deg, #fff, rgba(var(--vmp-rgb), .025)) !important;
+  color: var(--vmp-text, #192B41) !important;
+  text-decoration: none !important;
+  box-shadow: 0 7px 22px rgba(var(--vmp-rgb), .045), inset 0 1px 0 rgba(255,255,255,.9) !important;
+  transition: transform .24s cubic-bezier(.2,.7,.2,1), box-shadow .24s ease, border-color .24s ease, background .24s ease !important;
+}
+html[data-vmp-theme] .sitewide-related__card strong {
+  display: block !important;
+  color: var(--vmp-primary, #153E6E) !important;
+  font: 800 15px/1.35 'Plus Jakarta Sans', 'Work Sans', sans-serif !important;
+  letter-spacing: -.015em !important;
+}
+html[data-vmp-theme] .sitewide-related__card span {
+  display: block !important;
+  color: var(--vmp-muted, #5A6C80) !important;
+  font: 500 12.5px/1.6 'Work Sans', sans-serif !important;
+}
+html[data-vmp-theme] .sitewide-related__card b {
+  display: inline-block !important;
+  margin-left: 4px !important;
+  color: var(--vmp-local-accent, var(--vmp-accent)) !important;
+  font-size: 16px !important;
+  transition: transform .22s ease !important;
+}
+html[data-vmp-theme] .sitewide-related__card:hover,
+html[data-vmp-theme] .sitewide-related__card:focus-visible {
+  transform: translateY(-3px) !important;
+  border-color: rgba(var(--vmp-rgb), .34) !important;
+  background: linear-gradient(145deg, #fff, rgba(var(--vmp-rgb), .055)) !important;
+  box-shadow: 0 14px 30px rgba(var(--vmp-rgb), .105) !important;
+}
+html[data-vmp-theme] .sitewide-related__card:hover b { transform: translateX(4px) !important; }
+html[data-vmp-theme] .sitewide-related__card:focus-visible,
+html[data-vmp-theme] .sitewide-related__pill:focus-visible {
+  outline: 3px solid var(--vmp-highlight, #F3C65E) !important;
+  outline-offset: 3px !important;
+}
+html[data-vmp-theme] .sitewide-related__content {
+  display: block !important;
+  min-width: 0 !important;
+  padding: clamp(17px, 2.6vw, 26px) !important;
+  border: 1px solid var(--vmp-border, #D7E1ED) !important;
+  border-radius: 20px !important;
+  background: linear-gradient(145deg, rgba(255,255,255,.92), rgba(var(--vmp-rgb), .035)) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.9) !important;
+}
+html[data-vmp-theme] .sitewide-related__content p,
+html[data-vmp-theme] .sitewide-related__content li {
+  color: var(--vmp-muted, #5A6C80) !important;
+  font: 400 14px/1.8 'Work Sans', sans-serif !important;
+}
+html[data-vmp-theme] .sitewide-related__content p { margin: 0 0 15px !important; max-width: 920px !important; }
+html[data-vmp-theme] .sitewide-related__content h3,
+html[data-vmp-theme] .sitewide-related__subhead h3,
+html[data-vmp-theme] .sitewide-related__content h2 {
+  margin: 24px 0 12px !important;
+  color: var(--vmp-text, #192B41) !important;
+  font: 800 17px/1.35 'Plus Jakarta Sans', 'Work Sans', sans-serif !important;
+  letter-spacing: -.02em !important;
+}
+html[data-vmp-theme] .sitewide-related__content h3:first-child { margin-top: 0 !important; }
+html[data-vmp-theme] .sitewide-related__content ul,
+html[data-vmp-theme] .sitewide-related__checklist {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 9px !important;
+  margin: 12px 0 20px !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+html[data-vmp-theme] .sitewide-related__content li,
+html[data-vmp-theme] .sitewide-related__checklist li {
+  position: relative !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 12px 13px 12px 34px !important;
+  border: 1px solid var(--vmp-border, #D7E1ED) !important;
+  border-radius: 13px !important;
+  background: rgba(255,255,255,.78) !important;
+}
+html[data-vmp-theme] .sitewide-related__content li::before,
+html[data-vmp-theme] .sitewide-related__checklist li::before {
+  content: "✓" !important;
+  position: absolute !important;
+  left: 12px !important;
+  top: 12px !important;
+  display: grid !important;
+  place-items: center !important;
+  width: 15px !important;
+  height: 15px !important;
+  border-radius: 50% !important;
+  background: var(--vmp-soft, #E9F0FA) !important;
+  color: var(--vmp-primary, #153E6E) !important;
+  font: 800 10px/1 'Work Sans', sans-serif !important;
+}
+html[data-vmp-theme] .sitewide-related__pills {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 9px !important;
+  margin: 10px 0 0 !important;
+}
+html[data-vmp-theme] .sitewide-related__pill {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 7px !important;
+  max-width: 100% !important;
+  min-height: 39px !important;
+  padding: 9px 13px !important;
+  border: 1px solid var(--vmp-border, #D7E1ED) !important;
+  border-radius: 999px !important;
+  background: var(--vmp-surface, #fff) !important;
+  color: var(--vmp-primary, #153E6E) !important;
+  font: 700 12px/1.4 'Work Sans', sans-serif !important;
+  text-decoration: none !important;
+  box-shadow: 0 5px 14px rgba(var(--vmp-rgb), .04) !important;
+  transition: transform .2s ease, border-color .2s ease, background .2s ease !important;
+}
+html[data-vmp-theme] .sitewide-related__pill:hover {
+  transform: translateY(-2px) !important;
+  border-color: var(--vmp-local-accent, var(--vmp-accent)) !important;
+  background: var(--vmp-soft, #E9F0FA) !important;
+}
+html[data-vmp-theme] .sitewide-related__subhead { margin: 26px 0 12px !important; }
+html[data-vmp-theme] .sitewide-related__subhead h3 { margin: 0 !important; font-size: 15px !important; }
+html[data-vmp-theme] .sitewide-related__note {
+  margin: 18px 0 0 !important;
+  padding: 13px 15px !important;
+  border-left: 3px solid var(--vmp-local-accent, var(--vmp-accent)) !important;
+  border-radius: 0 12px 12px 0 !important;
+  background: var(--vmp-soft, #E9F0FA) !important;
+  color: var(--vmp-muted, #5A6C80) !important;
+  font: 500 12px/1.7 'Work Sans', sans-serif !important;
+}
+
+/* Alternate city sections so pages have a deliberate rhythm, not one repeated slab. */
+html[data-vmp-theme] body.theme-city .sitewide-related--city-planning {
+  background: linear-gradient(145deg, var(--vmp-soft, #E9F0FA), rgba(255,255,255,.97)) !important;
+}
+html[data-vmp-theme] body.theme-city .sitewide-related--searches {
+  background: linear-gradient(145deg, rgba(var(--vmp-rgb), .045), #fff 68%) !important;
+}
+html[data-vmp-theme] body.theme-city .sitewide-related--process {
+  border-color: var(--vmp-primary-deep, #0B2645) !important;
+  background: linear-gradient(135deg, var(--vmp-primary-deep, #0B2645), var(--vmp-primary, #153E6E)) !important;
+  box-shadow: 0 22px 52px rgba(var(--vmp-rgb), .16) !important;
+}
+html[data-vmp-theme] body.theme-city .sitewide-related--process .sitewide-related__eyebrow {
+  color: var(--vmp-highlight, #F3C65E) !important;
+  border-color: rgba(255,255,255,.16) !important;
+  background: rgba(255,255,255,.08) !important;
+}
+html[data-vmp-theme] body.theme-city .sitewide-related--process .sitewide-related__head h2,
+html[data-vmp-theme] body.theme-city .sitewide-related--process .sitewide-related__head h3 { color: #fff !important; }
+html[data-vmp-theme] body.theme-city .sitewide-related--process .sitewide-related__head p { color: rgba(255,255,255,.78) !important; }
+html[data-vmp-theme] body.theme-city .sitewide-related--process .sitewide-related__card {
+  border-color: rgba(255,255,255,.17) !important;
+  background: linear-gradient(145deg, rgba(255,255,255,.12), rgba(255,255,255,.055)) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.11) !important;
+}
+html[data-vmp-theme] body.theme-city .sitewide-related--process .sitewide-related__card strong { color: #fff !important; }
+html[data-vmp-theme] body.theme-city .sitewide-related--process .sitewide-related__card span { color: rgba(255,255,255,.78) !important; }
+html[data-vmp-theme] body.theme-city .sitewide-related--process .sitewide-related__card b { color: var(--vmp-highlight, #F3C65E) !important; }
+html[data-vmp-theme] body.theme-city .sitewide-related--process .sitewide-related__note {
+  color: rgba(255,255,255,.84) !important;
+  background: rgba(255,255,255,.08) !important;
+  border-left-color: var(--vmp-highlight) !important;
+}
+
+/* FAQ: simple accordions with obvious tap targets and readable expanded answers. */
+html[data-vmp-theme] body.theme-city .city-faq-section .faq-list {
+  display: grid !important;
+  gap: 10px !important;
+}
+html[data-vmp-theme] body.theme-city .city-faq-section .faq-item {
+  overflow: hidden !important;
+  border: 1px solid var(--vmp-border, #D7E1ED) !important;
+  border-radius: 16px !important;
+  background: var(--vmp-surface, #fff) !important;
+  box-shadow: 0 6px 20px rgba(var(--vmp-rgb), .045) !important;
+}
+html[data-vmp-theme] body.theme-city .city-faq-section .faq-q {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 16px !important;
+  width: 100% !important;
+  min-height: 58px !important;
+  padding: 15px 18px !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: var(--vmp-text, #192B41) !important;
+  text-align: left !important;
+  font: 750 14px/1.5 'Work Sans', sans-serif !important;
+  cursor: pointer !important;
+}
+html[data-vmp-theme] body.theme-city .city-faq-section .faq-q:hover,
+html[data-vmp-theme] body.theme-city .city-faq-section .faq-item.open .faq-q { color: var(--vmp-primary, #153E6E) !important; }
+html[data-vmp-theme] body.theme-city .city-faq-section .faq-q .plus {
+  display: grid !important;
+  place-items: center !important;
+  width: 28px !important;
+  height: 28px !important;
+  flex: 0 0 28px !important;
+  margin: 0 !important;
+  border-radius: 50% !important;
+  background: var(--vmp-soft, #E9F0FA) !important;
+  color: var(--vmp-primary, #153E6E) !important;
+  font: 500 18px/1 'Work Sans', sans-serif !important;
+}
+html[data-vmp-theme] body.theme-city .city-faq-section .faq-a { padding: 0 18px !important; }
+html[data-vmp-theme] body.theme-city .city-faq-section .faq-a p {
+  padding: 0 0 18px !important;
+  max-width: 900px !important;
+  color: var(--vmp-muted, #5A6C80) !important;
+  font: 400 13.5px/1.8 'Work Sans', sans-serif !important;
+}
+html[data-vmp-theme] body.theme-city .city-faq-section .faq-item.open .faq-a { max-height: 520px !important; }
+
+/* AREA GUIDES: one shared editorial layout; only the location accent changes. */
+html[data-vmp-theme] body.theme-area .area-hero {
+  border-bottom-color: var(--vmp-local-accent, var(--vmp-highlight)) !important;
+  padding-top: clamp(34px, 5.4vw, 68px) !important;
+  padding-bottom: clamp(38px, 5vw, 60px) !important;
+}
+html[data-vmp-theme] body.theme-area .area-hero .crumb {
+  max-width: 100% !important;
+  overflow-wrap: anywhere !important;
+}
+html[data-vmp-theme] body.theme-area .area-hero h1 { max-width: 900px !important; }
+html[data-vmp-theme] body.theme-area .area-hero p { max-width: 760px !important; }
+html[data-vmp-theme] body.theme-area .sitewide-related--nearby .sitewide-related__grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+html[data-vmp-theme] body.theme-area .sitewide-related--area .sitewide-related__head {
+  padding-left: 16px !important;
+  border-left: 3px solid var(--vmp-local-accent, var(--vmp-accent)) !important;
+}
+html[data-vmp-theme] body.theme-area .sitewide-related--area .sitewide-related__content {
+  background: linear-gradient(145deg, rgba(255,255,255,.95), rgba(var(--vmp-rgb), .035)) !important;
+}
+
+/* Responsive grid and type scale. */
+@media (max-width: 980px) {
+  html[data-vmp-theme] .sitewide-related__grid,
+  html[data-vmp-theme] .sitewide-related__grid--three,
+  html[data-vmp-theme] body.theme-area .sitewide-related--nearby .sitewide-related__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  html[data-vmp-theme] body.theme-city .hero { gap: 26px !important; }
+}
+@media (max-width: 640px) {
+  html[data-vmp-theme] body.theme-city .hero {
+    grid-template-columns: minmax(0, 1fr) !important;
+    padding: 34px 16px 44px !important;
+    gap: 22px !important;
+  }
+  html[data-vmp-theme] body.theme-city .hero h1.headline,
+  html[data-vmp-theme] body.theme-city h1.headline { font-size: clamp(32px, 9vw, 45px) !important; }
+  html[data-vmp-theme] body.theme-city .hero .hero-sub { font-size: 14px !important; line-height: 1.72 !important; }
+  html[data-vmp-theme] body.theme-city .hero-stat { min-width: 0 !important; padding: 11px 12px !important; }
+  html[data-vmp-theme] body.theme-city .visual-gallery,
+  html[data-vmp-theme] body.theme-city .sitewide-related,
+  html[data-vmp-theme] body.theme-area .sitewide-related {
+    width: calc(100% - 22px) !important;
+    margin: 14px auto !important;
+    padding: 21px 15px !important;
+    border-radius: 20px !important;
+  }
+  html[data-vmp-theme] .sitewide-related__head { margin-bottom: 18px !important; }
+  html[data-vmp-theme] .sitewide-related__head h2 { font-size: clamp(22px, 6vw, 28px) !important; }
+  html[data-vmp-theme] .sitewide-related__head p { font-size: 13px !important; line-height: 1.7 !important; }
+  html[data-vmp-theme] .sitewide-related__grid,
+  html[data-vmp-theme] .sitewide-related__grid--three,
+  html[data-vmp-theme] body.theme-area .sitewide-related--nearby .sitewide-related__grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 9px !important;
+  }
+  html[data-vmp-theme] .sitewide-related__card { min-height: auto !important; padding: 15px !important; border-radius: 15px !important; }
+  html[data-vmp-theme] .sitewide-related__card strong { font-size: 14px !important; }
+  html[data-vmp-theme] .sitewide-related__card span { font-size: 12px !important; }
+  html[data-vmp-theme] .sitewide-related__content { padding: 15px !important; border-radius: 16px !important; }
+  html[data-vmp-theme] .sitewide-related__content ul,
+  html[data-vmp-theme] .sitewide-related__checklist { grid-template-columns: minmax(0, 1fr) !important; }
+  html[data-vmp-theme] body.theme-city .city-faq-section .faq-q { padding: 13px 13px !important; font-size: 13px !important; }
+  html[data-vmp-theme] body.theme-city .city-faq-section .faq-a { padding: 0 13px !important; }
+}
+@media (hover: none) {
+  html[data-vmp-theme] .sitewide-related__card:hover,
+  html[data-vmp-theme] .sitewide-related__pill:hover { transform: none !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-vmp-theme] .sitewide-related__card,
+  html[data-vmp-theme] .sitewide-related__pill,
+  html[data-vmp-theme] .city-faq-section .faq-q,
+  html[data-vmp-theme] body.theme-city .hero::before,
+  html[data-vmp-theme] body.theme-city .hero::after { transition: none !important; animation: none !important; }
+}
+
+
+/* =====================================================================
+   REMAINING PAGE VISUAL CONSISTENCY
+   Extends the existing theme-aware glass system to core, service,
+   directory, contact and partner pages. No HTML, links or CTA markup changed.
+   Contact/Call/WhatsApp controls are intentionally not restyled here.
+   ===================================================================== */
+
+/* Shared page rhythm: consistent content widths, vertical spacing and theme tint. */
+html[data-vmp-theme] body.theme-about .br-section,
+html[data-vmp-theme] body.theme-contact .contact-wrap,
+html[data-vmp-theme] body.theme-quote .quote-shell,
+html[data-vmp-theme] body.theme-services-hub .hub-grid,
+html[data-vmp-theme] body.theme-cities main > section.section,
+html[data-vmp-theme] body.theme-vendor main > section:first-of-type,
+html[data-vmp-theme] body.theme-svc-local .svc-body,
+html[data-vmp-theme] body.theme-svc-intercity .svc-body,
+html[data-vmp-theme] body.theme-svc-office .svc-body,
+html[data-vmp-theme] body.theme-svc-packing .svc-body,
+html[data-vmp-theme] body.theme-svc-specialty .svc-body,
+html[data-vmp-theme] body.theme-svc-storage .svc-body,
+html[data-vmp-theme] body.theme-svc-vehicle .svc-body {
+  box-sizing: border-box !important;
+  width: min(1160px, calc(100% - 40px)) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* HERO BANDS — the same rounded, theme-aware glass/gradient language as city pages. */
+html[data-vmp-theme] body.theme-about .page-hero-br,
+html[data-vmp-theme] body.theme-contact .page-hero-br,
+html[data-vmp-theme] body.theme-services-hub .hub-hero,
+html[data-vmp-theme] body.theme-svc-local .svc-hero,
+html[data-vmp-theme] body.theme-svc-intercity .svc-hero,
+html[data-vmp-theme] body.theme-svc-office .svc-hero,
+html[data-vmp-theme] body.theme-svc-packing .svc-hero,
+html[data-vmp-theme] body.theme-svc-specialty .svc-hero,
+html[data-vmp-theme] body.theme-svc-storage .svc-hero,
+html[data-vmp-theme] body.theme-svc-vehicle .svc-hero {
+  position: relative !important;
+  isolation: isolate !important;
+  overflow: hidden !important;
+  width: min(1200px, calc(100% - 40px)) !important;
+  margin: 22px auto 0 !important;
+  padding: clamp(30px, 5vw, 62px) clamp(22px, 5vw, 64px) !important;
+  border: 1px solid rgba(255,255,255,.22) !important;
+  border-bottom: 3px solid var(--vmp-highlight) !important;
+  border-radius: 28px !important;
+  box-shadow: 0 22px 52px rgba(var(--vmp-rgb), .17), inset 0 1px 0 rgba(255,255,255,.18) !important;
+  color: #fff !important;
+}
+html[data-vmp-theme] body.theme-about .page-hero-br::before,
+html[data-vmp-theme] body.theme-contact .page-hero-br::before,
+html[data-vmp-theme] body.theme-services-hub .hub-hero::before,
+html[data-vmp-theme] body.theme-svc-local .svc-hero::before,
+html[data-vmp-theme] body.theme-svc-intercity .svc-hero::before,
+html[data-vmp-theme] body.theme-svc-office .svc-hero::before,
+html[data-vmp-theme] body.theme-svc-packing .svc-hero::before,
+html[data-vmp-theme] body.theme-svc-specialty .svc-hero::before,
+html[data-vmp-theme] body.theme-svc-storage .svc-hero::before,
+html[data-vmp-theme] body.theme-svc-vehicle .svc-hero::before {
+  content: "" !important;
+  position: absolute !important;
+  z-index: -1 !important;
+  inset: -30% -10% auto 42% !important;
+  height: 160% !important;
+  pointer-events: none !important;
+  background: radial-gradient(ellipse at center, rgba(255,255,255,.17), transparent 58%) !important;
+  transform: rotate(-9deg) !important;
+  animation: vmpCoreHeroGlow 15s ease-in-out infinite alternate !important;
+}
+html[data-vmp-theme] body.theme-about .page-hero-br h1,
+html[data-vmp-theme] body.theme-contact .page-hero-br h1,
+html[data-vmp-theme] body.theme-services-hub .hub-hero h1,
+html[data-vmp-theme] body.theme-svc-local .svc-hero h1,
+html[data-vmp-theme] body.theme-svc-intercity .svc-hero h1,
+html[data-vmp-theme] body.theme-svc-office .svc-hero h1,
+html[data-vmp-theme] body.theme-svc-packing .svc-hero h1,
+html[data-vmp-theme] body.theme-svc-specialty .svc-hero h1,
+html[data-vmp-theme] body.theme-svc-storage .svc-hero h1,
+html[data-vmp-theme] body.theme-svc-vehicle .svc-hero h1 {
+  max-width: 900px !important;
+  font-size: clamp(32px, 4.4vw, 58px) !important;
+  line-height: 1.06 !important;
+  letter-spacing: -.045em !important;
+  text-wrap: balance !important;
+  color: #fff !important;
+}
+html[data-vmp-theme] body.theme-about .page-hero-br p,
+html[data-vmp-theme] body.theme-contact .page-hero-br p,
+html[data-vmp-theme] body.theme-services-hub .hub-hero p,
+html[data-vmp-theme] body.theme-svc-local .svc-hero p,
+html[data-vmp-theme] body.theme-svc-intercity .svc-hero p,
+html[data-vmp-theme] body.theme-svc-office .svc-hero p,
+html[data-vmp-theme] body.theme-svc-packing .svc-hero p,
+html[data-vmp-theme] body.theme-svc-specialty .svc-hero p,
+html[data-vmp-theme] body.theme-svc-storage .svc-hero p,
+html[data-vmp-theme] body.theme-svc-vehicle .svc-hero p {
+  max-width: 780px !important;
+  color: rgba(255,255,255,.84) !important;
+  font-size: clamp(14px, 1.35vw, 17px) !important;
+  line-height: 1.78 !important;
+}
+
+/* SERVICES DIRECTORY — clear grid, large illustrations and equal-height glass cards. */
+html[data-vmp-theme] body.theme-services-hub .hub-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 20px !important;
+  margin-top: 28px !important;
+  margin-bottom: 42px !important;
+}
+html[data-vmp-theme] body.theme-services-hub a.hub-card {
+  position: relative !important;
+  display: flex !important;
+  flex-direction: column !important;
+  min-width: 0 !important;
+  min-height: 100% !important;
+  overflow: hidden !important;
+  padding: 0 0 20px !important;
+  border: 1px solid var(--vmp-border) !important;
+  border-radius: 24px !important;
+  background: linear-gradient(150deg, var(--vmp-surface), rgba(var(--vmp-rgb), .035)) !important;
+  box-shadow: 0 12px 32px rgba(var(--vmp-rgb), .08), inset 0 1px 0 rgba(255,255,255,.9) !important;
+  color: var(--vmp-text) !important;
+  text-decoration: none !important;
+}
+html[data-vmp-theme] body.theme-services-hub .hub-card img {
+  display: block !important;
+  width: 100% !important;
+  height: clamp(150px, 17vw, 205px) !important;
+  margin: 0 0 16px !important;
+  padding: 18px !important;
+  box-sizing: border-box !important;
+  object-fit: contain !important;
+  background: linear-gradient(145deg, var(--vmp-soft), rgba(255,255,255,.92)) !important;
+  border-bottom: 1px solid var(--vmp-border) !important;
+}
+html[data-vmp-theme] body.theme-services-hub .hub-card h2,
+html[data-vmp-theme] body.theme-services-hub .hub-card p,
+html[data-vmp-theme] body.theme-services-hub .hub-card .go {
+  margin-left: 21px !important;
+  margin-right: 21px !important;
+}
+html[data-vmp-theme] body.theme-services-hub .hub-card h2 {
+  margin-top: 0 !important;
+  margin-bottom: 9px !important;
+  color: var(--vmp-text) !important;
+  font-size: clamp(17px, 1.5vw, 21px) !important;
+  line-height: 1.25 !important;
+  letter-spacing: -.025em !important;
+}
+html[data-vmp-theme] body.theme-services-hub .hub-card p {
+  color: var(--vmp-muted) !important;
+  font-size: 13px !important;
+  line-height: 1.75 !important;
+  flex: 1 1 auto !important;
+}
+html[data-vmp-theme] body.theme-services-hub .hub-card .go {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+  align-self: flex-start !important;
+  margin-top: 16px !important;
+  color: var(--vmp-primary) !important;
+  font-weight: 800 !important;
+}
+html[data-vmp-theme] body.theme-services-hub .hub-card:hover {
+  transform: translateY(-5px) !important;
+  border-color: var(--vmp-accent) !important;
+  box-shadow: 0 24px 44px rgba(var(--vmp-rgb), .15) !important;
+}
+html[data-vmp-theme] body.theme-services-hub .hub-card:hover img { filter: saturate(1.06); }
+
+/* ABOUT PAGE — editorial story cards and values arranged instead of one tall column. */
+html[data-vmp-theme] body.theme-about .br-section {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  align-items: stretch !important;
+  gap: 18px !important;
+  padding: 28px 0 42px !important;
+}
+html[data-vmp-theme] body.theme-about .br-card {
+  box-sizing: border-box !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: clamp(20px, 2.7vw, 30px) !important;
+  border: 1px solid var(--vmp-border) !important;
+  border-left: 4px solid var(--vmp-accent) !important;
+  border-radius: 8px 22px 22px 8px !important;
+  background: linear-gradient(150deg, var(--vmp-surface), rgba(var(--vmp-rgb), .025)) !important;
+  box-shadow: 0 12px 32px rgba(var(--vmp-rgb), .07) !important;
+}
+html[data-vmp-theme] body.theme-about .br-card h2 {
+  color: var(--vmp-primary) !important;
+  font-size: clamp(18px, 1.6vw, 22px) !important;
+  margin-bottom: 12px !important;
+}
+html[data-vmp-theme] body.theme-about .br-card p,
+html[data-vmp-theme] body.theme-about .br-card li {
+  color: var(--vmp-muted) !important;
+  line-height: 1.8 !important;
+}
+html[data-vmp-theme] body.theme-about .br-values {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 10px !important;
+}
+html[data-vmp-theme] body.theme-about .br-value {
+  min-width: 0 !important;
+  grid-template-columns: 1fr !important;
+  gap: 7px !important;
+  padding: 15px !important;
+  border: 1px solid var(--vmp-border) !important;
+  border-left: 3px solid var(--vmp-accent) !important;
+  border-radius: 14px !important;
+  background: var(--vmp-soft) !important;
+}
+html[data-vmp-theme] body.theme-about .br-value strong { color: var(--vmp-primary) !important; }
+html[data-vmp-theme] body.theme-about .br-value p { margin: 0 !important; color: var(--vmp-muted) !important; }
+html[data-vmp-theme] body.theme-about .br-cta-row {
+  grid-column: 1 / -1 !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 12px !important;
+  margin-top: 5px !important;
+  padding: 20px !important;
+  border: 1px solid var(--vmp-border) !important;
+  border-radius: 20px !important;
+  background: linear-gradient(130deg, var(--vmp-soft), var(--vmp-surface)) !important;
+}
+
+/* CONTACT PAGE — four contact tiles + one clear enquiry panel. */
+html[data-vmp-theme] body.theme-contact .contact-wrap {
+  position: relative !important;
+  z-index: 1 !important;
+  margin-top: 24px !important;
+  margin-bottom: 42px !important;
+}
+html[data-vmp-theme] body.theme-contact .contact-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 14px !important;
+  margin-bottom: 18px !important;
+}
+html[data-vmp-theme] body.theme-contact .contact-tile {
+  min-width: 0 !important;
+  padding: 22px 16px !important;
+  border: 1px solid var(--vmp-border) !important;
+  border-radius: 20px !important;
+  background: linear-gradient(150deg, var(--vmp-surface), rgba(var(--vmp-rgb), .035)) !important;
+  box-shadow: 0 12px 28px rgba(var(--vmp-rgb), .07) !important;
+  transition: transform .25s ease, box-shadow .25s ease !important;
+}
+html[data-vmp-theme] body.theme-contact .contact-tile:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 18px 36px rgba(var(--vmp-rgb), .12) !important;
+}
+html[data-vmp-theme] body.theme-contact .contact-tile h2 {
+  margin: 10px 0 8px !important;
+  color: var(--vmp-text) !important;
+  font-size: 16px !important;
+}
+html[data-vmp-theme] body.theme-contact .contact-tile p {
+  color: var(--vmp-muted) !important;
+  font-size: 12px !important;
+  line-height: 1.7 !important;
+}
+html[data-vmp-theme] body.theme-contact .contact-form-card {
+  box-sizing: border-box !important;
+  padding: clamp(20px, 3.5vw, 34px) !important;
+  border: 1px solid var(--vmp-border) !important;
+  border-top: 3px solid var(--vmp-accent) !important;
+  border-radius: 24px !important;
+  background: linear-gradient(150deg, var(--vmp-surface), rgba(var(--vmp-rgb), .025)) !important;
+  box-shadow: 0 18px 44px rgba(var(--vmp-rgb), .1) !important;
+}
+html[data-vmp-theme] body.theme-contact .contact-form-card h2 { color: var(--vmp-primary) !important; }
+html[data-vmp-theme] body.theme-contact .contact-form-card .sub,
+html[data-vmp-theme] body.theme-contact .contact-form-card .cf-note { color: var(--vmp-muted) !important; }
+html[data-vmp-theme] body.theme-contact .contact-form-card input,
+html[data-vmp-theme] body.theme-contact .contact-form-card textarea,
+html[data-vmp-theme] body.theme-contact .contact-form-card select {
+  box-sizing: border-box !important;
+  max-width: 100% !important;
+  border: 1px solid var(--vmp-border) !important;
+  border-radius: 12px !important;
+  background: var(--vmp-surface) !important;
+  color: var(--vmp-text) !important;
+}
+html[data-vmp-theme] body.theme-contact .contact-form-card input:focus,
+html[data-vmp-theme] body.theme-contact .contact-form-card textarea:focus,
+html[data-vmp-theme] body.theme-contact .contact-form-card select:focus {
+  border-color: var(--vmp-accent) !important;
+  box-shadow: 0 0 0 4px rgba(var(--vmp-rgb), .1) !important;
+  outline: none !important;
+}
+html[data-vmp-theme] body.theme-contact .hours-strip {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+  margin-top: 18px !important;
+  padding: 18px !important;
+  border: 1px solid var(--vmp-border) !important;
+  border-left: 3px solid var(--vmp-accent) !important;
+  border-radius: 18px !important;
+  background: var(--vmp-soft) !important;
+}
+html[data-vmp-theme] body.theme-contact .hours-strip strong { color: var(--vmp-primary) !important; }
+html[data-vmp-theme] body.theme-contact .hours-strip span { color: var(--vmp-muted) !important; }
+
+/* QUOTE PAGE — focused request summary with the same surface tokens as the shared modal. */
+html[data-vmp-theme] body.theme-quote .quote-shell {
+  max-width: 1000px !important;
+  margin-top: clamp(20px, 4vw, 42px) !important;
+  margin-bottom: 42px !important;
+  padding: 0 !important;
+}
+html[data-vmp-theme] body.theme-quote .quote-intro {
+  margin-bottom: 20px !important;
+  padding: clamp(24px, 4vw, 42px) !important;
+  border: 1px solid var(--vmp-border) !important;
+  border-radius: 26px !important;
+  background: linear-gradient(135deg, var(--vmp-surface), var(--vmp-soft)) !important;
+  box-shadow: 0 16px 38px rgba(var(--vmp-rgb), .08) !important;
+}
+html[data-vmp-theme] body.theme-quote .quote-intro h1 { color: var(--vmp-text) !important; }
+html[data-vmp-theme] body.theme-quote .quote-intro p { color: var(--vmp-muted) !important; }
+html[data-vmp-theme] body.theme-quote .quote-launch-card {
+  border: 1px solid var(--vmp-border) !important;
+  border-radius: 26px !important;
+  background: linear-gradient(145deg, var(--vmp-surface), rgba(var(--vmp-rgb), .045)) !important;
+  box-shadow: 0 22px 48px rgba(var(--vmp-rgb), .12), inset 0 1px 0 rgba(255,255,255,.92) !important;
+}
+html[data-vmp-theme] body.theme-quote .quote-trust {
+  margin-top: 18px !important;
+  padding: 20px !important;
+  border: 1px solid var(--vmp-border) !important;
+  border-radius: 20px !important;
+  background: var(--vmp-soft) !important;
+  color: var(--vmp-text) !important;
+}
+
+/* ALL CITIES DIRECTORY — the directory cards now match the polished city/area cards. */
+html[data-vmp-theme] body.theme-cities .hero {
+  box-sizing: border-box !important;
+  width: min(1160px, calc(100% - 40px)) !important;
+  margin: 22px auto 18px !important;
+  padding: clamp(30px, 5vw, 58px) clamp(22px, 5vw, 58px) !important;
+  border: 1px solid rgba(255,255,255,.18) !important;
+  border-bottom: 3px solid var(--vmp-highlight) !important;
+  border-radius: 28px !important;
+  background: linear-gradient(135deg, var(--vmp-primary-deep), var(--vmp-primary)) !important;
+  box-shadow: 0 22px 50px rgba(var(--vmp-rgb), .18) !important;
+  color: #fff !important;
+}
+html[data-vmp-theme] body.theme-cities .hero h1,
+html[data-vmp-theme] body.theme-cities .hero .headline,
+html[data-vmp-theme] body.theme-cities .hero p,
+html[data-vmp-theme] body.theme-cities .hero .hero-sub,
+html[data-vmp-theme] body.theme-cities .hero .eyebrow { color: #fff !important; }
+html[data-vmp-theme] body.theme-cities main > section.section {
+  padding: clamp(22px, 4vw, 38px) !important;
+  border: 1px solid var(--vmp-border) !important;
+  border-radius: 26px !important;
+  background: linear-gradient(145deg, var(--vmp-surface), rgba(var(--vmp-rgb), .025)) !important;
+  box-shadow: 0 14px 36px rgba(var(--vmp-rgb), .07) !important;
+}
+html[data-vmp-theme] body.theme-cities .city-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 16px !important;
+}
+html[data-vmp-theme] body.theme-cities .city-card,
+html[data-vmp-theme] body.theme-cities a.city-card {
+  display: flex !important;
+  flex-direction: column !important;
+  min-width: 0 !important;
+  min-height: 100% !important;
+  border: 1px solid var(--vmp-border) !important;
+  border-radius: 20px !important;
+  padding: 20px !important;
+  background: linear-gradient(150deg, var(--vmp-surface), rgba(var(--vmp-rgb), .035)) !important;
+  box-shadow: 0 10px 24px rgba(var(--vmp-rgb), .07) !important;
+  text-decoration: none !important;
+}
+html[data-vmp-theme] body.theme-cities .city-card:hover,
+html[data-vmp-theme] body.theme-cities a.city-card:hover {
+  transform: translateY(-4px) !important;
+  border-color: var(--vmp-accent) !important;
+  box-shadow: 0 18px 36px rgba(var(--vmp-rgb), .14) !important;
+}
+html[data-vmp-theme] body.theme-cities .city-card h3 { color: var(--vmp-text) !important; }
+html[data-vmp-theme] body.theme-cities .city-card p { color: var(--vmp-muted) !important; }
+html[data-vmp-theme] body.theme-cities .city-card .go { color: var(--vmp-primary) !important; margin-top: auto !important; }
+html[data-vmp-theme] body.theme-cities .city-card .stamp-circle-lg {
+  background: var(--vmp-soft) !important;
+  border: 1px solid var(--vmp-border) !important;
+  color: var(--vmp-primary) !important;
+}
+
+/* VENDOR / PARTNER PAGE — a strong but clean callout, no fake proof or new claims. */
+html[data-vmp-theme] body.theme-vendor main > section:first-of-type {
+  box-sizing: border-box !important;
+  width: min(1100px, calc(100% - 40px)) !important;
+  min-height: 440px !important;
+  margin: 24px auto !important;
+  padding: clamp(28px, 5.5vw, 68px) !important;
+  border: 1px solid rgba(255,255,255,.18) !important;
+  border-bottom: 3px solid var(--vmp-highlight) !important;
+  border-radius: 28px !important;
+  background: radial-gradient(ellipse at 80% 20%, rgba(255,255,255,.14), transparent 40%), linear-gradient(135deg, var(--vmp-primary-deep), var(--vmp-primary)) !important;
+  box-shadow: 0 22px 52px rgba(var(--vmp-rgb), .18) !important;
+  color: #fff !important;
+}
+html[data-vmp-theme] body.theme-vendor main > section:first-of-type .section-title,
+html[data-vmp-theme] body.theme-vendor main > section:first-of-type .section-title-sub,
+html[data-vmp-theme] body.theme-vendor main > section:first-of-type .eyebrow { color: #fff !important; }
+html[data-vmp-theme] body.theme-vendor main > section:first-of-type .section-title-sub { max-width: 720px !important; line-height: 1.8 !important; opacity: .83 !important; }
+
+/* SERVICE DETAIL PAGES — one readable article column with inset glass information panels. */
+html[data-vmp-theme] body.theme-svc-local .svc-body,
+html[data-vmp-theme] body.theme-svc-intercity .svc-body,
+html[data-vmp-theme] body.theme-svc-office .svc-body,
+html[data-vmp-theme] body.theme-svc-packing .svc-body,
+html[data-vmp-theme] body.theme-svc-specialty .svc-body,
+html[data-vmp-theme] body.theme-svc-storage .svc-body,
+html[data-vmp-theme] body.theme-svc-vehicle .svc-body {
+  margin-top: 22px !important;
+  margin-bottom: 42px !important;
+  padding: clamp(20px, 3.5vw, 36px) !important;
+  border: 1px solid var(--vmp-border) !important;
+  border-radius: 26px !important;
+  background: linear-gradient(155deg, var(--vmp-surface), rgba(var(--vmp-rgb), .025)) !important;
+  box-shadow: 0 16px 40px rgba(var(--vmp-rgb), .075) !important;
+  color: var(--vmp-text) !important;
+}
+html[data-vmp-theme] body.theme-svc-local .svc-img,
+html[data-vmp-theme] body.theme-svc-intercity .svc-img,
+html[data-vmp-theme] body.theme-svc-office .svc-img,
+html[data-vmp-theme] body.theme-svc-packing .svc-img,
+html[data-vmp-theme] body.theme-svc-specialty .svc-img,
+html[data-vmp-theme] body.theme-svc-storage .svc-img,
+html[data-vmp-theme] body.theme-svc-vehicle .svc-img {
+  display: block !important;
+  width: min(100%, 520px) !important;
+  max-height: 320px !important;
+  margin: 0 auto 24px !important;
+  padding: 16px !important;
+  box-sizing: border-box !important;
+  object-fit: contain !important;
+  border: 1px solid var(--vmp-border) !important;
+  border-radius: 22px !important;
+  background: linear-gradient(145deg, var(--vmp-soft), #fff) !important;
+  box-shadow: 0 12px 28px rgba(var(--vmp-rgb), .07) !important;
+}
+html[data-vmp-theme] body.theme-svc-local .svc-box,
+html[data-vmp-theme] body.theme-svc-intercity .svc-box,
+html[data-vmp-theme] body.theme-svc-office .svc-box,
+html[data-vmp-theme] body.theme-svc-packing .svc-box,
+html[data-vmp-theme] body.theme-svc-specialty .svc-box,
+html[data-vmp-theme] body.theme-svc-storage .svc-box,
+html[data-vmp-theme] body.theme-svc-vehicle .svc-box {
+  margin: 18px 0 26px !important;
+  padding: clamp(18px, 2.8vw, 28px) !important;
+  border: 1px solid var(--vmp-border) !important;
+  border-left: 4px solid var(--vmp-accent) !important;
+  border-radius: 6px 20px 20px 6px !important;
+  background: linear-gradient(145deg, var(--vmp-soft), var(--vmp-surface)) !important;
+  box-shadow: 0 10px 26px rgba(var(--vmp-rgb), .055) !important;
+}
+html[data-vmp-theme] body.theme-svc-local .svc-body > h2,
+html[data-vmp-theme] body.theme-svc-intercity .svc-body > h2,
+html[data-vmp-theme] body.theme-svc-office .svc-body > h2,
+html[data-vmp-theme] body.theme-svc-packing .svc-body > h2,
+html[data-vmp-theme] body.theme-svc-specialty .svc-body > h2,
+html[data-vmp-theme] body.theme-svc-storage .svc-body > h2,
+html[data-vmp-theme] body.theme-svc-vehicle .svc-body > h2 {
+  margin: 30px 0 12px !important;
+  padding-bottom: 10px !important;
+  border-bottom: 1px solid var(--vmp-border) !important;
+  color: var(--vmp-primary) !important;
+  font-size: clamp(19px, 2vw, 25px) !important;
+  line-height: 1.25 !important;
+  letter-spacing: -.025em !important;
+}
+html[data-vmp-theme] body.theme-svc-local .svc-body > p,
+html[data-vmp-theme] body.theme-svc-intercity .svc-body > p,
+html[data-vmp-theme] body.theme-svc-office .svc-body > p,
+html[data-vmp-theme] body.theme-svc-packing .svc-body > p,
+html[data-vmp-theme] body.theme-svc-specialty .svc-body > p,
+html[data-vmp-theme] body.theme-svc-storage .svc-body > p,
+html[data-vmp-theme] body.theme-svc-vehicle .svc-body > p,
+html[data-vmp-theme] body.theme-svc-local .svc-body > li,
+html[data-vmp-theme] body.theme-svc-intercity .svc-body > li,
+html[data-vmp-theme] body.theme-svc-office .svc-body > li,
+html[data-vmp-theme] body.theme-svc-packing .svc-body > li,
+html[data-vmp-theme] body.theme-svc-specialty .svc-body > li,
+html[data-vmp-theme] body.theme-svc-storage .svc-body > li,
+html[data-vmp-theme] body.theme-svc-vehicle .svc-body > li {
+  color: var(--vmp-muted) !important;
+  font-size: 14px !important;
+  line-height: 1.85 !important;
+}
+html[data-vmp-theme] body.theme-svc-local .svc-body > ul,
+html[data-vmp-theme] body.theme-svc-local .svc-body > ol,
+html[data-vmp-theme] body.theme-svc-intercity .svc-body > ul,
+html[data-vmp-theme] body.theme-svc-intercity .svc-body > ol,
+html[data-vmp-theme] body.theme-svc-office .svc-body > ul,
+html[data-vmp-theme] body.theme-svc-office .svc-body > ol,
+html[data-vmp-theme] body.theme-svc-packing .svc-body > ul,
+html[data-vmp-theme] body.theme-svc-packing .svc-body > ol,
+html[data-vmp-theme] body.theme-svc-specialty .svc-body > ul,
+html[data-vmp-theme] body.theme-svc-specialty .svc-body > ol,
+html[data-vmp-theme] body.theme-svc-storage .svc-body > ul,
+html[data-vmp-theme] body.theme-svc-storage .svc-body > ol,
+html[data-vmp-theme] body.theme-svc-vehicle .svc-body > ul,
+html[data-vmp-theme] body.theme-svc-vehicle .svc-body > ol,
+html[data-vmp-theme] body.theme-svc-intercity .svc-body > ul,
+html[data-vmp-theme] body.theme-svc-office .svc-body > ol {
+  padding-left: 24px !important;
+  color: var(--vmp-muted) !important;
+  line-height: 1.85 !important;
+}
+html[data-vmp-theme] body.theme-svc-local .svc-related,
+html[data-vmp-theme] body.theme-svc-intercity .svc-related,
+html[data-vmp-theme] body.theme-svc-office .svc-related,
+html[data-vmp-theme] body.theme-svc-packing .svc-related,
+html[data-vmp-theme] body.theme-svc-specialty .svc-related,
+html[data-vmp-theme] body.theme-svc-storage .svc-related,
+html[data-vmp-theme] body.theme-svc-vehicle .svc-related {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 9px !important;
+  margin: 18px 0 24px !important;
+  padding: 16px !important;
+  border: 1px solid var(--vmp-border) !important;
+  border-radius: 18px !important;
+  background: var(--vmp-soft) !important;
+}
+html[data-vmp-theme] body.theme-svc-local .svc-related a,
+html[data-vmp-theme] body.theme-svc-intercity .svc-related a,
+html[data-vmp-theme] body.theme-svc-office .svc-related a,
+html[data-vmp-theme] body.theme-svc-packing .svc-related a,
+html[data-vmp-theme] body.theme-svc-specialty .svc-related a,
+html[data-vmp-theme] body.theme-svc-storage .svc-related a,
+html[data-vmp-theme] body.theme-svc-vehicle .svc-related a {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 8px 12px !important;
+  border: 1px solid var(--vmp-border) !important;
+  border-radius: 999px !important;
+  background: var(--vmp-surface) !important;
+  color: var(--vmp-primary) !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+  text-decoration: none !important;
+}
+html[data-vmp-theme] body.theme-svc-local .svc-related a:hover,
+html[data-vmp-theme] body.theme-svc-intercity .svc-related a:hover,
+html[data-vmp-theme] body.theme-svc-office .svc-related a:hover,
+html[data-vmp-theme] body.theme-svc-packing .svc-related a:hover,
+html[data-vmp-theme] body.theme-svc-specialty .svc-related a:hover,
+html[data-vmp-theme] body.theme-svc-storage .svc-related a:hover,
+html[data-vmp-theme] body.theme-svc-vehicle .svc-related a:hover {
+  border-color: var(--vmp-accent) !important;
+  background: #fff !important;
+}
+
+/* The global related-content sections already use the repaired shared cards;
+   this aligns their spacing on the remaining page types. */
+html[data-vmp-theme] body.theme-about .sitewide-related,
+html[data-vmp-theme] body.theme-contact .sitewide-related,
+html[data-vmp-theme] body.theme-quote .sitewide-related,
+html[data-vmp-theme] body.theme-services-hub .sitewide-related,
+html[data-vmp-theme] body.theme-cities .sitewide-related,
+html[data-vmp-theme] body.theme-vendor .sitewide-related,
+html[data-vmp-theme] body[class*="theme-svc-"] .sitewide-related {
+  width: min(1160px, calc(100% - 40px)) !important;
+  margin: 24px auto !important;
+  padding: clamp(20px, 3.5vw, 34px) !important;
+  border: 1px solid var(--vmp-border) !important;
+  border-radius: 24px !important;
+  background: linear-gradient(145deg, var(--vmp-surface), rgba(var(--vmp-rgb), .035)) !important;
+  box-shadow: 0 12px 30px rgba(var(--vmp-rgb), .06) !important;
+}
+
+/* Consistent dark footer shell with theme accents; internal links remain unchanged. */
+html[data-vmp-theme] footer {
+  background: linear-gradient(135deg, var(--vmp-primary-deep), #091523) !important;
+  border-top: 2px solid var(--vmp-highlight) !important;
+  box-shadow: 0 -14px 36px rgba(var(--vmp-rgb), .055) !important;
+  color: rgba(255,255,255,.88) !important;
+}
+html[data-vmp-theme] footer .footer-fine {
+  border-top-color: rgba(255,255,255,.16) !important;
+  color: rgba(255,255,255,.62) !important;
+}
+html[data-vmp-theme] footer .footer-links,
+html[data-vmp-theme] footer .footer-contact { color: rgba(255,255,255,.78) !important; }
+html[data-vmp-theme] footer .footer-links a,
+html[data-vmp-theme] footer .footer-contact a { color: rgba(255,255,255,.9) !important; }
+html[data-vmp-theme] footer .footer-links a:hover,
+html[data-vmp-theme] footer .footer-contact a:hover { color: var(--vmp-highlight) !important; }
+
+/* Gentle load/hover effects on content cards only. Contact buttons and their dock are excluded. */
+@keyframes vmpCoreCardEnter {
+  from { opacity: .55; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes vmpCoreHeroGlow {
+  from { opacity: .42; transform: rotate(-9deg) translateX(-2%); }
+  to { opacity: .82; transform: rotate(-5deg) translateX(2%); }
+}
+html[data-vmp-theme] body.theme-services-hub .hub-card,
+html[data-vmp-theme] body.theme-about .br-card,
+html[data-vmp-theme] body.theme-contact .contact-tile,
+html[data-vmp-theme] body.theme-cities .city-card,
+html[data-vmp-theme] body[class*="theme-svc-"] .svc-box {
+  animation: vmpCoreCardEnter .55s cubic-bezier(.2,.7,.2,1) both;
+}
+html[data-vmp-theme] body.theme-services-hub .hub-card:nth-child(2n),
+html[data-vmp-theme] body.theme-about .br-card:nth-child(2n),
+html[data-vmp-theme] body.theme-contact .contact-tile:nth-child(2n),
+html[data-vmp-theme] body.theme-cities .city-card:nth-child(2n) { animation-delay: 70ms; }
+html[data-vmp-theme] body.theme-services-hub .hub-card:nth-child(3n),
+html[data-vmp-theme] body.theme-about .br-card:nth-child(3n),
+html[data-vmp-theme] body.theme-contact .contact-tile:nth-child(3n),
+html[data-vmp-theme] body.theme-cities .city-card:nth-child(3n) { animation-delay: 120ms; }
+
+/* Responsive rhythm for every non-city/area page family. */
+@media (max-width: 980px) {
+  html[data-vmp-theme] body.theme-services-hub .hub-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  html[data-vmp-theme] body.theme-about .br-section { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  html[data-vmp-theme] body.theme-contact .contact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  html[data-vmp-theme] body.theme-cities .city-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+}
+@media (max-width: 680px) {
+  html[data-vmp-theme] body.theme-about .page-hero-br,
+  html[data-vmp-theme] body.theme-contact .page-hero-br,
+  html[data-vmp-theme] body.theme-services-hub .hub-hero,
+  html[data-vmp-theme] body[class*="theme-svc-"] .svc-hero {
+    width: calc(100% - 22px) !important;
+    margin-top: 12px !important;
+    padding: 30px 20px 34px !important;
+    border-radius: 22px !important;
+  }
+  html[data-vmp-theme] body.theme-about .br-section,
+  html[data-vmp-theme] body.theme-contact .contact-wrap,
+  html[data-vmp-theme] body.theme-quote .quote-shell,
+  html[data-vmp-theme] body.theme-services-hub .hub-grid,
+  html[data-vmp-theme] body.theme-cities main > section.section,
+  html[data-vmp-theme] body.theme-vendor main > section:first-of-type,
+  html[data-vmp-theme] body[class*="theme-svc-"] .svc-body,
+  html[data-vmp-theme] body.theme-about .sitewide-related,
+  html[data-vmp-theme] body.theme-contact .sitewide-related,
+  html[data-vmp-theme] body.theme-quote .sitewide-related,
+  html[data-vmp-theme] body.theme-services-hub .sitewide-related,
+  html[data-vmp-theme] body.theme-cities .sitewide-related,
+  html[data-vmp-theme] body.theme-vendor .sitewide-related,
+  html[data-vmp-theme] body[class*="theme-svc-"] .sitewide-related {
+    width: calc(100% - 22px) !important;
+  }
+  html[data-vmp-theme] body.theme-services-hub .hub-grid,
+  html[data-vmp-theme] body.theme-about .br-section { grid-template-columns: minmax(0, 1fr) !important; gap: 13px !important; }
+  html[data-vmp-theme] body.theme-contact .contact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 10px !important; }
+  html[data-vmp-theme] body.theme-contact .contact-tile { padding: 17px 12px !important; border-radius: 16px !important; overflow-wrap: anywhere !important; }
+  html[data-vmp-theme] body.theme-contact .contact-tile .big-link { overflow-wrap: anywhere !important; font-size: 13px !important; }
+  html[data-vmp-theme] body.theme-contact .contact-form-card { padding: 19px 15px !important; border-radius: 20px !important; }
+  html[data-vmp-theme] body.theme-contact .hours-strip { grid-template-columns: minmax(0, 1fr) !important; padding: 15px !important; }
+  html[data-vmp-theme] body.theme-about .br-values { grid-template-columns: minmax(0, 1fr) !important; }
+  html[data-vmp-theme] body.theme-cities .hero,
+  html[data-vmp-theme] body.theme-vendor main > section:first-of-type { width: calc(100% - 22px) !important; border-radius: 22px !important; }
+  html[data-vmp-theme] body.theme-cities main > section.section { padding: 20px 14px !important; border-radius: 20px !important; }
+  html[data-vmp-theme] body.theme-cities .city-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 10px !important; }
+  html[data-vmp-theme] body.theme-cities .city-card,
+  html[data-vmp-theme] body.theme-cities a.city-card { padding: 15px !important; border-radius: 16px !important; }
+  html[data-vmp-theme] body[class*="theme-svc-"] .svc-body { padding: 18px 14px !important; border-radius: 20px !important; }
+  html[data-vmp-theme] body[class*="theme-svc-"] .svc-img { border-radius: 17px !important; padding: 10px !important; }
+  html[data-vmp-theme] body.theme-vendor main > section:first-of-type { min-height: 420px !important; padding: 30px 20px !important; }
+}
+@media (max-width: 390px) {
+  html[data-vmp-theme] body.theme-contact .contact-grid { grid-template-columns: minmax(0, 1fr) !important; }
+  html[data-vmp-theme] body.theme-cities .city-grid { grid-template-columns: minmax(0, 1fr) !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-vmp-theme] body.theme-about .page-hero-br::before,
+  html[data-vmp-theme] body.theme-contact .page-hero-br::before,
+  html[data-vmp-theme] body.theme-services-hub .hub-hero::before,
+  html[data-vmp-theme] body[class*="theme-svc-"] .svc-hero::before,
+  html[data-vmp-theme] body.theme-services-hub .hub-card,
+  html[data-vmp-theme] body.theme-about .br-card,
+  html[data-vmp-theme] body.theme-contact .contact-tile,
+  html[data-vmp-theme] body.theme-cities .city-card,
+  html[data-vmp-theme] body[class*="theme-svc-"] .svc-box {
+    animation: none !important;
+    transition: none !important;
+  }
+  html[data-vmp-theme] body.theme-services-hub .hub-card:hover,
+  html[data-vmp-theme] body.theme-contact .contact-tile:hover,
+  html[data-vmp-theme] body.theme-cities .city-card:hover { transform: none !important; }
+}
+
+
+/* EXTRA 20 UNIQUE PALETTES (31–50) — theme variables only; layout and controls unchanged. */
+html[data-vmp-theme="obsidian-cyan"] {
+  --vmp-primary: #243746; --vmp-primary-deep: #101A22; --vmp-accent: #006778; --vmp-highlight: #91E2EC;
+  --vmp-bg: #F3F8FA; --vmp-soft: #E0EEF2; --vmp-surface: #FFFFFF; --vmp-header: #FFFFFF;
+  --vmp-text: #1D303A; --vmp-muted: #536A76; --vmp-border: #D3E1E6; --vmp-rgb: 36,55,70;
+}
+html[data-vmp-theme="sapphire-amber"] {
+  --vmp-primary: #183E74; --vmp-primary-deep: #0C2548; --vmp-accent: #8A4C00; --vmp-highlight: #F6CC80;
+  --vmp-bg: #F5F8FD; --vmp-soft: #E5EDF8; --vmp-surface: #FFFFFF; --vmp-header: #FFFFFF;
+  --vmp-text: #20324A; --vmp-muted: #5C6F87; --vmp-border: #D7E1EF; --vmp-rgb: 24,62,116;
+}
+html[data-vmp-theme="violet-citrus"] {
+  --vmp-primary: #4C367D; --vmp-primary-deep: #2B1D4E; --vmp-accent: #5B6E00; --vmp-highlight: #D8EB7D;
+  --vmp-bg: #F8F7FC; --vmp-soft: #EBE7F8; --vmp-surface: #FFFFFF; --vmp-header: #FFFFFF;
+  --vmp-text: #302846; --vmp-muted: #6A6380; --vmp-border: #DED9F0; --vmp-rgb: 76,54,125;
+}
+html[data-vmp-theme="lagoon-peach"] {
+  --vmp-primary: #12666A; --vmp-primary-deep: #083B3E; --vmp-accent: #A63C20; --vmp-highlight: #FFC19D;
+  --vmp-bg: #F3FAF9; --vmp-soft: #E0F1EE; --vmp-surface: #FFFFFF; --vmp-header: #FFFFFF;
+  --vmp-text: #1D3534; --vmp-muted: #587571; --vmp-border: #D2E7E3; --vmp-rgb: 18,102,106;
+}
+html[data-vmp-theme="oxblood-blush"] {
+  --vmp-primary: #672B39; --vmp-primary-deep: #3C1520; --vmp-accent: #9B354D; --vmp-highlight: #F0B8C6;
+  --vmp-bg: #FCF6F7; --vmp-soft: #F3E3E8; --vmp-surface: #FFFFFF; --vmp-header: #FFFFFF;
+  --vmp-text: #39262B; --vmp-muted: #775D64; --vmp-border: #E8D5DA; --vmp-rgb: 103,43,57;
+}
+html[data-vmp-theme="terracotta-olive"] {
+  --vmp-primary: #7A3C26; --vmp-primary-deep: #441F14; --vmp-accent: #58620F; --vmp-highlight: #E7D9A3;
+  --vmp-bg: #FCF7F2; --vmp-soft: #F1E5DA; --vmp-surface: #FFFFFF; --vmp-header: #FFFFFF;
+  --vmp-text: #3F2D25; --vmp-muted: #78685D; --vmp-border: #E8D8CC; --vmp-rgb: 122,60,38;
+}
+html[data-vmp-theme="blue-steel-copper"] {
+  --vmp-primary: #31536C; --vmp-primary-deep: #1B3040; --vmp-accent: #984317; --vmp-highlight: #F1BD8C;
+  --vmp-bg: #F4F8FA; --vmp-soft: #E4EDF2; --vmp-surface: #FFFFFF; --vmp-header: #FFFFFF;
+  --vmp-text: #243744; --vmp-muted: #5D717D; --vmp-border: #D5E1E7; --vmp-rgb: 49,83,108;
+}
+html[data-vmp-theme="grape-aqua"] {
+  --vmp-primary: #58376D; --vmp-primary-deep: #311B40; --vmp-accent: #006D67; --vmp-highlight: #A5E6DF;
+  --vmp-bg: #FAF6FC; --vmp-soft: #EFE5F4; --vmp-surface: #FFFFFF; --vmp-header: #FFFFFF;
+  --vmp-text: #35283B; --vmp-muted: #74647A; --vmp-border: #E2D7E8; --vmp-rgb: 88,55,109;
+}
+html[data-vmp-theme="deep-forest-linen"] {
+  --vmp-primary: #1D5747; --vmp-primary-deep: #0B342A; --vmp-accent: #82551D; --vmp-highlight: #E8D9B5;
+  --vmp-bg: #F7F9F3; --vmp-soft: #E9EFE0; --vmp-surface: #FFFFFF; --vmp-header: #FFFFFF;
+  --vmp-text: #22362B; --vmp-muted: #5F7162; --vmp-border: #D9E4D1; --vmp-rgb: 29,87,71;
+}
+html[data-vmp-theme="scarlet-slate"] {
+  --vmp-primary: #7B2834; --vmp-primary-deep: #46121B; --vmp-accent: #46576A; --vmp-highlight: #E8B0B7;
+  --vmp-bg: #FCF6F6; --vmp-soft: #F3E4E6; --vmp-surface: #FFFFFF; --vmp-header: #FFFFFF;
+  --vmp-text: #3A272C; --vmp-muted: #766167; --vmp-border: #E7D4D8; --vmp-rgb: 123,40,52;
+}
+html[data-vmp-theme="peacock-ochre"] {
+  --vmp-primary: #0E5C59; --vmp-primary-deep: #083633; --vmp-accent: #805200; --vmp-highlight: #E5C37B;
+  --vmp-bg: #F4FAF7; --vmp-soft: #E1F0EA; --vmp-surface: #FFFFFF; --vmp-header: #FFFFFF;
+  --vmp-text: #1F3835; --vmp-muted: #5A746D; --vmp-border: #D2E6DE; --vmp-rgb: 14,92,89;
+}
+html[data-vmp-theme="ink-electric-lilac"] {
+  --vmp-primary: #252D56; --vmp-primary-deep: #13192E; --vmp-accent: #5949A8; --vmp-highlight: #CFC7F8;
+  --vmp-bg: #F7F7FC; --vmp-soft: #E8EAF7; --vmp-surface: #FFFFFF; --vmp-header: #FFFFFF;
+  --vmp-text: #282D42; --vmp-muted: #62697F; --vmp-border: #D9DDED; --vmp-rgb: 37,45,86;
+}
+html[data-vmp-theme="mauve-fern"] {
+  --vmp-primary: #6A445F; --vmp-primary-deep: #392236; --vmp-accent: #35664F; --vmp-highlight: #D6B9D0;
+  --vmp-bg: #FBF7FA; --vmp-soft: #F0E8EF; --vmp-surface: #FFFFFF; --vmp-header: #FFFFFF;
+  --vmp-text: #382B35; --vmp-muted: #746574; --vmp-border: #E5D9E3; --vmp-rgb: 106,68,95;
+}
+html[data-vmp-theme="alpine-poppy"] {
+  --vmp-primary: #244D67; --vmp-primary-deep: #112E40; --vmp-accent: #A2391E; --vmp-highlight: #F7B39C;
+  --vmp-bg: #F4F8FA; --vmp-soft: #E4EDF3; --vmp-surface: #FFFFFF; --vmp-header: #FFFFFF;
+  --vmp-text: #223641; --vmp-muted: #5D717C; --vmp-border: #D4E1E7; --vmp-rgb: 36,77,103;
+}
+html[data-vmp-theme="olive-berry"] {
+  --vmp-primary: #53602D; --vmp-primary-deep: #2D3717; --vmp-accent: #853255; --vmp-highlight: #E5B5CC;
+  --vmp-bg: #F8F9F2; --vmp-soft: #EAEEDC; --vmp-surface: #FFFFFF; --vmp-header: #FFFFFF;
+  --vmp-text: #2E3627; --vmp-muted: #69705D; --vmp-border: #DCE4CF; --vmp-rgb: 83,96,45;
+}
+html[data-vmp-theme="petrol-gold"] {
+  --vmp-primary: #144E5A; --vmp-primary-deep: #082D35; --vmp-accent: #815400; --vmp-highlight: #E6C76C;
+  --vmp-bg: #F4F9F9; --vmp-soft: #E1EFF0; --vmp-surface: #FFFFFF; --vmp-header: #FFFFFF;
+  --vmp-text: #1F3438; --vmp-muted: #5C7277; --vmp-border: #D3E4E6; --vmp-rgb: 20,78,90;
+}
+html[data-vmp-theme="graphite-lime"] {
+  --vmp-primary: #343A40; --vmp-primary-deep: #1B2024; --vmp-accent: #4F6500; --vmp-highlight: #D1E77C;
+  --vmp-bg: #F6F8F5; --vmp-soft: #E8EEE4; --vmp-surface: #FFFFFF; --vmp-header: #FFFFFF;
+  --vmp-text: #293239; --vmp-muted: #636F71; --vmp-border: #D8E0D5; --vmp-rgb: 52,58,64;
+}
+html[data-vmp-theme="navy-coral"] {
+  --vmp-primary: #202F67; --vmp-primary-deep: #101938; --vmp-accent: #AA3537; --vmp-highlight: #F4AAA4;
+  --vmp-bg: #F6F7FC; --vmp-soft: #E5EAF8; --vmp-surface: #FFFFFF; --vmp-header: #FFFFFF;
+  --vmp-text: #242E4A; --vmp-muted: #626E89; --vmp-border: #D7DDED; --vmp-rgb: 32,47,103;
+}
+html[data-vmp-theme="rose-clay"] {
+  --vmp-primary: #804257; --vmp-primary-deep: #462433; --vmp-accent: #914029; --vmp-highlight: #F2C3C8;
+  --vmp-bg: #FCF6F7; --vmp-soft: #F3E5EA; --vmp-surface: #FFFFFF; --vmp-header: #FFFFFF;
+  --vmp-text: #3D2931; --vmp-muted: #795F6A; --vmp-border: #E9D6DE; --vmp-rgb: 128,66,87;
+}
+html[data-vmp-theme="mineral-blue-citrus"] {
+  --vmp-primary: #28566A; --vmp-primary-deep: #143442; --vmp-accent: #666300; --vmp-highlight: #DCE47F;
+  --vmp-bg: #F4F8F9; --vmp-soft: #E2EEF0; --vmp-surface: #FFFFFF; --vmp-header: #FFFFFF;
+  --vmp-text: #223640; --vmp-muted: #5E747D; --vmp-border: #D5E2E5; --vmp-rgb: 40,86,106;
+}

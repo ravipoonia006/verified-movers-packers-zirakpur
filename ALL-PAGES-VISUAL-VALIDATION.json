@@ -1,0 +1,28 @@
+{
+  "html_pages": 151,
+  "page_family_counts": {
+    "core-about": 1,
+    "core-cities": 1,
+    "area": 120,
+    "core-contact": 1,
+    "core-home": 1,
+    "city": 17,
+    "core-quote": 1,
+    "service-detail": 7,
+    "core-services-hub": 1,
+    "core-vendor": 1
+  },
+  "random_theme_choices": 30,
+  "css_theme_definitions": 30,
+  "css_parse_errors": [],
+  "javascript_syntax_exit_code": 0,
+  "javascript_syntax_stderr": "",
+  "duplicate_id_pages": [],
+  "missing_title_or_description": [],
+  "broken_local_files": [],
+  "broken_internal_fragments": [],
+  "jsonld_parse_errors": [],
+  "html_files_changed": [],
+  "sitemap_exists": true,
+  "robots_exists": true
+}

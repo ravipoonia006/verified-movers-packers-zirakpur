@@ -1,0 +1,15 @@
+{
+  "input_zip": "/mnt/data/Verified-Movers-All-Pages-Visually-Unified.zip",
+  "output_zip": "/mnt/data/Verified-Movers-50-Unique-Themes.zip",
+  "html_pages_updated": 151,
+  "previous_themes": 30,
+  "added_themes": 20,
+  "total_themes": 50,
+  "css_theme_selectors": 50,
+  "theme_ids_match_css": true,
+  "new_theme_contrast_min_white_primary": 6.7,
+  "new_theme_contrast_min_accent_bg": 5.36,
+  "new_theme_contrast_min_text_bg": 11.53,
+  "zip_integrity": "passed",
+  "zip_size_bytes": 1158047
+}

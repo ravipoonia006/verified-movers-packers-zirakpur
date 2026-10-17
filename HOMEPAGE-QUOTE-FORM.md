@@ -13,7 +13,7 @@ This update adds a full, visible quote request form on the homepage immediately 
 ## Preserved
 - The existing full-screen quote modal and its form.
 - Existing Call and WhatsApp buttons, links, placement, and contact dock.
-- Existing 30 random theme definitions, navigation, animations, and page content outside the new homepage section.
+- Existing 50 random theme definitions, navigation, animations, and page content outside the new homepage section.
 
 ## Files changed
 - `index.html` — added the visible homepage quote form.
