@@ -988,6 +988,20 @@
   modal.addEventListener('click', function (event) {
     if (event.target === modal) closeModal();
   });
+
+  // Automatically present the quote request when the homepage opens.
+  // It appears once per page load, after a brief delay, and will not reopen
+  // after the visitor closes it until they load the homepage again.
+  function autoOpenQuoteModal() {
+    window.setTimeout(function () {
+      if (modal.hidden) openModal(null);
+    }, reduceMotion ? 50 : 850);
+  }
+  if (document.readyState === 'complete') {
+    autoOpenQuoteModal();
+  } else {
+    window.addEventListener('load', autoOpenQuoteModal, { once: true });
+  }
 })();
 
 
