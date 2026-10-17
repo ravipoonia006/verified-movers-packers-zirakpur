@@ -6472,120 +6472,165 @@ body.quote-modal-open > .mobile-callbar { pointer-events: none; }
 }
 
 
-/* Visible homepage quote form — added separately; existing modal/contact controls stay unchanged. */
-.home-quote-section {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  padding: clamp(46px, 6.5vw, 92px) clamp(16px, 3vw, 32px);
-  background: linear-gradient(145deg, rgba(var(--vmp-rgb, 21,62,110), .055), rgba(255,255,255,.62) 45%, rgba(var(--vmp-rgb, 21,62,110), .075));
-  border-block: 1px solid rgba(var(--vmp-rgb, 21,62,110), .10);
+/* Mobile quote modal: keep the panel within the visible viewport and scroll inside it. */
+@media (max-width: 600px) {
+  .quote-modal {
+    box-sizing: border-box;
+    overflow: hidden;
+    padding-top: max(4px, env(safe-area-inset-top));
+    padding-right: max(4px, env(safe-area-inset-right));
+    padding-bottom: max(4px, env(safe-area-inset-bottom));
+    padding-left: max(4px, env(safe-area-inset-left));
+    place-items: center;
+  }
+  .quote-modal__panel {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 760px;
+    max-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 8px);
+    max-height: calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 8px);
+    min-height: 0;
+    padding: 7px;
+    border-radius: 18px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+  .quote-modal__toolbar {
+    position: sticky;
+    top: -7px;
+    z-index: 5;
+    margin: -7px -7px 7px;
+    padding: 8px 8px 7px;
+    min-height: 32px;
+    background: rgba(255, 255, 255, .92);
+    border-bottom: 1px solid rgba(var(--vmp-rgb, 21,62,110), .12);
+    -webkit-backdrop-filter: blur(14px) saturate(1.15);
+    backdrop-filter: blur(14px) saturate(1.15);
+    border-radius: 18px 18px 0 0;
+  }
+  .quote-modal__content,
+  .quote-modal__content .slip,
+  .quote-modal__content form.slip-form {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+  .quote-modal__content .slip-head { padding: 11px 10px 9px; gap: 8px; }
+  .quote-modal__content .slip-title { font-size: 17px !important; }
+  .quote-modal__content .slip-no { font-size: 9px; }
+  .quote-modal__content form.slip-form { padding: 10px 9px 12px !important; }
+  .quote-modal__content .quote-wizard-progress { gap: 4px; margin-bottom: 7px; padding-bottom: 7px; }
+  .quote-modal__content .quote-wizard-status { margin-bottom: 8px; font-size: 11px; }
+  .quote-modal__content .quote-wizard-step__title { font-size: 17px; margin-bottom: 4px; }
+  .quote-modal__content .quote-wizard-step__note { font-size: 11px; line-height: 1.4; margin-bottom: 8px; }
+  .quote-modal__content .quote-wizard-step .field-row { gap: 7px; margin-bottom: 8px !important; }
+  .quote-modal__content .field label { font-size: 9px; margin-bottom: 2px; }
+  .quote-modal__content .field input,
+  .quote-modal__content .field select { box-sizing: border-box; width: 100%; min-height: 37px; padding-block: 6px; font-size: 16px; }
+  .quote-modal__content .field-error { min-height: 0; margin-top: 2px; }
+  .quote-modal__content .quote-wizard-controls { gap: 7px; margin-top: 9px; }
+  .quote-modal__content .quote-wizard-next,
+  .quote-modal__content .quote-wizard-back,
+  .quote-modal__content .slip-submit { min-height: 42px; padding-block: 9px; }
 }
-.home-quote-section__ambient {
-  position: absolute;
-  z-index: -1;
-  pointer-events: none;
-  width: min(58vw, 650px);
-  aspect-ratio: 1;
-  right: -15%;
-  top: -42%;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(var(--vmp-rgb, 21,62,110), .15), transparent 68%);
-  filter: blur(12px);
-  animation: homeQuoteAmbientFloat 13s ease-in-out infinite alternate;
+@media (max-width: 600px) and (max-height: 680px) {
+  .quote-modal { place-items: start center; }
+  .quote-modal__panel { margin-block: 0; }
+  .quote-modal__content .slip-perf { height: 7px; }
+  .quote-modal__content .slip-head { padding-top: 8px; padding-bottom: 7px; }
+  .quote-modal__content form.slip-form { padding-top: 8px !important; padding-bottom: 9px !important; }
+  .quote-modal__content .quote-wizard-step__title { font-size: 16px; }
+  .quote-modal__content .quote-wizard-step__note { margin-bottom: 5px; }
+  .quote-modal__content .quote-wizard-step .field-row { gap: 5px; margin-bottom: 6px !important; }
+  .quote-modal__content .quote-wizard-controls { margin-top: 7px; }
 }
-.home-quote-section__inner {
-  position: relative;
-  max-width: 1160px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: minmax(230px, .72fr) minmax(0, 1.45fr);
-  align-items: start;
-  gap: clamp(24px, 4vw, 56px);
+
+
+/* Shared quote form across every page — theme-aware iOS glass finish. */
+html[data-vmp-theme] .quote-modal__panel {
+  border-color: rgba(var(--vmp-rgb, 21,62,110), .34);
+  background:
+    radial-gradient(circle at 92% 2%, rgba(var(--vmp-rgb, 21,62,110), .22), transparent 34%),
+    linear-gradient(145deg, rgba(255,255,255,.88), rgba(var(--vmp-rgb, 21,62,110), .16));
+  box-shadow: 0 34px 100px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.92);
 }
-.home-quote-section__intro { position: sticky; top: 28px; padding-top: 16px; }
-.home-quote-section__eyebrow {
-  display: inline-flex; align-items: center; gap: 9px; margin-bottom: 16px;
-  color: var(--vmp-accent, #875800); font-size: 10px; font-weight: 850; letter-spacing: .14em; text-transform: uppercase;
+html[data-vmp-theme] .quote-modal__toolbar {
+  border-bottom: 1px solid rgba(var(--vmp-rgb, 21,62,110), .16);
+  margin-bottom: 12px;
 }
-.home-quote-section__live-dot { width: 8px; height: 8px; flex: 0 0 8px; border-radius: 50%; background: var(--vmp-primary, #153E6E); box-shadow: 0 0 0 4px rgba(var(--vmp-rgb, 21,62,110), .12); animation: homeQuoteLivePulse 2.4s ease-out infinite; }
-.home-quote-section__intro h2 { color: var(--vmp-text, #192B41); font-size: clamp(30px, 3.5vw, 48px); line-height: 1.04; letter-spacing: -.045em; font-weight: 850; margin: 0 0 18px; }
-.home-quote-section__intro p { max-width: 390px; color: var(--vmp-muted, #5A6C80); font-size: 15px; line-height: 1.75; margin: 0 0 24px; }
-.home-quote-section__trust { display: flex; align-items: flex-start; gap: 10px; max-width: 340px; color: var(--vmp-muted, #5A6C80); font-size: 12px; line-height: 1.6; }
-.home-quote-section__trust span { display: grid; place-items: center; flex: 0 0 23px; width: 23px; height: 23px; border-radius: 50%; color: #fff; background: var(--vmp-primary, #153E6E); font-weight: 900; box-shadow: 0 5px 14px rgba(var(--vmp-rgb, 21,62,110), .2); }
-.home-quote-card {
-  min-width: 0; padding: clamp(18px, 2.4vw, 30px); border: 1px solid rgba(var(--vmp-rgb, 21,62,110), .18); border-radius: 28px;
-  background: linear-gradient(140deg, rgba(255,255,255,.90), rgba(255,255,255,.63) 50%, rgba(var(--vmp-rgb, 21,62,110), .055));
-  -webkit-backdrop-filter: blur(22px) saturate(1.25); backdrop-filter: blur(22px) saturate(1.25);
-  box-shadow: 0 24px 70px rgba(var(--vmp-rgb, 21,62,110), .12), inset 0 1px 0 rgba(255,255,255,.9);
-  animation: homeQuoteCardEnter .75s cubic-bezier(.2,.75,.25,1) both;
+html[data-vmp-theme] .quote-modal__toolbar-label {
+  color: var(--vmp-primary, #153E6E);
+  font-weight: 850;
 }
-.home-quote-card__topline { display: flex; align-items: center; gap: 13px; padding: 0 0 20px; margin-bottom: 22px; border-bottom: 1px solid rgba(var(--vmp-rgb, 21,62,110), .13); }
-.home-quote-card__mark { display: grid; place-items: center; width: 46px; height: 46px; flex: 0 0 46px; color: var(--vmp-primary, #153E6E); background: rgba(var(--vmp-rgb, 21,62,110), .10); border: 1px solid rgba(var(--vmp-rgb, 21,62,110), .13); border-radius: 15px; }
-.home-quote-card__mark svg { width: 25px; height: 25px; }
-.home-quote-card__meta { display: grid; gap: 4px; min-width: 0; }
-.home-quote-card__meta-title { font-size: 10px; font-weight: 850; letter-spacing: .11em; color: var(--vmp-primary, #153E6E); }
-.home-quote-card__meta-sub { font-size: 11px; color: var(--vmp-muted, #5A6C80); line-height: 1.45; }
-.home-quote-card__reference { margin-left: auto; align-self: flex-start; min-width: 116px; text-align: right; font: 750 10px/1.8 'IBM Plex Mono', monospace; color: var(--vmp-primary, #153E6E); white-space: nowrap; }
-.home-quote-card__reference strong { font-weight: 900; }
-.home-quote-card__reference span { color: var(--vmp-muted, #5A6C80); font-size: 9px; }
-.home-quote-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px 14px; }
-.home-quote-field { display: flex; min-width: 0; flex-direction: column; gap: 7px; }
-.home-quote-field--wide { grid-column: 1 / -1; }
-.home-quote-field label { color: var(--vmp-text, #192B41); font-size: 11px; font-weight: 800; letter-spacing: .015em; }
-.home-quote-field label > span:first-child { color: var(--vmp-accent, #875800); }
-.home-quote-field__optional { color: var(--vmp-muted, #5A6C80) !important; font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; margin-left: 4px; }
-.home-quote-field input, .home-quote-field select {
-  width: 100%; min-width: 0; min-height: 48px; padding: 12px 13px; border-radius: 13px;
-  border: 1px solid rgba(var(--vmp-rgb, 21,62,110), .17); background: rgba(255,255,255,.76); color: var(--vmp-text, #192B41);
-  font-family: inherit; font-size: 14px; font-weight: 500; line-height: 1.35; box-shadow: inset 0 1px 2px rgba(15,30,50,.025); transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+html[data-vmp-theme] .quote-modal__live-dot {
+  background: var(--vmp-highlight, var(--vmp-accent, #F3C65E));
+  box-shadow: 0 0 0 4px rgba(var(--vmp-rgb, 21,62,110), .13), 0 0 16px rgba(var(--vmp-rgb, 21,62,110), .2);
 }
-.home-quote-field input::placeholder { color: #8290A0; opacity: 1; }
-.home-quote-field input:focus, .home-quote-field select:focus { outline: none; border-color: var(--vmp-primary, #153E6E); background: #fff; box-shadow: 0 0 0 4px rgba(var(--vmp-rgb, 21,62,110), .10), 0 8px 20px rgba(var(--vmp-rgb, 21,62,110), .06); }
-.home-quote-field input[aria-invalid="true"], .home-quote-field select[aria-invalid="true"] { border-color: #c53c45; box-shadow: 0 0 0 3px rgba(197,60,69,.10); }
-.home-quote-field__error { min-height: 0; color: #b4232d; font-size: 11px; line-height: 1.2; }
-.home-quote-field__error:empty { display: none; }
-.home-quote-submit { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; min-height: 56px; margin-top: 22px; padding: 15px 18px 15px 21px; border: 1px solid var(--vmp-primary, #153E6E); border-radius: 16px; background: linear-gradient(110deg, var(--vmp-primary, #153E6E), var(--vmp-primary-deep, #0B2645)); color: #fff; box-shadow: 0 12px 26px rgba(var(--vmp-rgb, 21,62,110), .23), inset 0 1px 0 rgba(255,255,255,.22); font: 800 14px/1.3 'Work Sans', sans-serif; cursor: pointer; transition: transform .22s ease, box-shadow .22s ease, filter .22s ease; }
-.home-quote-submit svg { width: 22px; height: 22px; flex: 0 0 22px; transition: transform .22s ease; }
-.home-quote-submit:hover { transform: translateY(-2px); filter: brightness(1.07); box-shadow: 0 17px 32px rgba(var(--vmp-rgb, 21,62,110), .28); }
-.home-quote-submit:hover svg { transform: translateX(4px); }
-.home-quote-submit:active { transform: scale(.99); }
-.home-quote-submit:focus-visible, .home-quote-fallback:focus-visible { outline: 3px solid var(--vmp-highlight, #F3C65E); outline-offset: 3px; }
-.home-quote-submit:disabled { cursor: wait; opacity: .78; }
-.home-quote-legal { margin: 12px 2px 0; color: var(--vmp-muted, #5A6C80); font-size: 10px; line-height: 1.65; }
-.home-quote-status { margin-top: 10px; color: var(--vmp-text, #192B41); font-size: 12px; line-height: 1.5; }
-.home-quote-fallback { display: inline-flex; margin-top: 8px; padding: 10px 12px; border-radius: 12px; border: 1px solid rgba(var(--vmp-rgb, 21,62,110), .2); color: var(--vmp-primary, #153E6E); background: rgba(255,255,255,.7); font-weight: 800; font-size: 12px; text-decoration: none; }
-.home-quote-fallback[hidden] { display: none !important; }
-@keyframes homeQuoteAmbientFloat { from { transform: translate3d(0, 0, 0) scale(.95); } to { transform: translate3d(-4%, 8%, 0) scale(1.08); } }
-@keyframes homeQuoteLivePulse { 0% { box-shadow: 0 0 0 0 rgba(var(--vmp-rgb, 21,62,110), .20); } 70% { box-shadow: 0 0 0 7px rgba(var(--vmp-rgb, 21,62,110), 0); } 100% { box-shadow: 0 0 0 0 rgba(var(--vmp-rgb, 21,62,110), 0); } }
-@keyframes homeQuoteCardEnter { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
-@media (max-width: 900px) {
-  .home-quote-section__inner { grid-template-columns: 1fr; gap: 22px; max-width: 760px; }
-  .home-quote-section__intro { position: relative; top: auto; padding-top: 0; }
-  .home-quote-section__intro h2 { max-width: 640px; }
-  .home-quote-section__intro p { max-width: 620px; }
+html[data-vmp-theme] .quote-modal__content .slip {
+  background: linear-gradient(150deg, rgba(255,255,255,.985), rgba(var(--vmp-rgb, 21,62,110), .045)) !important;
+  border-color: rgba(var(--vmp-rgb, 21,62,110), .28) !important;
+  box-shadow: 0 18px 46px rgba(var(--vmp-rgb, 21,62,110), .12), inset 0 1px 0 #fff !important;
 }
-@media (max-width: 560px) {
-  .home-quote-section { padding: 38px 13px calc(100px + env(safe-area-inset-bottom)); }
-  .home-quote-section__inner { gap: 18px; }
-  .home-quote-section__intro h2 { font-size: clamp(28px, 8vw, 36px); }
-  .home-quote-section__intro p { font-size: 13px; line-height: 1.7; margin-bottom: 16px; }
-  .home-quote-card { padding: 16px 13px; border-radius: 21px; }
-  .home-quote-card__topline { gap: 9px; padding-bottom: 15px; margin-bottom: 17px; }
-  .home-quote-card__mark { width: 38px; height: 38px; flex-basis: 38px; border-radius: 12px; }
-  .home-quote-card__mark svg { width: 21px; height: 21px; }
-  .home-quote-card__meta-title { font-size: 8px; letter-spacing: .08em; }
-  .home-quote-card__meta-sub { font-size: 9px; }
-  .home-quote-card__reference { min-width: 99px; font-size: 9px; line-height: 1.65; }
-  .home-quote-card__reference span { font-size: 8px; }
-  .home-quote-fields { grid-template-columns: minmax(0, 1fr); gap: 12px; }
-  .home-quote-field--wide { grid-column: auto; }
-  .home-quote-field label { font-size: 11px; }
-  .home-quote-field input, .home-quote-field select { min-height: 47px; padding: 12px; font-size: 16px; }
-  .home-quote-submit { min-height: 54px; margin-top: 17px; font-size: 13px; }
-  .home-quote-legal { font-size: 10px; }
+html[data-vmp-theme] .quote-modal__content .slip-perf {
+  height: 9px;
+  background: linear-gradient(90deg, var(--vmp-primary, #153E6E), var(--vmp-accent, #875800), var(--vmp-highlight, #F3C65E));
+}
+html[data-vmp-theme] .quote-modal__content .slip-head {
+  background: linear-gradient(112deg, rgba(var(--vmp-rgb, 21,62,110), .10), rgba(255,255,255,.84));
+  border-bottom-color: rgba(var(--vmp-rgb, 21,62,110), .20);
+}
+html[data-vmp-theme] .quote-modal__content .stamp-tag {
+  color: var(--vmp-primary, #153E6E) !important;
+  background: rgba(var(--vmp-rgb, 21,62,110), .08) !important;
+  border-color: rgba(var(--vmp-rgb, 21,62,110), .26) !important;
+}
+html[data-vmp-theme] .quote-modal__content .quote-wizard-progress__line {
+  background: linear-gradient(90deg, rgba(var(--vmp-rgb, 21,62,110), .16), rgba(var(--vmp-rgb, 21,62,110), .34)) !important;
+}
+html[data-vmp-theme] .quote-modal__content .quote-wizard-step__title {
+  color: var(--vmp-primary, #153E6E) !important;
+}
+html[data-vmp-theme] .quote-modal__content .quote-wizard-status {
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(var(--vmp-rgb, 21,62,110), .055);
+}
+html[data-vmp-theme] .quote-modal__content .field input,
+html[data-vmp-theme] .quote-modal__content .field select {
+  border-radius: 12px;
+  border-color: rgba(var(--vmp-rgb, 21,62,110), .18);
+  background: rgba(255,255,255,.86);
+  box-shadow: inset 0 1px 2px rgba(17,32,51,.035);
+  transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+html[data-vmp-theme] .quote-modal__content .field input:focus,
+html[data-vmp-theme] .quote-modal__content .field select:focus {
+  border-color: var(--vmp-primary, #153E6E) !important;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(var(--vmp-rgb, 21,62,110), .12), 0 5px 16px rgba(var(--vmp-rgb, 21,62,110), .07) !important;
+}
+html[data-vmp-theme] .quote-modal__content .quote-wizard-next,
+html[data-vmp-theme] .quote-modal__content .slip-submit {
+  border-color: var(--vmp-primary, #153E6E) !important;
+  background: linear-gradient(125deg, var(--vmp-primary, #153E6E), var(--vmp-primary-deep, #0B2645)) !important;
+  color: #fff !important;
+  box-shadow: 0 10px 24px rgba(var(--vmp-rgb, 21,62,110), .22), inset 0 1px 0 rgba(255,255,255,.18) !important;
+}
+html[data-vmp-theme] .quote-modal__content .quote-wizard-back {
+  border-color: rgba(var(--vmp-rgb, 21,62,110), .22) !important;
+  background: rgba(255,255,255,.78) !important;
+}
+.quote-launch-card--universal { min-height: 100%; }
+@media (max-width: 600px) {
+  html[data-vmp-theme] .quote-modal__toolbar { margin-bottom: 7px; }
+  html[data-vmp-theme] .quote-modal__panel { box-shadow: 0 20px 65px rgba(0,0,0,.36), inset 0 1px 0 rgba(255,255,255,.9); }
+  html[data-vmp-theme] .quote-modal__content .field input,
+  html[data-vmp-theme] .quote-modal__content .field select { border-radius: 10px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .home-quote-section__ambient, .home-quote-section__live-dot, .home-quote-card { animation: none !important; }
-  .home-quote-field input, .home-quote-field select, .home-quote-submit, .home-quote-submit svg { transition: none !important; }
+  html[data-vmp-theme] .quote-modal__content .field input,
+  html[data-vmp-theme] .quote-modal__content .field select { transition: none !important; }
 }

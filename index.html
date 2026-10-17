@@ -174,7 +174,7 @@
     <a href="services.html">Services</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
-    <a href="quote.html">Get quote</a>
+    <a href="#quoteModal" data-open-quote-modal>Get quote</a>
     <a href="all-cities.html">All cities</a>
     <a href="#vendors">For movers</a>
   </div>
@@ -189,12 +189,12 @@
     </a>
   </div>
 
-  <a class="nav-cta" href="#hero-form">Get a Free Quote</a>
+  <a class="nav-cta" href="#quoteModal" data-open-quote-modal>Get a Free Quote</a>
 </nav>
 
 <main id="main">
 
-<section class="hero" id="hero-form">
+<section class="hero hero--without-quote-launch" id="hero-form">
   <div>
     <div class="eyebrow">DIRECT QUOTE DESK · ZIRAKPUR · MOHALI · CHANDIGARH</div>
     <h1 class="headline">Reliable <em>packers &amp; movers</em> in Zirakpur. Move with confidence.</h1>
@@ -209,105 +209,10 @@
       <div class="hero-stat"><div class="num mono">DIRECT</div><div class="lbl">WhatsApp quote desk</div></div>
     </div>
   </div>
-
-  <aside class="quote-launch-card" aria-labelledby="quoteLaunchTitle">
-    <div class="quote-launch-card__orb" aria-hidden="true"></div>
-    <div class="quote-launch-card__eyebrow"><span class="quote-launch-card__pulse" aria-hidden="true"></span> WHATSAPP-READY QUOTE DESK</div>
-    <h2 id="quoteLaunchTitle">Your next move starts here.</h2>
-    <p>Share a few details about your move. Review your request, then open WhatsApp with the information ready to send.</p>
-    <div class="quote-launch-card__steps" aria-label="Three quick steps">
-      <span><b>01</b> Contact</span><span><b>02</b> Move details</span><span><b>03</b> Schedule</span>
-    </div>
-    <button class="quote-launch-card__button" type="button" data-open-quote-modal>
-      <span>Get a Free Quote</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
-    <div class="quote-launch-card__note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v5c0 4.5 2.8 7.8 7 10 4.2-2.2 7-5.5 7-10V6l-7-3Z" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="m9 12 2 2 4-4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><span>No online payment required to prepare your request.</span></div>
-  </aside>
 </section>
 
 <!-- Visible homepage quote form: separate from the existing full-screen modal. -->
-<section class="home-quote-section" id="home-quote" aria-labelledby="homeQuoteTitle">
-  <div class="home-quote-section__ambient" aria-hidden="true"></div>
-  <div class="home-quote-section__inner">
-    <div class="home-quote-section__intro">
-      <div class="home-quote-section__eyebrow"><span class="home-quote-section__live-dot" aria-hidden="true"></span> MOVE REQUEST · WHATSAPP READY</div>
-      <h2 id="homeQuoteTitle">Move Quote Request</h2>
-      <p>Tell us a little about your move. Your details will be formatted into a WhatsApp request for you to review before sending.</p>
-      <div class="home-quote-section__trust"><span aria-hidden="true">✓</span> No online payment required to prepare your request</div>
-    </div>
 
-    <div class="home-quote-card">
-      <div class="home-quote-card__topline">
-        <div class="home-quote-card__mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 7.5h11.5v10H3zM14.5 11h3.4l3.1 3.1v3.4h-6.5zM7 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM18 20a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
-        <div class="home-quote-card__meta">
-          <span class="home-quote-card__meta-title">CUSTOMER QUOTE SLIP</span>
-          <span class="home-quote-card__meta-sub">Secure details · Review before sending</span>
-        </div>
-        <div class="home-quote-card__reference">NO. <strong>SS-00214</strong><br><span>DATE: <time id="homeSlipDate" datetime="">--/--/----</time></span></div>
-      </div>
-
-      <form class="home-inline-quote-form" id="homeQuoteForm" novalidate>
-        <div class="home-quote-fields">
-          <div class="home-quote-field">
-            <label for="homeQuoteName">Customer name <span aria-hidden="true">*</span></label>
-            <input id="homeQuoteName" name="name" type="text" placeholder="e.g. Anuj Sharma" autocomplete="name" required>
-            <span class="home-quote-field__error" aria-live="polite"></span>
-          </div>
-          <div class="home-quote-field">
-            <label for="homeQuotePhone">WhatsApp / mobile <span aria-hidden="true">*</span></label>
-            <input id="homeQuotePhone" name="phone" type="tel" inputmode="tel" placeholder="10-digit mobile number" autocomplete="tel" required>
-            <span class="home-quote-field__error" aria-live="polite"></span>
-          </div>
-          <div class="home-quote-field">
-            <label for="homeQuoteFrom">Pickup location <span aria-hidden="true">*</span></label>
-            <input id="homeQuoteFrom" name="from" type="text" placeholder="Area, city" autocomplete="address-level2" required>
-            <span class="home-quote-field__error" aria-live="polite"></span>
-          </div>
-          <div class="home-quote-field">
-            <label for="homeQuoteTo">Drop location <span aria-hidden="true">*</span></label>
-            <input id="homeQuoteTo" name="to" type="text" placeholder="Destination area, city" required>
-            <span class="home-quote-field__error" aria-live="polite"></span>
-          </div>
-          <div class="home-quote-field">
-            <label for="homeQuoteSize">Move size <span aria-hidden="true">*</span></label>
-            <select id="homeQuoteSize" name="size" required>
-              <option value="">Select move size</option>
-              <option>1 RK</option><option>1 BHK</option><option>2 BHK</option><option>3 BHK</option><option>4 BHK+</option><option>Office</option><option>Shop / Commercial</option>
-            </select>
-            <span class="home-quote-field__error" aria-live="polite"></span>
-          </div>
-          <div class="home-quote-field">
-            <label for="homeQuoteService">Service needed <span aria-hidden="true">*</span></label>
-            <select id="homeQuoteService" name="service" required>
-              <option value="">Select a service</option>
-              <option>Full packing + loading + transport + unloading</option><option>Transport only</option><option>Packing only</option><option>Office / commercial relocation</option><option>Vehicle transport</option>
-            </select>
-            <span class="home-quote-field__error" aria-live="polite"></span>
-          </div>
-          <div class="home-quote-field">
-            <label for="homeQuoteDate">Preferred move date <span aria-hidden="true">*</span></label>
-            <input id="homeQuoteDate" name="date" type="date" required>
-            <span class="home-quote-field__error" aria-live="polite"></span>
-          </div>
-          <div class="home-quote-field">
-            <label for="homeQuoteEmail">Email <span class="home-quote-field__optional">Optional</span></label>
-            <input id="homeQuoteEmail" name="email" type="email" placeholder="you@example.com" autocomplete="email">
-            <span class="home-quote-field__error" aria-live="polite"></span>
-          </div>
-          <div class="home-quote-field home-quote-field--wide">
-            <label for="homeQuoteNotes">Extra instructions <span class="home-quote-field__optional">Optional</span></label>
-            <input id="homeQuoteNotes" name="notes" type="text" placeholder="Lift, stairs, fragile items, preferred timing…">
-            <span class="home-quote-field__error" aria-live="polite"></span>
-          </div>
-        </div>
-        <button class="home-quote-submit" type="submit"><span>Prepare quote in WhatsApp</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <p class="home-quote-legal">Your message will open in WhatsApp with the details above. You must press <strong>Send</strong> in WhatsApp to submit your request.</p>
-        <div class="home-quote-status" id="homeQuoteStatus" role="status" aria-live="polite"></div>
-        <a class="home-quote-fallback" id="homeQuoteFallback" href="#" target="_blank" rel="noopener noreferrer" hidden>Open WhatsApp with your quote details ↗</a>
-      </form>
-    </div>
-  </div>
-</section>
 
 <div class="stamps-strip">
   <div class="stamps-row">
@@ -585,7 +490,7 @@
     <article class="trust-checklist__item"><span class="trust-checklist__icon" aria-hidden="true">04</span><div><h3>Ask about transit protection</h3><p>Ask the provider whether insurance or transit protection is available, what it covers, and how claims are handled.</p></div></article>
   </div>
   <div class="trust-checklist__note"><strong>How this service works:</strong> Verified Movers &amp; Packers is a marketplace-style quote desk connecting customers with independent moving providers. Confirm the final scope, price, payment terms and service provider directly before booking.</div>
-  <div class="trust-checklist__actions"><a class="trust-action trust-action--primary" href="quote.html">Prepare a moving request</a><a class="trust-action trust-action--secondary" data-wa data-wa-msg="Hi Verified Movers & Packers, I would like to understand the moving quote process before booking." href="#" target="_blank" rel="noopener">Ask a question on WhatsApp</a></div>
+  <div class="trust-checklist__actions"><a class="trust-action trust-action--primary" href="#quoteModal" data-open-quote-modal>Prepare a moving request</a><a class="trust-action trust-action--secondary" data-wa data-wa-msg="Hi Verified Movers & Packers, I would like to understand the moving quote process before booking." href="#" target="_blank" rel="noopener">Ask a question on WhatsApp</a></div>
 </section>
 
 <section class="section honest-feedback" id="customer-feedback" aria-labelledby="feedback-title">
@@ -608,7 +513,7 @@
     <div class="split-eyebrow mono">For people moving</div>
     <h3>Stop paying for the middleman's phone bill.</h3>
     <p>Standard broker markups run 10–20% and buy you nothing but a phone call. Request direct, compare real quotes, pick the vendor — not the loudest caller.</p>
-    <a href="#hero-form" class="split-cta">Request a slip</a>
+    <a href="#quoteModal" class="split-cta" data-open-quote-modal>Request a slip</a>
   </div>
   <div class="split-panel vendors">
     <div class="split-eyebrow mono">For movers &amp; packers</div>
@@ -669,7 +574,7 @@
       <div class="footer-actions">
         <a class="f-call" data-call href="tel:+918607227219">📞 Call</a>
         <a class="f-wa" data-wa data-wa-msg="Hi Verified Movers & Packers, I would like a moving quote." href="#" target="_blank" rel="noopener">💬 WhatsApp</a>
-        <a class="f-quote" href="quote.html">Free quote</a>
+        <a class="f-quote" href="#quoteModal" data-open-quote-modal>Free quote</a>
       </div>
     </div>
   </div>
@@ -757,18 +662,7 @@
           <div class="field-error"></div>
         </div>
       </div>
-      <div class="field-row">
-        <div class="field">
-          <label for="email">Email (optional)</label>
-          <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email">
-          <div class="field-error"></div>
-        </div>
-        <div class="field">
-          <label for="notes">Extra instructions</label>
-          <input id="notes" name="notes" type="text" placeholder="Lift, stairs, fragile items, preferred timing…">
-          <div class="field-error"></div>
-        </div>
-      </div>
+
       <button type="submit" class="slip-submit">SEND DETAILS TO WHATSAPP →</button>
       <div class="slip-fine">Your completed request opens WhatsApp with every filled detail ready to send to +91 86072 27219.</div>
     </form>

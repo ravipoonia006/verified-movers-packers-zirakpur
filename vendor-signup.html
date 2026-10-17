@@ -98,5 +98,115 @@
   </div>
 </nav><main id="main"><section class="section" style="min-height:65vh;display:grid;place-items:center;text-align:center"><div><div class="eyebrow">For moving companies</div><h1 class="section-title" style="font-size:clamp(30px,5vw,48px)">Want more genuine relocation enquiries?</h1><p class="section-title-sub" style="margin:18px auto 26px">Send your company name, operating areas, fleet size and contact details on WhatsApp. We can discuss availability, service area and lead handling directly.</p><a class="split-cta" style="display:inline-block;background:var(--navy);color:#fff" href="https://wa.me/918607227219?text=Hi%20Verified%20Movers%20%26%20Packers%2C%20I%20want%20to%20partner%20for%20moving%20leads.">Partner on WhatsApp →</a></div></section></main><footer><div class="footer-inner"><div class="footer-col">
       <div class="footer-col-title">Contact us</div>
-      <div class="footer-contact"><a href="tel:+918607227219">📞 +91 86072 27219</a><a href="mailto:anujzirakpur@gmail.com">✉️ anujzirakpur@gmail.com</a></div><div class="footer-links"><a href="index.html">Home</a><a href="all-cities.html">All cities</a></div></div>    <div class="footer-col"><div class="footer-col-title">Quick actions</div><div class="footer-actions"><a class="f-call" data-call href="tel:+918607227219">Call</a><a class="f-wa" data-wa data-wa-msg="Hi Verified Movers & Packers, I would like a moving quote." href="#" target="_blank" rel="noopener">WhatsApp</a><a class="f-quote" href="quote.html">Free quote</a></div></div>
-</footer><script src="script.js"></script></body></html>
+      <div class="footer-contact"><a href="tel:+918607227219">📞 +91 86072 27219</a><a href="mailto:anujzirakpur@gmail.com">✉️ anujzirakpur@gmail.com</a></div><div class="footer-links"><a href="index.html">Home</a><a href="all-cities.html">All cities</a></div></div>    <div class="footer-col"><div class="footer-col-title">Quick actions</div><div class="footer-actions"><a class="f-call" data-call href="tel:+918607227219">Call</a><a class="f-wa" data-wa data-wa-msg="Hi Verified Movers & Packers, I would like a moving quote." href="#" target="_blank" rel="noopener">WhatsApp</a><a class="f-quote" href="#quoteModal" data-open-quote-modal>Free quote</a></div></div>
+</footer><script src="script.js"></script><!-- Accessible full-screen quote form modal -->
+<div class="quote-modal" id="quoteModal" hidden aria-hidden="true">
+  <div class="quote-modal__backdrop" data-quote-modal-close aria-hidden="true"></div>
+  <section class="quote-modal__panel" role="dialog" aria-modal="true" aria-labelledby="quoteModalTitle" tabindex="-1">
+    <div class="quote-modal__toolbar">
+      <span class="quote-modal__toolbar-label"><span class="quote-modal__live-dot" aria-hidden="true"></span> MOVE REQUEST <span aria-hidden="true">·</span> SECURE DETAILS</span>
+      <button class="quote-modal__close" type="button" data-quote-modal-close aria-label="Close quote request form"><span aria-hidden="true">×</span><span class="quote-modal__close-label">Close</span></button>
+    </div>
+    <div class="quote-modal__content">
+      <div class="slip">
+    <div class="slip-perf"></div>
+    <div class="slip-head">
+      <div>
+        <div class="slip-title" id="quoteModalTitle">Move Quote Request</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:2px;">WhatsApp-ready customer slip</div>
+      </div>
+      <div class="slip-no mono">NO. <span id="slipNo">SS-00214</span><br>DATE: <time id="slipDate" datetime="">--/--/----</time></div>
+    </div>
+    <div class="stamp-tag" id="slipStamp">DRAFT</div>
+
+    <form class="slip-form" id="quoteForm" novalidate>
+      <div class="field-row">
+        <div class="field">
+          <label for="name">Customer name</label>
+          <input id="name" name="name" type="text" placeholder="e.g. Anuj Sharma" autocomplete="name">
+          <div class="field-error"></div>
+        </div>
+        <div class="field">
+          <label for="phone">WhatsApp / mobile</label>
+          <input id="phone" name="phone" type="tel" placeholder="10-digit mobile" autocomplete="tel">
+          <div class="field-error"></div>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="from">Pickup location</label>
+          <input id="from" name="from" type="text" placeholder="e.g. VIP Road, Zirakpur" autocomplete="off">
+          <div class="field-error"></div>
+        </div>
+        <div class="field">
+          <label for="to">Drop location</label>
+          <input id="to" name="to" type="text" placeholder="e.g. Phase 7, Mohali" autocomplete="off">
+          <div class="field-error"></div>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="size">Move size</label>
+          <select id="size" name="size">
+            <option value="">Select</option>
+            <option>1 RK</option>
+            <option>1 BHK</option>
+            <option>2 BHK</option>
+            <option>3 BHK</option>
+            <option>4 BHK+</option>
+            <option>Office</option>
+            <option>Shop / Commercial</option>
+          </select>
+          <div class="field-error"></div>
+        </div>
+        <div class="field">
+          <label for="service">Service needed</label>
+          <select id="service" name="service">
+            <option value="">Select</option>
+            <option>Full packing + loading + transport + unloading</option>
+            <option>Transport only</option>
+            <option>Packing only</option>
+            <option>Office / commercial relocation</option>
+            <option>Vehicle transport</option>
+          </select>
+          <div class="field-error"></div>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="date">Move date</label>
+          <input id="date" name="date" type="date">
+          <div class="field-error"></div>
+        </div>
+      </div>
+
+      <button type="submit" class="slip-submit">SEND DETAILS TO WHATSAPP →</button>
+      <div class="slip-fine">Your completed request opens WhatsApp with every filled detail ready to send to +91 86072 27219.</div>
+    </form>
+
+    <div class="slip-success" id="slipSuccess">
+      <div class="big-tick">✓</div>
+      <h4>Request ready.</h4>
+      <p>WhatsApp has opened with the complete customer slip pre-filled. Press <strong>Send</strong> in WhatsApp to deliver it to our desk.</p>
+      <div class="result-grid">
+        <div><span>Reference</span><strong id="refEcho"></strong></div>
+        <div><span>Customer</span><strong id="resultCustomer"></strong></div>
+        <div><span>Route</span><strong id="resultRoute"></strong></div>
+        <div><span>Move date</span><strong id="resultDate"></strong></div>
+        <div><span>Move size</span><strong id="resultSize"></strong></div>
+        <div><span>Service</span><strong id="resultService"></strong></div>
+        <div><span>WhatsApp</span><strong id="resultPhone"></strong></div>
+      </div>
+      <div class="result-actions">
+        <button type="button" class="demo-btn" id="resendWhatsApp">SEND AGAIN</button>
+        <button type="button" class="demo-btn" id="copySlip">COPY DETAILS</button>
+        <button type="button" class="demo-btn" id="printSlip">PRINT / SAVE PDF</button>
+      </div>
+    </div>
+  </div>
+    </div>
+    <div class="quote-modal__bottom-glow" aria-hidden="true"></div>
+  </section>
+</div>
+
+</body></html>

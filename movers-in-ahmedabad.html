@@ -167,7 +167,7 @@
     </a>
   </div>
 
-  <a class="nav-cta" href="#hero-form">Get a Slip</a>
+  <a class="nav-cta" href="#quoteModal" data-open-quote-modal>Get a Slip</a>
 </nav>
 
 <div class="breadcrumb">
@@ -192,106 +192,18 @@
     </div>
   </div>
 
-  <div class="slip">
-    <div class="slip-perf"></div>
-    <div class="slip-head">
-      <div>
-        <div class="slip-title">Shift Slip</div>
-        <div style="font-size:12px;color:var(--muted);margin-top:2px;">Ahmedabad move request</div>
-      </div>
-      <div class="slip-no mono">NO. <span id="slipNo">SS-00214</span><br>DATE: --/--/----</div>
-    </div>
-    <div class="stamp-tag" id="slipStamp">DRAFT</div>
-
-    <form class="slip-form" id="quoteForm" novalidate>
-      <div class="field-row">
-        <div class="field">
-          <label for="name">Customer name</label>
-          <input id="name" name="name" type="text" placeholder="e.g. Anuj Sharma" autocomplete="name">
-          <div class="field-error"></div>
-        </div>
-        <div class="field">
-          <label for="phone">WhatsApp / mobile</label>
-          <input id="phone" name="phone" type="tel" placeholder="10-digit mobile, for quote delivery only" autocomplete="tel">
-          <div class="field-error"></div>
-        </div>
-      </div>
-      <div class="field-row">
-        <div class="field">
-          <label for="from">From</label>
-          <input id="from" name="from" type="text" placeholder="e.g. local neighbourhoods" autocomplete="off">
-          <div class="field-error"></div>
-        </div>
-        <div class="field">
-          <label for="to">To</label>
-          <input id="to" name="to" type="text" placeholder="e.g. Sector 22, Chandigarh" autocomplete="off">
-          <div class="field-error"></div>
-        </div>
-      </div>
-      <div class="field-row">
-        <div class="field">
-          <label for="size">Move size</label>
-          <select id="size" name="size">
-<option value="">Select</option>
-<option>1 RK</option><option>1 BHK</option><option>2 BHK</option>
-<option>3 BHK</option><option>4 BHK+</option><option>Office</option>
-</select>
-          <div class="field-error"></div>
-        </div>
-        <div class="field">
-          <label for="service">Service needed</label>
-          <select id="service" name="service"><option value="">Select</option>
-            <option>Full packing + loading + transport + unloading</option>
-            <option>Transport only</option>
-            <option>Packing only</option>
-            <option>Office / commercial relocation</option>
-            <option>Vehicle transport</option></select>
-          <div class="field-error"></div>
-        </div>
-      </div>
-      <div class="field-row">
-        <div class="field">
-          <label for="date">Move date</label>
-          <input id="date" name="date" type="date">
-          <div class="field-error"></div>
-        </div>
-        <div class="field">
-          <label for="email">Email (optional)</label>
-          <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email">
-          <div class="field-error"></div>
-        </div>
-      </div>
-      <div class="field-row" style="grid-template-columns:1fr;">
-        <div class="field">
-          <label for="notes">Extra instructions</label>
-          <input id="notes" name="notes" type="text" placeholder="Lift, stairs, fragile items, preferred timing…">
-          <div class="field-error"></div>
-        </div>
-      </div>
-      <button type="submit" class="slip-submit">GENERATE MY SLIP →</button>
-      <div class="slip-fine">No calls until you say go. Quotes land in 2–4 hrs.</div>
-    </form>
-
-    <div class="slip-success" id="slipSuccess">
-      <div class="big-tick">✓</div>
-      <h4>Request ready.</h4>
-      <p>WhatsApp opens with your completed request pre-filled. Press <strong>Send</strong> in WhatsApp to deliver the details to our desk.</p>
-      <div class="result-grid">
-        <div><span>Reference</span><strong id="refEcho"></strong></div>
-        <div><span>Customer</span><strong id="resultCustomer"></strong></div>
-        <div><span>Route</span><strong id="resultRoute"></strong></div>
-        <div><span>Move date</span><strong id="resultDate"></strong></div>
-        <div><span>Move size</span><strong id="resultSize"></strong></div>
-        <div><span>Service</span><strong id="resultService"></strong></div>
-        <div><span>WhatsApp</span><strong id="resultPhone"></strong></div>
-      </div>
-      <div class="result-actions">
-        <button type="button" class="demo-btn" id="resendWhatsApp">SEND AGAIN</button>
-        <button type="button" class="demo-btn" id="copySlip">COPY DETAILS</button>
-        <button type="button" class="demo-btn" id="printSlip">PRINT / SAVE PDF</button>
-      </div>
-    </div>
-  </div>
+  <div class="quote-launch-card quote-launch-card--universal">
+  <span class="quote-launch-card__orb" aria-hidden="true"></span>
+  <div class="quote-launch-card__eyebrow"><span class="quote-launch-card__pulse" aria-hidden="true"></span> WHATSAPP-READY QUOTE</div>
+  <h2>Get a quote for your move</h2>
+  <p>Share a few details about your move. Review your request, then open WhatsApp with the information ready to send.</p>
+  <div class="quote-launch-card__steps" aria-label="Quote request steps"><span><b>01</b> Contact</span><span><b>02</b> Move details</span><span><b>03</b> Schedule</span></div>
+  <button class="quote-launch-card__button" type="button" data-open-quote-modal>
+    <span>Get a Free Quote</span>
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="quote-launch-card__note"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 19 6v5c0 5-3 8-7 10-4-2-7-5-7-10V6l7-3Z" stroke="currentColor" stroke-width="1.6"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg> No online payment needed to prepare your request.</div>
+</div>
 </section>
 
 <div class="stamps-strip">
@@ -346,29 +258,29 @@
     <a class="locality-card" href="area-panchkula-border-zirakpur.html" data-area="Panchkula border" data-city="Ahmedabad"><h4>Panchkula border</h4><p>Cross-border moves into Haryana handled with correct paperwork.</p><span class="area-cta">Get quote for Panchkula border →</span></a>
     <a class="locality-card" href="area-singhpura-zirakpur.html" data-area="Singhpura" data-city="Ahmedabad"><h4>Singhpura</h4><p>Residential pocket off the main Ambala Highway.</p><span class="area-cta">Get quote for Singhpura →</span></a>
     <a class="locality-card" href="area-bhabhat-road-zirakpur.html" data-area="Bhabhat Road" data-city="Ahmedabad"><h4>Bhabhat Road</h4><p>Connector road toward Panchkula.</p><span class="area-cta">Get quote for Bhabhat Road →</span></a>
-    <a class="locality-card" href="#hero-form" data-area="Ahmedabad Bypass" data-city="Ahmedabad"><h4>Ahmedabad Bypass</h4><p>Newer development along the bypass corridor.</p><span class="area-cta">Get quote for Ahmedabad Bypass →</span></a>
+    <a class="locality-card" href="#quoteModal" data-area="Ahmedabad Bypass" data-city="Ahmedabad" data-open-quote-modal><h4>Ahmedabad Bypass</h4><p>Newer development along the bypass corridor.</p><span class="area-cta">Get quote for Ahmedabad Bypass →</span></a>
     <a class="locality-card" href="area-nabha-road-zirakpur.html" data-area="Nabha Road" data-city="Ahmedabad"><h4>Nabha Road</h4><p>Southern Ahmedabad, toward Rajpura.</p><span class="area-cta">Get quote for Nabha Road →</span></a>
   </div>
   <div class="chip-list">
-    <a class="chip" href="#hero-form" data-area="Ahmedabad → Chandigarh" data-city="Ahmedabad">Ahmedabad → Chandigarh</a>
-    <a class="chip" href="#hero-form" data-area="Ahmedabad → Mohali" data-city="Ahmedabad">Ahmedabad → Mohali</a>
-    <a class="chip" href="#hero-form" data-area="Ahmedabad → Panchkula" data-city="Ahmedabad">Ahmedabad → Panchkula</a>
-    <a class="chip" href="#hero-form" data-area="Ahmedabad → Kharar" data-city="Ahmedabad">Ahmedabad → Kharar</a>
-    <a class="chip" href="#hero-form" data-area="Ahmedabad → Patiala" data-city="Ahmedabad">Ahmedabad → Patiala</a>
-    <a class="chip" href="#hero-form" data-area="Ahmedabad → Delhi" data-city="Ahmedabad">Ahmedabad → Delhi</a>
-    <a class="chip" href="#hero-form" data-area="Ahmedabad → Amritsar" data-city="Ahmedabad">Ahmedabad → Amritsar</a>
-    <a class="chip" href="#hero-form" data-area="Ahmedabad → Jaipur" data-city="Ahmedabad">Ahmedabad → Jaipur</a>
+    <a class="chip" href="#quoteModal" data-area="Ahmedabad → Chandigarh" data-city="Ahmedabad" data-open-quote-modal>Ahmedabad → Chandigarh</a>
+    <a class="chip" href="#quoteModal" data-area="Ahmedabad → Mohali" data-city="Ahmedabad" data-open-quote-modal>Ahmedabad → Mohali</a>
+    <a class="chip" href="#quoteModal" data-area="Ahmedabad → Panchkula" data-city="Ahmedabad" data-open-quote-modal>Ahmedabad → Panchkula</a>
+    <a class="chip" href="#quoteModal" data-area="Ahmedabad → Kharar" data-city="Ahmedabad" data-open-quote-modal>Ahmedabad → Kharar</a>
+    <a class="chip" href="#quoteModal" data-area="Ahmedabad → Patiala" data-city="Ahmedabad" data-open-quote-modal>Ahmedabad → Patiala</a>
+    <a class="chip" href="#quoteModal" data-area="Ahmedabad → Delhi" data-city="Ahmedabad" data-open-quote-modal>Ahmedabad → Delhi</a>
+    <a class="chip" href="#quoteModal" data-area="Ahmedabad → Amritsar" data-city="Ahmedabad" data-open-quote-modal>Ahmedabad → Amritsar</a>
+    <a class="chip" href="#quoteModal" data-area="Ahmedabad → Jaipur" data-city="Ahmedabad" data-open-quote-modal>Ahmedabad → Jaipur</a>
   </div>
   <div class="all-areas-block" style="margin-top:22px; padding-top:18px; border-top:1px dashed var(--corrugated);">
     <p class="mono" style="font-size:11px; text-transform:uppercase; letter-spacing:0.06em; color:var(--muted); margin-bottom:10px;">More areas we cover in Ahmedabad</p>
     <div class="chip-list">
-    <a class="chip" href="#hero-form" data-area="Sector 20 Ahmedabad" data-city="Ahmedabad">Sector 20 Ahmedabad</a>
-    <a class="chip" href="#hero-form" data-area="Ambala Highway" data-city="Ahmedabad">Ambala Highway</a>
-    <a class="chip" href="#hero-form" data-area="Chandigarh-Ambala Road" data-city="Ahmedabad">Chandigarh-Ambala Road</a>
-    <a class="chip" href="#hero-form" data-area="New Ahmedabad societies" data-city="Ahmedabad">New Ahmedabad societies</a>
-    <a class="chip" href="#hero-form" data-area="Bishanpura" data-city="Ahmedabad">Bishanpura</a>
-    <a class="chip" href="#hero-form" data-area="Ram Nagar" data-city="Ahmedabad">Ram Nagar</a>
-    <a class="chip" href="#hero-form" data-area="Shivalik Enclave" data-city="Ahmedabad">Shivalik Enclave</a>
+    <a class="chip" href="#quoteModal" data-area="Sector 20 Ahmedabad" data-city="Ahmedabad" data-open-quote-modal>Sector 20 Ahmedabad</a>
+    <a class="chip" href="#quoteModal" data-area="Ambala Highway" data-city="Ahmedabad" data-open-quote-modal>Ambala Highway</a>
+    <a class="chip" href="#quoteModal" data-area="Chandigarh-Ambala Road" data-city="Ahmedabad" data-open-quote-modal>Chandigarh-Ambala Road</a>
+    <a class="chip" href="#quoteModal" data-area="New Ahmedabad societies" data-city="Ahmedabad" data-open-quote-modal>New Ahmedabad societies</a>
+    <a class="chip" href="#quoteModal" data-area="Bishanpura" data-city="Ahmedabad" data-open-quote-modal>Bishanpura</a>
+    <a class="chip" href="#quoteModal" data-area="Ram Nagar" data-city="Ahmedabad" data-open-quote-modal>Ram Nagar</a>
+    <a class="chip" href="#quoteModal" data-area="Shivalik Enclave" data-city="Ahmedabad" data-open-quote-modal>Shivalik Enclave</a>
     </div>
   </div>
 
@@ -430,12 +342,12 @@
     <p class="section-title-sub">Common ways people look for this service — all of it routes to the same verified vendor network.</p>
   </div>
   <div class="chip-list">
-    <a class="chip" href="#hero-form" data-area="packers and movers in Ahmedabad" data-city="Ahmedabad">packers and movers in Ahmedabad</a>
-    <a class="chip" href="#hero-form" data-area="packers and movers near me Ahmedabad" data-city="Ahmedabad">packers and movers near me Ahmedabad</a>
-    <a class="chip" href="#hero-form" data-area="house shifting services Ahmedabad" data-city="Ahmedabad">house shifting services Ahmedabad</a>
-    <a class="chip" href="#hero-form" data-area="local shifting charges Ahmedabad" data-city="Ahmedabad">local shifting charges Ahmedabad</a>
-    <a class="chip" href="#hero-form" data-area="best packers and movers Ahmedabad" data-city="Ahmedabad">best packers and movers Ahmedabad</a>
-    <a class="chip" href="#hero-form" data-area="office relocation Ahmedabad" data-city="Ahmedabad">office relocation Ahmedabad</a>
+    <a class="chip" href="#quoteModal" data-area="packers and movers in Ahmedabad" data-city="Ahmedabad" data-open-quote-modal>packers and movers in Ahmedabad</a>
+    <a class="chip" href="#quoteModal" data-area="packers and movers near me Ahmedabad" data-city="Ahmedabad" data-open-quote-modal>packers and movers near me Ahmedabad</a>
+    <a class="chip" href="#quoteModal" data-area="house shifting services Ahmedabad" data-city="Ahmedabad" data-open-quote-modal>house shifting services Ahmedabad</a>
+    <a class="chip" href="#quoteModal" data-area="local shifting charges Ahmedabad" data-city="Ahmedabad" data-open-quote-modal>local shifting charges Ahmedabad</a>
+    <a class="chip" href="#quoteModal" data-area="best packers and movers Ahmedabad" data-city="Ahmedabad" data-open-quote-modal>best packers and movers Ahmedabad</a>
+    <a class="chip" href="#quoteModal" data-area="office relocation Ahmedabad" data-city="Ahmedabad" data-open-quote-modal>office relocation Ahmedabad</a>
   </div>
 </section>
 
@@ -528,11 +440,121 @@
       <div class="footer-actions">
         <a class="f-call" data-call href="tel:+918607227219">Call</a>
         <a class="f-wa" data-wa data-wa-msg="Hi Verified Movers & Packers, I would like a moving quote." href="#" target="_blank" rel="noopener">WhatsApp</a>
-        <a class="f-quote" href="quote.html">Free quote</a>
+        <a class="f-quote" href="#quoteModal" data-open-quote-modal>Free quote</a>
       </div>
     </div>
 <div class="footer-fine">Verified Movers & Packers is a marketplace connecting customers with independent, verified moving vendors. Movers are not employees of Verified Movers & Packers. Pricing shown in demos is illustrative, not a quote.</div>
 </footer>
+
+<!-- Accessible full-screen quote form modal -->
+<div class="quote-modal" id="quoteModal" hidden aria-hidden="true">
+  <div class="quote-modal__backdrop" data-quote-modal-close aria-hidden="true"></div>
+  <section class="quote-modal__panel" role="dialog" aria-modal="true" aria-labelledby="quoteModalTitle" tabindex="-1">
+    <div class="quote-modal__toolbar">
+      <span class="quote-modal__toolbar-label"><span class="quote-modal__live-dot" aria-hidden="true"></span> MOVE REQUEST <span aria-hidden="true">·</span> SECURE DETAILS</span>
+      <button class="quote-modal__close" type="button" data-quote-modal-close aria-label="Close quote request form"><span aria-hidden="true">×</span><span class="quote-modal__close-label">Close</span></button>
+    </div>
+    <div class="quote-modal__content">
+      <div class="slip">
+    <div class="slip-perf"></div>
+    <div class="slip-head">
+      <div>
+        <div class="slip-title" id="quoteModalTitle">Move Quote Request</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:2px;">WhatsApp-ready customer slip</div>
+      </div>
+      <div class="slip-no mono">NO. <span id="slipNo">SS-00214</span><br>DATE: <time id="slipDate" datetime="">--/--/----</time></div>
+    </div>
+    <div class="stamp-tag" id="slipStamp">DRAFT</div>
+
+    <form class="slip-form" id="quoteForm" novalidate>
+      <div class="field-row">
+        <div class="field">
+          <label for="name">Customer name</label>
+          <input id="name" name="name" type="text" placeholder="e.g. Anuj Sharma" autocomplete="name">
+          <div class="field-error"></div>
+        </div>
+        <div class="field">
+          <label for="phone">WhatsApp / mobile</label>
+          <input id="phone" name="phone" type="tel" placeholder="10-digit mobile" autocomplete="tel">
+          <div class="field-error"></div>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="from">Pickup location</label>
+          <input id="from" name="from" type="text" placeholder="e.g. VIP Road, Zirakpur" autocomplete="off">
+          <div class="field-error"></div>
+        </div>
+        <div class="field">
+          <label for="to">Drop location</label>
+          <input id="to" name="to" type="text" placeholder="e.g. Phase 7, Mohali" autocomplete="off">
+          <div class="field-error"></div>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="size">Move size</label>
+          <select id="size" name="size">
+            <option value="">Select</option>
+            <option>1 RK</option>
+            <option>1 BHK</option>
+            <option>2 BHK</option>
+            <option>3 BHK</option>
+            <option>4 BHK+</option>
+            <option>Office</option>
+            <option>Shop / Commercial</option>
+          </select>
+          <div class="field-error"></div>
+        </div>
+        <div class="field">
+          <label for="service">Service needed</label>
+          <select id="service" name="service">
+            <option value="">Select</option>
+            <option>Full packing + loading + transport + unloading</option>
+            <option>Transport only</option>
+            <option>Packing only</option>
+            <option>Office / commercial relocation</option>
+            <option>Vehicle transport</option>
+          </select>
+          <div class="field-error"></div>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="date">Move date</label>
+          <input id="date" name="date" type="date">
+          <div class="field-error"></div>
+        </div>
+      </div>
+
+      <button type="submit" class="slip-submit">SEND DETAILS TO WHATSAPP →</button>
+      <div class="slip-fine">Your completed request opens WhatsApp with every filled detail ready to send to +91 86072 27219.</div>
+    </form>
+
+    <div class="slip-success" id="slipSuccess">
+      <div class="big-tick">✓</div>
+      <h4>Request ready.</h4>
+      <p>WhatsApp has opened with the complete customer slip pre-filled. Press <strong>Send</strong> in WhatsApp to deliver it to our desk.</p>
+      <div class="result-grid">
+        <div><span>Reference</span><strong id="refEcho"></strong></div>
+        <div><span>Customer</span><strong id="resultCustomer"></strong></div>
+        <div><span>Route</span><strong id="resultRoute"></strong></div>
+        <div><span>Move date</span><strong id="resultDate"></strong></div>
+        <div><span>Move size</span><strong id="resultSize"></strong></div>
+        <div><span>Service</span><strong id="resultService"></strong></div>
+        <div><span>WhatsApp</span><strong id="resultPhone"></strong></div>
+      </div>
+      <div class="result-actions">
+        <button type="button" class="demo-btn" id="resendWhatsApp">SEND AGAIN</button>
+        <button type="button" class="demo-btn" id="copySlip">COPY DETAILS</button>
+        <button type="button" class="demo-btn" id="printSlip">PRINT / SAVE PDF</button>
+      </div>
+    </div>
+  </div>
+    </div>
+    <div class="quote-modal__bottom-glow" aria-hidden="true"></div>
+  </section>
+</div>
 
 <a class="wa-float" data-wa data-wa-msg="Hi Verified Movers & Packers, I'd like a moving quote." href="#" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
   <svg viewBox="0 0 32 32" fill="#fff" aria-hidden="true"><path d="M16.04 3C9.37 3 3.96 8.4 3.96 15.06c0 2.24.6 4.34 1.65 6.15L4 29l7.98-1.56a12.02 12.02 0 0 0 4.06.7c6.67 0 12.08-5.4 12.08-12.07C28.12 8.4 22.72 3 16.04 3zm5.44 13.46c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.34.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.48-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.14-.14.3-.34.45-.51.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.03 1-1.03 2.45s1.06 2.85 1.2 3.05c.15.2 2.09 3.2 5.08 4.48.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35z"/></svg>
