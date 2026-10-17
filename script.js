@@ -726,3 +726,266 @@
   Array.prototype.forEach.call(document.querySelectorAll('form.slip-form#quoteForm'), initWizard);
 })();
 
+
+/* Homepage city carousel: four cards per view on desktop, responsive and swipeable. */
+(function initCityCoverageCarousel() {
+  'use strict';
+  var sliders = document.querySelectorAll('[data-city-slider]');
+  Array.prototype.forEach.call(sliders, function (slider) {
+    var viewport = slider.querySelector('[data-city-viewport]');
+    var track = slider.querySelector('[data-city-track]');
+    var prev = slider.querySelector('[data-city-prev]');
+    var next = slider.querySelector('[data-city-next]');
+    var progress = slider.querySelector('[data-city-progress]');
+    var fill = slider.querySelector('[data-city-progress-fill]');
+    var currentLabel = slider.querySelector('[data-city-count-current]');
+    var totalLabel = slider.querySelector('[data-city-count-total]');
+    if (!viewport || !track || !prev || !next || !progress || !fill) return;
+
+    var cards = Array.prototype.slice.call(track.querySelectorAll(':scope > .city-card'));
+    if (!cards.length) return;
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var pageCount = 1;
+    var visible = 4;
+    var step = 1;
+    var scrollFrame = 0;
+
+    function measure() {
+      var styles = window.getComputedStyle(slider);
+      visible = parseInt(styles.getPropertyValue('--city-visible'), 10) || 4;
+      visible = Math.max(1, Math.min(cards.length, visible));
+      pageCount = Math.max(1, Math.ceil((cards.length - visible) / visible) + 1);
+      var first = cards[0];
+      var second = cards[1];
+      var cardDistance = second ? second.offsetLeft - first.offsetLeft : first.getBoundingClientRect().width;
+      step = Math.max(1, cardDistance * visible);
+      if (totalLabel) totalLabel.textContent = String(pageCount).padStart(2, '0');
+      update();
+    }
+
+    function currentPage() {
+      if (pageCount <= 1) return 0;
+      return Math.max(0, Math.min(pageCount - 1, Math.round(viewport.scrollLeft / step)));
+    }
+
+    function update() {
+      var page = currentPage();
+      prev.disabled = page <= 0 || viewport.scrollWidth <= viewport.clientWidth + 2;
+      next.disabled = page >= pageCount - 1 || viewport.scrollWidth <= viewport.clientWidth + 2;
+      if (currentLabel) currentLabel.textContent = String(page + 1).padStart(2, '0');
+      if (totalLabel) totalLabel.textContent = String(pageCount).padStart(2, '0');
+      var width = 100 / pageCount;
+      fill.style.width = width + '%';
+      fill.style.left = (page * width) + '%';
+      progress.setAttribute('aria-valuemin', '1');
+      progress.setAttribute('aria-valuemax', String(pageCount));
+      progress.setAttribute('aria-valuenow', String(page + 1));
+      progress.setAttribute('aria-valuetext', 'Slide ' + (page + 1) + ' of ' + pageCount);
+    }
+
+    function goToPage(page) {
+      page = Math.max(0, Math.min(pageCount - 1, page));
+      var targetCard = cards[Math.min(page * visible, cards.length - 1)];
+      var maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+      var targetLeft = Math.max(0, Math.min(maxScroll, targetCard.offsetLeft));
+      viewport.scrollTo({ left: targetLeft, behavior: reduceMotion ? 'auto' : 'smooth' });
+      window.setTimeout(update, reduceMotion ? 0 : 330);
+    }
+
+    prev.addEventListener('click', function () { goToPage(currentPage() - 1); });
+    next.addEventListener('click', function () { goToPage(currentPage() + 1); });
+    viewport.addEventListener('scroll', function () {
+      if (scrollFrame) window.cancelAnimationFrame(scrollFrame);
+      scrollFrame = window.requestAnimationFrame(function () {
+        scrollFrame = 0;
+        update();
+      });
+    }, { passive: true });
+    viewport.addEventListener('keydown', function (event) {
+      if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        goToPage(currentPage() + 1);
+      } else if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        goToPage(currentPage() - 1);
+      }
+    });
+    window.addEventListener('resize', function () {
+      measure();
+      goToPage(Math.min(currentPage(), pageCount - 1));
+    }, { passive: true });
+
+    slider.classList.add('is-ready');
+    measure();
+  });
+
+  /* EXTRA VISUAL REVEALS — content cards only; contact buttons intentionally excluded. */
+  function initExtraVisualReveals() {
+    if (!('IntersectionObserver' in window)) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var selector = [
+      '.why-card', '.br-card', '.visual-card', '.service-card', '.faq-item',
+      '.area-box', '.hub-card', '.trust-checklist__item', '.compare-card',
+      '.locality-card', '.city-slider__track > .city-card', '.stamps-strip .stamp-item'
+    ].join(',');
+    var items = document.querySelectorAll(selector);
+    if (!items.length) return;
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var item = entry.target;
+        item.classList.add('vmp-motion-seen');
+        observer.unobserve(item);
+      });
+    }, { root: null, rootMargin: '0px 0px -5% 0px', threshold: 0.08 });
+    Array.prototype.forEach.call(items, function (item) {
+      /* Stagger sibling cards slightly, capped so content never feels delayed. */
+      var siblings = item.parentElement ? Array.prototype.slice.call(item.parentElement.children) : [];
+      var siblingIndex = siblings.indexOf(item);
+      item.style.setProperty('--vmp-motion-delay', (Math.max(0, Math.min(4, siblingIndex)) * 55) + 'ms');
+      observer.observe(item);
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initExtraVisualReveals, { once: true });
+  } else {
+    initExtraVisualReveals();
+  }
+
+})();
+
+
+/* Homepage quote request modal: preserves the existing form and WhatsApp submission flow. */
+(function initQuoteRequestModal() {
+  'use strict';
+  var modal = document.getElementById('quoteModal');
+  if (!modal) return;
+  var panel = modal.querySelector('.quote-modal__panel');
+  var closeButtons = modal.querySelectorAll('[data-quote-modal-close]');
+  var openerButtons = document.querySelectorAll('[data-open-quote-modal]');
+  var lastFocus = null;
+  var scrollY = 0;
+  var closeTimer = 0;
+  var bodyLockStyles = null;
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // The printed request date uses the India time zone and DD/MM/YYYY format.
+  var dateEl = document.getElementById('slipDate');
+  if (dateEl) {
+    var now = new Date();
+    var dateParts;
+    try {
+      dateParts = new Intl.DateTimeFormat('en-GB', {
+        timeZone: 'Asia/Kolkata', year: 'numeric', month: '2-digit', day: '2-digit'
+      }).formatToParts(now);
+      var dateMap = {};
+      dateParts.forEach(function (part) { if (part.type !== 'literal') dateMap[part.type] = part.value; });
+      var iso = dateMap.year + '-' + dateMap.month + '-' + dateMap.day;
+      dateEl.dateTime = iso;
+      dateEl.textContent = dateMap.day + '/' + dateMap.month + '/' + dateMap.year;
+    } catch (err) {
+      var dd = String(now.getDate()).padStart(2, '0');
+      var mm = String(now.getMonth() + 1).padStart(2, '0');
+      var yyyy = now.getFullYear();
+      dateEl.dateTime = yyyy + '-' + mm + '-' + dd;
+      dateEl.textContent = dd + '/' + mm + '/' + yyyy;
+    }
+  }
+
+  function getFocusable() {
+    return Array.prototype.slice.call(panel.querySelectorAll(
+      'a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    )).filter(function (el) { return !el.hidden && el.getAttribute('aria-hidden') !== 'true' && el.getClientRects().length; });
+  }
+  function openModal(trigger) {
+    if (!modal.hidden) return;
+    if (closeTimer) window.clearTimeout(closeTimer);
+    lastFocus = trigger || document.activeElement;
+    scrollY = window.scrollY || window.pageYOffset || 0;
+    bodyLockStyles = { position: document.body.style.position, top: document.body.style.top, left: document.body.style.left, right: document.body.style.right, width: document.body.style.width };
+    document.body.style.position = 'fixed';
+    document.body.style.top = '-' + scrollY + 'px';
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
+    document.body.classList.add('quote-modal-open');
+    modal.hidden = false;
+    modal.setAttribute('aria-hidden', 'false');
+    if (!reduceMotion) {
+      void modal.offsetWidth;
+      window.requestAnimationFrame(function () { modal.classList.add('is-open'); });
+    } else {
+      modal.classList.add('is-open');
+    }
+    var close = modal.querySelector('.quote-modal__close');
+    if (close) close.focus({ preventScroll: true });
+    else panel.focus({ preventScroll: true });
+  }
+  function closeModal() {
+    if (modal.hidden) return;
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('quote-modal-open');
+    if (bodyLockStyles) {
+      document.body.style.position = bodyLockStyles.position;
+      document.body.style.top = bodyLockStyles.top;
+      document.body.style.left = bodyLockStyles.left;
+      document.body.style.right = bodyLockStyles.right;
+      document.body.style.width = bodyLockStyles.width;
+      bodyLockStyles = null;
+    } else {
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.width = '';
+    }
+    window.scrollTo(0, scrollY);
+    var delay = reduceMotion ? 0 : 340;
+    closeTimer = window.setTimeout(function () { modal.hidden = true; }, delay);
+    if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus({ preventScroll: true });
+  }
+
+  document.addEventListener('click', function (event) {
+    var closeTarget = event.target.closest && event.target.closest('[data-quote-modal-close]');
+    if (closeTarget && modal.contains(closeTarget)) {
+      event.preventDefault();
+      closeModal();
+      return;
+    }
+    var opener = event.target.closest && event.target.closest('[data-open-quote-modal]');
+    var anchorOpener = event.target.closest && event.target.closest('a[href="#hero-form"]');
+    if (opener || anchorOpener) {
+      event.preventDefault();
+      openModal(opener || anchorOpener);
+    }
+  });
+  Array.prototype.forEach.call(openerButtons, function (button) {
+    button.addEventListener('keydown', function (event) {
+      if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openModal(button); }
+    });
+  });
+  document.addEventListener('keydown', function (event) {
+    if (modal.hidden) return;
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closeModal();
+      return;
+    }
+    if (event.key === 'Tab') {
+      var focusables = getFocusable();
+      if (!focusables.length) { event.preventDefault(); panel.focus(); return; }
+      var first = focusables[0];
+      var last = focusables[focusables.length - 1];
+      if (event.shiftKey && (document.activeElement === first || !modal.contains(document.activeElement))) {
+        event.preventDefault(); last.focus();
+      } else if (!event.shiftKey && (document.activeElement === last || !modal.contains(document.activeElement))) {
+        event.preventDefault(); first.focus();
+      }
+    }
+  });
+  // Keep the page behind the modal from receiving clicks or background scroll.
+  modal.addEventListener('click', function (event) {
+    if (event.target === modal) closeModal();
+  });
+})();
