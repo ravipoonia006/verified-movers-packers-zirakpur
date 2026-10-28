@@ -1,0 +1,36 @@
+{
+  "total_html_pages": 155,
+  "new_pages": [
+    "online-documents.html",
+    "online-quotation.html",
+    "online-bill.html"
+  ],
+  "checks": {
+    "nav_document_link_all_pages": true,
+    "footer_business_document_links_all_pages": true,
+    "broken_relative_references": 0,
+    "duplicate_ids_pages": 0,
+    "pages_missing_title": 0,
+    "pages_missing_meta_description": 0,
+    "css_parse_errors": 0,
+    "js_syntax_issues_new_pages_and_shared_script": 0,
+    "sitemap_urls": 155,
+    "sitemap_urls_unique": 155,
+    "inventory_page_rows": 155,
+    "max_nav_links": 7,
+    "min_nav_links": 7
+  },
+  "issues": [],
+  "details": {
+    "missing_nav": [],
+    "missing_footer": [],
+    "missing_local": [],
+    "duplicate_ids": [],
+    "missing_titles": [],
+    "missing_meta": [],
+    "css_errors": [],
+    "sitemap_missing_current_html": [
+      "index.html"
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "html_pages": 152,
+  "new_page": "online-bilty.html",
+  "features": [
+    "live paper-style preview",
+    "auto bill number and India-local date",
+    "auto-calculated charges",
+    "print/save PDF",
+    "shareable read-only customer link",
+    "WhatsApp share",
+    "50-theme compatible styling",
+    "mobile responsive editor"
+  ],
+  "nav_links_added": 152,
+  "sitemap_urls": 152,
+  "css_top_level_parse_errors": 0,
+  "theme_ids_in_page_bootstrap": 50,
+  "theme_css_definitions": 50,
+  "security_note": "Share links contain encoded but not encrypted data in URL fragments; static site does not store, authenticate, expire, or revoke bilty links.",
+  "browser_visual_test": "Not completed: the environment blocked local browser navigation."
+}

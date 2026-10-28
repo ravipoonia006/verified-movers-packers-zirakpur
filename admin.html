@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Admin Dashboard | Verified Movers &amp; Packers</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Work+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <script>
+/* Pick one accessible colour palette per browsing session. The palette stays
+   consistent while navigating pages and changes on the next fresh visit. */
+(function () {
+  'use strict';
+  var sessionKey = 'vmp-theme-session-v1';
+  var previousKey = 'vmp-theme-previous-v1';
+  var themes = [
+    { id: 'ocean-sun', color: '#153E6E' },
+    { id: 'evergreen-copper', color: '#145B46' },
+    { id: 'plum-rose', color: '#623B67' },
+    { id: 'teal-coral', color: '#135A63' },
+    { id: 'burgundy-champagne', color: '#762B3C' },
+    { id: 'indigo-lime', color: '#34428F' },
+    { id: 'slate-orange', color: '#344B5E' },
+    { id: 'jade-saffron', color: '#28685B' },
+    { id: 'cobalt-apricot', color: '#1557A6' },
+    { id: 'charcoal-mint', color: '#36434F' },
+    { id: 'rosewood-teal', color: '#6C254D' },
+    { id: 'midnight-lavender', color: '#414078' },
+    { id: 'terracotta-sky', color: '#873D2D' },
+    { id: 'alpine-blue', color: '#214E68' },
+    { id: 'moss-rose', color: '#496239' },
+    { id: 'ink-citrus', color: '#283746' },
+    { id: 'sapphire-sand', color: '#234C9A' },
+    { id: 'berry-mint', color: '#742C5B' },
+    { id: 'ocean-lilac', color: '#194F78' },
+    { id: 'forest-apricot', color: '#235A43' },
+    { id: 'slate-lavender', color: '#4B5268' },
+    { id: 'redwood-sage', color: '#74392D' },
+    { id: 'deep-aqua-amber', color: '#155F65' },
+    { id: 'royal-teal', color: '#303D7A' },
+    { id: 'cocoa-sky', color: '#5C3B2E' },
+    { id: 'plum-lime', color: '#5D316E' },
+    { id: 'pine-coral', color: '#165B50' },
+    { id: 'cobalt-rose', color: '#264F9A' },
+    { id: 'graphite-ice', color: '#343F4D' },
+    { id: 'bronze-pine', color: '#594018' },
+    { id: 'obsidian-cyan', color: '#243746' },
+    { id: 'sapphire-amber', color: '#183E74' },
+    { id: 'violet-citrus', color: '#4C367D' },
+    { id: 'lagoon-peach', color: '#12666A' },
+    { id: 'oxblood-blush', color: '#672B39' },
+    { id: 'terracotta-olive', color: '#7A3C26' },
+    { id: 'blue-steel-copper', color: '#31536C' },
+    { id: 'grape-aqua', color: '#58376D' },
+    { id: 'deep-forest-linen', color: '#1D5747' },
+    { id: 'scarlet-slate', color: '#7B2834' },
+    { id: 'peacock-ochre', color: '#0E5C59' },
+    { id: 'ink-electric-lilac', color: '#252D56' },
+    { id: 'mauve-fern', color: '#6A445F' },
+    { id: 'alpine-poppy', color: '#244D67' },
+    { id: 'olive-berry', color: '#53602D' },
+    { id: 'petrol-gold', color: '#144E5A' },
+    { id: 'graphite-lime', color: '#343A40' },
+    { id: 'navy-coral', color: '#202F67' },
+    { id: 'rose-clay', color: '#804257' },
+    { id: 'mineral-blue-citrus', color: '#28566A' },
+  
+  ];
+  var selected = '';
+  try {
+    selected = window.sessionStorage.getItem(sessionKey) || '';
+    if (!themes.some(function (theme) { return theme.id === selected; })) {
+      var previous = window.localStorage.getItem(previousKey) || '';
+      var choices = themes.filter(function (theme) { return theme.id !== previous; });
+      if (!choices.length) choices = themes;
+      var index = Math.floor(Math.random() * choices.length);
+      selected = choices[index].id;
+      window.sessionStorage.setItem(sessionKey, selected);
+      window.localStorage.setItem(previousKey, selected);
+    }
+  } catch (storageError) {
+    /* Browsing in private/restricted mode still gets a palette, without storage. */
+    selected = themes[Math.floor(Math.random() * themes.length)].id;
+  }
+  document.documentElement.setAttribute('data-vmp-theme', selected);
+  var meta = document.querySelector('meta[name="theme-color"]');
+  if (!meta) {
+    meta = document.createElement('meta');
+    meta.name = 'theme-color';
+    document.head.appendChild(meta);
+  }
+  var matched = themes.find(function (theme) { return theme.id === selected; });
+  if (matched) meta.content = matched.color;
+})();
+</script>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <div class="admin-layout">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="admin.html" aria-label="Admin dashboard home">
+        <img class="admin-brand-logo" src="assets/verified-movers-logo-light.svg" alt="Verified Movers &amp; Packers — Zirakpur">
+        <span class="brand-workspace-label"><span class="brand-live-dot"></span> ADMIN WORKSPACE</span>
+      </a>
+      <div class="side-label">WORKSPACE</div>
+      <nav class="side-nav" aria-label="Admin navigation">
+        <a class="side-link active" href="admin.html"><span class="nav-icon">▦</span>Dashboard</a>
+        <a class="side-link" href="online-documents.html"><span class="nav-icon">▤</span>Document desk</a>
+        <a class="side-link" href="online-bilty.html"><span class="nav-icon">↗</span>e-Bilty</a>
+        <a class="side-link" href="online-quotation.html"><span class="nav-icon">₹</span>Quotations</a>
+        <a class="side-link" href="online-bill.html"><span class="nav-icon">▧</span>Bills / invoices</a>
+        <a class="side-link" href="document-records.html"><span class="nav-icon">▣</span>Document register</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="support-card">
+          <span class="support-icon">?</span>
+          <strong>Need the public site?</strong>
+          <p>Open the customer-facing website without leaving this workspace.</p>
+          <a href="index.html">Visit website <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="sidebar-foot"><span class="status-dot"></span> Workspace overview <span class="version">v1.0</span></div>
+      </div>
+    </aside>
+
+    <main class="main-panel">
+      <header class="topbar">
+        <button class="mobile-menu" id="menuToggle" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+        <div class="breadcrumb"><span>Workspace</span><span class="crumb-sep">/</span><strong>Dashboard</strong></div>
+        <div class="topbar-right"><span class="topbar-date" id="todayDate">Your workspace</span><span class="avatar" aria-label="Admin workspace">A</span></div>
+      </header>
+
+      <div class="page-content">
+        <section class="welcome-row">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-line"></span> ADMIN WORKSPACE</div>
+            <h1>Good day. <span>Let's get moving.</span></h1>
+            <p class="page-subtitle">Your quick command centre for moving documents and daily operations.</p>
+          </div>
+          <a class="primary-action" href="online-documents.html"><span aria-hidden="true">＋</span> Open document desk</a>
+        </section>
+
+        <section class="notice" role="note">
+          <span class="notice-icon">i</span>
+          <div><strong>Workspace status</strong><p>This is an admin-style dashboard for navigation. The current website tools are browser-based; document history is not saved to a secure central database yet.</p></div>
+          <span class="notice-tag">Setup needed</span>
+        </section>
+
+        <section class="section-heading">
+          <div><h2>Document workspace</h2><p>Start a new business document or open the register screen.</p></div>
+          <span class="section-caption">4 quick actions</span>
+        </section>
+
+        <section class="tool-grid" aria-label="Document shortcuts">
+          <a class="tool-card card-bilty" href="online-bilty.html">
+            <div class="tool-top"><span class="tool-icon">↗</span><span class="tool-arrow" aria-hidden="true">↗</span></div>
+            <span class="tool-kicker">TRANSPORT DOCUMENT</span><h3>Create e-Bilty</h3>
+            <p>Enter consignor, consignee, route, goods, vehicle and transport charges.</p>
+            <span class="card-link">Open e-Bilty <b>→</b></span>
+          </a>
+          <a class="tool-card card-quote" href="online-quotation.html">
+            <div class="tool-top"><span class="tool-icon">₹</span><span class="tool-arrow" aria-hidden="true">↗</span></div>
+            <span class="tool-kicker">CUSTOMER PRICE OFFER</span><h3>New quotation</h3>
+            <p>Prepare route pricing, itemised charges, advance, balance and terms.</p>
+            <span class="card-link">Create quotation <b>→</b></span>
+          </a>
+          <a class="tool-card card-bill" href="online-bill.html">
+            <div class="tool-top"><span class="tool-icon">▤</span><span class="tool-arrow" aria-hidden="true">↗</span></div>
+            <span class="tool-kicker">BILLING</span><h3>Create bill / invoice</h3>
+            <p>Prepare shipment charges, tax fields, payment details and balance due.</p>
+            <span class="card-link">Open bill book <b>→</b></span>
+          </a>
+          <a class="tool-card card-records" href="document-records.html">
+            <div class="tool-top"><span class="tool-icon">▣</span><span class="tool-arrow" aria-hidden="true">↗</span></div>
+            <span class="tool-kicker">RECORDS</span><h3>Document register</h3>
+            <p>Open the register interface. Persistent storage needs a backend connection.</p>
+            <span class="card-link">View register <b>→</b></span>
+          </a>
+        </section>
+
+        <section class="lower-grid">
+          <div class="panel checklist-panel">
+            <div class="panel-heading"><div><h2>Suggested workflow</h2><p>A simple order for handling a move.</p></div><span class="panel-mark">✓</span></div>
+            <div class="workflow-list">
+              <div class="workflow-item"><span class="step-num">01</span><div><strong>Confirm the moving quote</strong><p>Agree the scope, route, dates, and charges with the customer.</p></div><a href="online-quotation.html" aria-label="Open quotation">→</a></div>
+              <div class="workflow-item"><span class="step-num">02</span><div><strong>Prepare the e-Bilty</strong><p>Review goods, parties, vehicle and consignment details.</p></div><a href="online-bilty.html" aria-label="Open e-Bilty">→</a></div>
+              <div class="workflow-item"><span class="step-num">03</span><div><strong>Issue the bill</strong><p>Verify totals, payment received and remaining balance.</p></div><a href="online-bill.html" aria-label="Open bill book">→</a></div>
+            </div>
+          </div>
+
+          <div class="panel status-panel">
+            <div class="panel-heading"><div><h2>System status</h2><p>What is available in this package.</p></div><span class="panel-mark">⌁</span></div>
+            <div class="status-row"><span class="status-symbol available">✓</span><div><strong>Document templates</strong><small>Pages included in this website</small></div><span class="status-pill available-pill">Available</span></div>
+            <div class="status-row"><span class="status-symbol attention">!</span><div><strong>Saved record database</strong><small>No central storage configured</small></div><span class="status-pill attention-pill">Not connected</span></div>
+            <div class="status-row"><span class="status-symbol attention">!</span><div><strong>Private access controls</strong><small>This dashboard is not a login gate</small></div><span class="status-pill attention-pill">Not enabled</span></div>
+            <div class="safe-note"><strong>Privacy reminder</strong><p>Do not enter confidential customer information expecting it to be saved privately. URL-based sharing in the current tools is encoded, not encrypted.</p></div>
+          </div>
+        </section>
+
+        <footer class="admin-footer"><span>© <span id="yearNow"></span> Verified Movers &amp; Packers</span><span><a href="index.html">Public website</a><span class="footer-dot">·</span><a href="mailto:anujzirakpur@gmail.com">Support</a></span></footer>
+      </div>
+    </main>
+  </div>
+  <script src="admin.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+// Fail-closed: never simulate server-side persistence in browser storage.
+document.addEventListener('DOMContentLoaded',()=>{const s=document.getElementById('recordsStatus');if(s)s.textContent='The secure records API is not configured. No records are being loaded or saved. Complete SECURE-DOCUMENT-SETUP.md before using this register.';const b=document.getElementById('recordsBody');if(b)b.innerHTML='<tr><td colspan="7" class="private-empty">Secure backend setup required — records are not available yet.</td></tr>';});

@@ -1,0 +1,2 @@
+// Fail-closed until a server-side authentication API is configured.
+document.addEventListener('DOMContentLoaded',()=>{const f=document.getElementById('privateLoginForm');if(!f)return;f.addEventListener('submit',e=>{e.preventDefault();const s=document.getElementById('loginStatus');if(s)s.textContent='Private access is not activated yet. Configure the secure server-side authentication and database described in SECURE-DOCUMENT-SETUP.md before using real documents.';});});

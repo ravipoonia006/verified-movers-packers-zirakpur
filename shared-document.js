@@ -1,0 +1,2 @@
+// Customer-share view fails closed until a server-side token validation API is configured.
+document.addEventListener('DOMContentLoaded',()=>{const l=document.getElementById('shareLoading');const e=document.getElementById('shareError');if(l)l.hidden=true;if(e)e.hidden=false;const m=document.getElementById('shareErrorText');if(m)m.textContent='Secure customer sharing is not activated on this deployment yet. Ask the sender to provide a PDF until server-side expiring share links are configured.';});
