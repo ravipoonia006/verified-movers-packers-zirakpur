@@ -61,7 +61,11 @@
     } finally { wrapper.remove(); }
   }
 
-  async function save() {
+  var activeSavePromise = null;
+
+  async function saveImpl(options) {
+    options = options || {};
+    var automatic = options.automatic === true;
     var button = el(config.button);
     var form = el(config.form);
     var paper = el(config.paper);
@@ -69,7 +73,9 @@
     if (document.body.classList.contains('bilty-shared-view') || document.body.classList.contains('doc-shared-view')) {
       setStatus('Read-only customer views cannot be saved to the business register.', true); return;
     }
-    if (!form.reportValidity()) return;
+    if (automatic) {
+      if (!form.checkValidity()) return false;
+    } else if (!form.reportValidity()) return false;
     var data = meta();
     if (!data.documentNumber || !data.customerName) {
       setStatus('Enter the document number and customer name before saving.', true); return;
@@ -82,13 +88,17 @@
       var sessionResponse = await fetch('/api/auth/session', { credentials: 'same-origin', cache: 'no-store' });
       var session = await sessionResponse.json();
       if (!session.authenticated) {
+        if (automatic) {
+          setStatus('Not saved automatically: sign in with your authorized Google account first, then repeat this action. The requested action will continue.', true);
+          return false;
+        }
         setStatus('Please sign in with your authorized Google account. Redirecting…');
         location.href = '/api/google/login?next=' + encodeURIComponent(location.pathname);
-        return;
+        return false;
       }
       if (!session.driveConfigured) {
-        setStatus('Google sign-in is active, but Drive setup is not finished. Follow GOOGLE-DRIVE-SETUP.md and add GOOGLE_REFRESH_TOKEN in Vercel, then redeploy.', true);
-        return;
+        setStatus('Automatic save could not run because Google Drive is not fully configured. Check GOOGLE_REFRESH_TOKEN in Vercel and redeploy, then retry.', true);
+        return false;
       }
       var pdfBase64 = await getPdfBase64(paper);
       if (pdfBase64.length > 4190000) throw new Error('This PDF is too large for the current upload limit. Use Print / Save PDF to save a compressed copy; the upload limit is 3 MB.');
@@ -100,24 +110,76 @@
       });
       var result = await response.json().catch(function () { return {}; });
       if (response.status === 401) {
-        location.href = '/api/google/login?next=' + encodeURIComponent(location.pathname); return;
+        if (automatic) { setStatus('Automatic save failed because your Google session expired. Sign in again, then repeat this action.', true); return false; }
+        location.href = '/api/google/login?next=' + encodeURIComponent(location.pathname); return false;
       }
       if (!response.ok || !result.ok) throw new Error(result.message || 'Could not save the document to Google Drive.');
       var size = result.record && result.record.size ? (result.record.size / 1024).toFixed(0) + ' KB' : 'PDF';
-      setStatus('Saved to Google Drive: ' + (result.record.name || data.documentNumber + '.pdf') + ' (' + size + '). Open Document Register to find it later.');
+      setStatus((result.updated ? 'Updated in Google Drive: ' : 'Saved to Google Drive: ') + (result.record.name || data.documentNumber + '.pdf') + ' (' + size + '). Open Document Register to find it later.');
       button.textContent = 'Saved ✓';
       button.classList.add('drive-saved');
       window.setTimeout(function () { button.textContent = oldText; button.classList.remove('drive-saved'); }, 2500);
+      return true;
     } catch (error) {
-      setStatus(error && error.message ? error.message : 'Could not save the document.', true);
+      setStatus((automatic ? 'Automatic save failed: ' : '') + (error && error.message ? error.message : 'Could not save the document.'), true);
+      return false;
     } finally {
       button.disabled = false;
       if (!button.classList.contains('drive-saved')) button.textContent = oldText;
     }
   }
 
+  function save(options) {
+    if (activeSavePromise) return activeSavePromise;
+    activeSavePromise = saveImpl(options).catch(function (error) {
+      setStatus(error && error.message ? error.message : 'Could not save the document to Google Drive.', true);
+      return false;
+    }).finally(function () { activeSavePromise = null; });
+    return activeSavePromise;
+  }
+
+  var linkButtons = new Set(['biltyMakeShare', 'qMakeShare', 'bMakeShare']);
+  var whatsappButtons = new Set(['biltyShareWhatsApp', 'qShareWhatsApp', 'bShareWhatsApp']);
+  var printButtons = new Set(['biltyPrint', 'biltyPreviewPrint', 'qPrint', 'qPreviewPrint', 'bPrint', 'bPreviewPrint']);
+  var replayingAction = false;
+  function isReadOnlyView() {
+    return document.body.classList.contains('bilty-shared-view') || document.body.classList.contains('doc-shared-view');
+  }
+  function replayClick(button) {
+    replayingAction = true;
+    try { button.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, view: window })); }
+    finally { replayingAction = false; }
+  }
+  document.addEventListener('click', function (event) {
+    if (replayingAction || isReadOnlyView()) return;
+    var target = event.target && event.target.closest ? event.target.closest('button') : null;
+    if (!target || !target.id) return;
+    var isLink = linkButtons.has(target.id);
+    var isWhatsApp = whatsappButtons.has(target.id);
+    var isPrint = printButtons.has(target.id);
+    if (!isLink && !isWhatsApp && !isPrint) return;
+    var form = el(config.form);
+    if (!form || !form.checkValidity()) return; // Let the original handler display validation.
+
+    if (isWhatsApp) {
+      // Keep this click synchronous so the WhatsApp window is not blocked by browsers.
+      // The save runs in parallel and reports any issue in the Drive status area.
+      save({ automatic: true });
+      return;
+    }
+
+    // Create-link and print do not require a new tab, so wait for the Drive save
+    // attempt before continuing. If Drive is not configured, the original action
+    // still proceeds and the status message explains that the backup was not saved.
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    event.stopPropagation();
+    setStatus(isLink ? 'Saving a private copy to Google Drive before creating the customer link…' : 'Saving a private copy to Google Drive before opening print…');
+    save({ automatic: true }).finally(function () { replayClick(target); });
+  }, true);
+
   document.addEventListener('DOMContentLoaded', function () {
     var button = el(config.button);
-    if (button) button.addEventListener('click', save);
+    if (button) button.addEventListener('click', function () { save({ automatic: false }); });
   });
 })();

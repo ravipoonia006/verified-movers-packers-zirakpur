@@ -61,8 +61,8 @@ If the callback does not return a refresh token, remove this app from the Google
 ## 5. Test storage
 
 1. Open `https://verifiedmoversandpackers.world/admin.html` and click **Sign in with Google**.
-2. Open an e-Bilty, quotation or bill. Fill required fields, review the preview and click **Save to Google Drive**.
-3. The first save creates a private Drive folder named `Verified Movers Documents` and uploads a PDF with document metadata.
+2. Open an e-Bilty, quotation or bill and fill in the required fields. A manual **Save to Google Drive** button is available. After this update, **Create customer link** and **Print / Save PDF** attempt to save automatically before continuing; the WhatsApp share button starts the save in parallel so the WhatsApp popup is not blocked by the browser.
+3. The first successful save creates a private Drive folder named `Verified Movers Documents` and uploads a PDF with document metadata. Reusing the same document type and document number updates the existing Drive file instead of creating a duplicate on every action.
 4. Open `https://verifiedmoversandpackers.world/document-records.html`; search by document number/customer and use **Download PDF**.
 5. In Google Drive, verify that `Verified Movers Documents` is private and that the PDF appears there. Do not set the folder to “Anyone with the link.”
 
@@ -70,6 +70,8 @@ If the callback does not return a refresh token, remove this app from the Google
 
 - Google OAuth login restricted to `GOOGLE_ALLOWED_EMAIL`; session cookie is HttpOnly, Secure, SameSite=Lax, HMAC-signed and expires after six hours.
 - PDF uploads from the e-Bilty, quotation and bill previews (maximum 3 MB per generated PDF).
+- Automatic Drive-save attempts when users create a customer link, share via WhatsApp, or start printing; customer-link and print flows wait for the save attempt, while WhatsApp saving runs in parallel to preserve the browser popup permission. If the account is not signed in or Drive is misconfigured, the original action still continues and the Drive status reports that no backup was saved.
+- Repeated automatic saves for the same document type and document number update the existing Drive PDF rather than creating a new duplicate.
 - Drive-based metadata register/search and authenticated PDF download. Document metadata is stored in Drive file `appProperties`; there is no separate SQL database or Google Sheet.
 - The server creates the Drive folder automatically and keeps files private.
 

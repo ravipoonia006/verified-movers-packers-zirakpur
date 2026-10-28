@@ -105,22 +105,31 @@ async function handleUpload(req, res) {
     const fileName = `${documentType.toUpperCase()}-${cleanName(documentNumber)}-${cleanName(customerName,'customer')}.pdf`.slice(0,180);
     const accessToken = await googleAccessToken();
     const folderId = await ensureFolder(accessToken);
-    const metadata = {
-      name:fileName, mimeType:'application/pdf', parents:[folderId],
-      appProperties:{
-        documentType, documentNumber, customerName, customerPhone, documentDate,
-        fromCity, toCity, amount, status:'issued', createdBy:session.email
-      }
+    const properties = {
+      documentType, documentNumber, customerName, customerPhone, documentDate,
+      fromCity, toCity, amount, status:'issued', createdBy:session.email
     };
+    const search = await listFiles(
+      `'${folderId}' in parents and trashed = false and appProperties has { key='documentType' and value='${queryEscape(documentType)}' } and appProperties has { key='documentNumber' and value='${queryEscape(documentNumber)}' }`,
+      accessToken,
+      'files(id,name,mimeType,size,webViewLink,createdTime,modifiedTime,appProperties,parents)'
+    );
+    const existing = (search.files || []).find(f => f.mimeType !== FOLDER_MIME) || null;
+    const metadata = { name:fileName, mimeType:'application/pdf', appProperties:properties };
+    if (!existing) metadata.parents = [folderId];
     const boundary = 'vmp_upload_' + require('crypto').randomBytes(12).toString('hex');
     const start = Buffer.from(`--${boundary}\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n${JSON.stringify(metadata)}\r\n--${boundary}\r\nContent-Type: application/pdf\r\n\r\n`,'utf8');
     const end = Buffer.from(`\r\n--${boundary}--`,'utf8');
     const multipart = Buffer.concat([start,bytes,end]);
-    const url = 'https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id,name,mimeType,size,webViewLink,createdTime,modifiedTime,appProperties,parents';
-    const response = await driveFetch(url,accessToken,{method:'POST',headers:{'Content-Type':`multipart/related; boundary=${boundary}`},body:multipart});
+    const baseUrl = 'https://www.googleapis.com/upload/drive/v3/files';
+    const targetUrl = existing
+      ? `${baseUrl}/${encodeURIComponent(existing.id)}?uploadType=multipart&fields=id,name,mimeType,size,webViewLink,createdTime,modifiedTime,appProperties,parents`
+      : `${baseUrl}?uploadType=multipart&fields=id,name,mimeType,size,webViewLink,createdTime,modifiedTime,appProperties,parents`;
+    const response = await driveFetch(targetUrl,accessToken,{method:existing?'PATCH':'POST',headers:{'Content-Type':`multipart/related; boundary=${boundary}`},body:multipart});
     const saved = await response.json();
     const p = saved.appProperties || {};
-    return sendJson(res,201,{ok:true,record:{id:saved.id,name:saved.name,mimeType:saved.mimeType,size:Number(saved.size||bytes.length),webViewLink:saved.webViewLink,createdTime:saved.createdTime,modifiedTime:saved.modifiedTime,docType:p.documentType||documentType,docNumber:p.documentNumber||documentNumber,customerName:p.customerName||customerName,customerPhone:p.customerPhone||customerPhone,fromCity:p.fromCity||fromCity,toCity:p.toCity||toCity,amount:p.amount||amount,documentDate:p.documentDate||documentDate,status:'issued'}});
+    const record = {id:saved.id,name:saved.name,mimeType:saved.mimeType,size:Number(saved.size||bytes.length),webViewLink:saved.webViewLink,createdTime:saved.createdTime,modifiedTime:saved.modifiedTime,docType:p.documentType||documentType,docNumber:p.documentNumber||documentNumber,customerName:p.customerName||customerName,customerPhone:p.customerPhone||customerPhone,fromCity:p.fromCity||fromCity,toCity:p.toCity||toCity,amount:p.amount||amount,documentDate:p.documentDate||documentDate,status:'issued'};
+    return sendJson(res,existing?200:201,{ok:true,updated:Boolean(existing),created:!existing,record});
   } catch(e) { return sendJson(res,e.statusCode||500,{ok:false,message:e.message||'Failed to save document to Google Drive.'}); }
 }
 
