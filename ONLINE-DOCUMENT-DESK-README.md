@@ -1,13 +1,21 @@
-# Online Moving Document Desk Update
+# Online Moving Document Desk
 
-Added three pages to the Verified Movers & Packers static site:
+The package includes:
 - `online-documents.html` — document hub
-- `online-quotation.html` — editable quotation with charge rows, advance/balance, PDF printing and customer share link
-- `online-bill.html` — bill book with multiple C.N. / item rows, charge breakdown, amount-in-words, PDF printing and customer share link
+- `online-bilty.html` — e-Bilty / consignment note
+- `online-quotation.html` — editable moving quotation
+- `online-bill.html` — bill book / invoice template
 
-Enhanced `online-bilty.html` with a print-copy selector for Yellow / Consignor, White / Consignee and Pink / Office copies. The selected label appears on the document preview and printout; it does not change the legal status of the document.
+The pages render document previews in the browser and now include **Save to Google Drive**. When Google OAuth is configured, the action exports the preview as a PDF and uploads it to a private Drive folder through a server-side API. The document register uses Drive metadata for search and downloads.
 
-The pages reuse the shared theme selector and site shell. Navigation and footer have links to the document desk and each new tool.
+## Required setup
 
-## Static-tool limitations
-The pages calculate and render in the browser only. They do not save a server-side register, create accounting records, verify tax treatment, or guarantee unique serial numbers across devices. Shareable customer links carry document data in a URL fragment in encoded, not encrypted, form. Avoid including information that should remain confidential and share links only with the intended recipient. For access control, revocation, audit history and multi-user document storage, add a secure backend.
+Follow `GOOGLE-DRIVE-SETUP.md` before using real customer information. OAuth credentials and refresh tokens are not included in the ZIP. No records will be saved to Drive until the setup is complete and deployed.
+
+## Important limitations
+
+- The app does not use a separate SQL database or Google Sheet; document metadata is stored in private Google Drive file `appProperties`.
+- PDF uploads are limited to 3 MB each in this version.
+- Editing, deletion, archive management, multi-staff roles and revocable customer share links are not implemented yet.
+- The existing customer-view links still encode data in a URL fragment; encoding is not encryption and those links do not expire or revoke. Do not put confidential information in these links.
+- These templates do not verify tax treatment, submit tax returns, prove carrier acceptance, or replace required legal transport documents.

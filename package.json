@@ -2,8 +2,8 @@
   "name": "verified-movers-packers-zirakpur",
   "version": "1.0.0",
   "private": true,
-  "description": "Verified Movers & Packers in Zirakpur — static lead generation website.",
+  "description": "Verified Movers & Packers in Zirakpur \u2014 static lead generation website.",
   "scripts": {
-    "check": "node --check script.js"
+    "check": "node --check script.js && node --check drive-document-save.js && node --check drive-admin.js && node --check document-records.js && node --check api/google/login.js && node --check api/google/callback.js && node --check api/auth/session.js && node --check api/auth/logout.js && node --check api/drive/status.js && node --check api/drive/records.js && node --check api/drive/upload.js && node --check api/drive/download.js && node --check api/_lib/common.cjs && node --check api/_lib/drive.cjs"
   }
 }

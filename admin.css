@@ -243,3 +243,6 @@ body {
 @media (prefers-reduced-motion:reduce) {
   *, *::before, *::after { animation-duration:.01ms!important; animation-iteration-count:1!important; scroll-behavior:auto!important; transition-duration:.01ms!important; }
 }
+
+/* Google Drive setup actions */
+.admin-quick-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.secondary-action{display:inline-flex;align-items:center;justify-content:center;padding:11px 15px;border-radius:8px;background:var(--vmp-surface,#fff);border:1px solid var(--vmp-primary,#153E6E);color:var(--vmp-primary,#153E6E);font-size:12px;font-weight:800;transition:transform .2s,background .2s,color .2s}.secondary-action:hover{transform:translateY(-2px);background:var(--vmp-primary,#153E6E);color:#fff}.secondary-action[hidden]{display:none}@media(max-width:760px){.admin-quick-actions{width:100%;flex-direction:column;align-items:stretch}.admin-quick-actions .primary-action,.admin-quick-actions .secondary-action{width:100%;box-sizing:border-box}}

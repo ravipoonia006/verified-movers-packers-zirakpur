@@ -15,3 +15,8 @@ This is a static HTML/CSS/JS site. No build command is required.
 - Output directory: `.`
 
 Recommended Git workflow: push this folder to a GitHub repository, then import that repository into Vercel.
+
+
+## Google Drive-backed document register
+
+See `GOOGLE-DRIVE-SETUP.md` for the required Google OAuth and Vercel environment-variable setup. No Google secrets are included in this package.

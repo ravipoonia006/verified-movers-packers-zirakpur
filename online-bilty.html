@@ -357,7 +357,7 @@
 
   <section class="bilty-notice" aria-label="Important document note">
     <span class="bilty-notice__icon" aria-hidden="true">i</span>
-    <p><strong>Before sharing:</strong> verify the parties, vehicle, goods, charges and any required tax / transport documents. This is a printable consignment-note template; it does not replace any legally required e-way bill or prescribed carrier document. This static tool does not save records to a server. Customer-view links contain the form data encoded in the URL; encoding is not encryption, and the link does not expire or support revocation here. Do not put sensitive information in a link.</p>
+    <p><strong>Before sharing:</strong> verify the parties, vehicle, goods, charges and any required tax / transport documents. This is a printable consignment-note template; it does not replace any legally required e-way bill or prescribed carrier document. The form does not autosave while you type. After configuring Google Drive and signing in, use “Save to Google Drive” to store a PDF in your private Drive folder. Customer-view links contain form data encoded in the URL; encoding is not encryption, and these links do not expire or support revocation. Do not put sensitive information in a customer-view link.</p>
   </section>
 
   <section class="bilty-workspace" aria-label="Online e-Bilty creator">
@@ -441,14 +441,14 @@
         <div class="bilty-editor-controls">
           <button class="bilty-btn bilty-btn--primary" id="biltyMakeShare" type="button"><span aria-hidden="true">↗</span> Create customer link</button>
           <button class="bilty-btn bilty-btn--whatsapp" id="biltyShareWhatsApp" type="button"><span aria-hidden="true">◉</span> Share to customer on WhatsApp</button>
-          <button class="bilty-btn bilty-btn--secondary" id="biltyPrint" type="button">Print / Save PDF</button>
+          <button class="bilty-btn bilty-btn--secondary" id="biltyPrint" type="button">Print / Save PDF</button><button class="bilty-btn bilty-btn--primary" id="saveToDriveButton" type="button">☁ Save to Google Drive</button>
           <button class="bilty-btn bilty-btn--quiet" id="biltyReset" type="button">Clear form</button>
           <div class="bilty-share-panel" id="biltySharePanel" hidden>
             <label for="biltyShareLink">Customer-view link</label>
             <div class="bilty-share-row"><input id="biltyShareLink" type="url" readonly aria-describedby="biltyShareHelp"><button class="bilty-btn bilty-btn--primary" id="biltyCopyLink" type="button">Copy link</button></div>
             <p id="biltyShareHelp">The recipient opens this link to view and print the same bilty. The document data is encoded in the URL, not encrypted.</p>
           </div>
-          <p class="bilty-status" id="biltyStatus" role="status" aria-live="polite"></p>
+          <p class="bilty-status" id="biltyStatus" role="status" aria-live="polite"></p><p id="driveSaveStatus" class="bilty-status" role="status" aria-live="polite">Sign in with Google to save a private copy in Drive.</p>
         </div>
       </form>
     </div>
@@ -918,6 +918,7 @@
 
 </script>
 <script>(function(){var select=document.getElementById('biltyCopyType'),paper=document.getElementById('biltyPaper'),stamp=document.getElementById('biltyCopyStamp');if(!select||!paper||!stamp)return;var map={consignor:{cls:'bilty-paper--copy-consignor',label:'YELLOW · CONSIGNOR COPY'},consignee:{cls:'bilty-paper--copy-consignee',label:'WHITE · CONSIGNEE COPY'},office:{cls:'bilty-paper--copy-office',label:'PINK · OFFICE COPY'}};function change(){Object.keys(map).forEach(function(k){paper.classList.remove(map[k].cls)});var x=map[select.value]||map.consignee;paper.classList.add(x.cls);stamp.textContent=x.label;}select.addEventListener('change',change);change();})();</script>
-<script src="document-editor-private.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.14.0/dist/html2pdf.bundle.min.js" defer></script>
+<script src="drive-document-save.js" defer></script>
 </body>
 </html>

@@ -140,12 +140,12 @@
             <h1>Good day. <span>Let's get moving.</span></h1>
             <p class="page-subtitle">Your quick command centre for moving documents and daily operations.</p>
           </div>
-          <a class="primary-action" href="online-documents.html"><span aria-hidden="true">＋</span> Open document desk</a>
+          <div class="admin-quick-actions"><a class="primary-action" href="online-documents.html"><span aria-hidden="true">＋</span> Open document desk</a><a class="secondary-action" id="googleSignInLink" href="/api/google/login?next=%2Fadmin.html">Sign in with Google</a><button class="secondary-action" id="adminSignOutButton" type="button" hidden>Sign out</button></div>
         </section>
 
         <section class="notice" role="note">
           <span class="notice-icon">i</span>
-          <div><strong>Workspace status</strong><p>This is an admin-style dashboard for navigation. The current website tools are browser-based; document history is not saved to a secure central database yet.</p></div>
+          <div><strong>Workspace status</strong><p>Google Drive storage is available after you add the OAuth credentials in Vercel. Sign in with your authorized business Google account to save and retrieve private PDF records.</p></div>
           <span class="notice-tag">Setup needed</span>
         </section>
 
@@ -194,9 +194,9 @@
           <div class="panel status-panel">
             <div class="panel-heading"><div><h2>System status</h2><p>What is available in this package.</p></div><span class="panel-mark">⌁</span></div>
             <div class="status-row"><span class="status-symbol available">✓</span><div><strong>Document templates</strong><small>Pages included in this website</small></div><span class="status-pill available-pill">Available</span></div>
-            <div class="status-row"><span class="status-symbol attention">!</span><div><strong>Saved record database</strong><small>No central storage configured</small></div><span class="status-pill attention-pill">Not connected</span></div>
-            <div class="status-row"><span class="status-symbol attention">!</span><div><strong>Private access controls</strong><small>This dashboard is not a login gate</small></div><span class="status-pill attention-pill">Not enabled</span></div>
-            <div class="safe-note"><strong>Privacy reminder</strong><p>Do not enter confidential customer information expecting it to be saved privately. URL-based sharing in the current tools is encoded, not encrypted.</p></div>
+            <div class="status-row"><span class="status-symbol attention" id="driveStatusSymbol">!</span><div><strong>Google Drive storage</strong><small id="driveStatusText">Checking connection…</small></div><span class="status-pill attention-pill" id="driveStatusPill">Checking</span></div>
+            <div class="status-row"><span class="status-symbol attention">!</span><div><strong>Google account sign-in</strong><small id="accessStatusText">Sign in to access saved records</small></div><span class="status-pill attention-pill" id="accessStatusPill">Not signed in</span></div>
+            <div class="safe-note"><strong>Privacy reminder</strong><p>Saved PDFs are placed in a private Google Drive folder through the server API. Avoid sharing encoded customer-view URLs because those links are not encrypted or revocable.</p></div>
           </div>
         </section>
 
@@ -205,5 +205,6 @@
     </main>
   </div>
   <script src="admin.js" defer></script>
+  <script src="drive-admin.js" defer></script>
 </body>
 </html>

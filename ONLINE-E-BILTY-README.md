@@ -13,3 +13,8 @@ Added `online-bilty.html` to the Verified Movers & Packers static website. The p
 
 ## Important limitations
 This is a static client-side utility. It does not save bills on a server, authenticate users, or provide revocable links. URL-fragment data is encoded, **not encrypted**; anyone who receives the link can view its contents. For confidential customer documents, use the PDF in a trusted channel or add a backend with authentication, expiring access links, storage, and audit logging. This template does not replace any legally required e-way bill or prescribed transport document. Confirm applicable requirements and terms before operational use.
+
+
+## Google Drive save
+
+After setup in `GOOGLE-DRIVE-SETUP.md`, use **Save to Google Drive** to keep a private PDF copy and find it later in the Document Register. Without OAuth configuration, no server-side copy is saved. Customer-view links remain URL-encoded, not encrypted.

@@ -1,7 +1,7 @@
-# Document stamps and records storage
+# Document stamps and Google Drive register
 
-- Added a printable, ink-style digital company seal to the e-Bilty / consignment note, quotation, and bill preview. The seal reads VERIFIED MOVERS & PACKERS · ZIRAKPUR · COMPANY SEAL.
-- The seal is a decorative business mark, not a real signature or a government / tax certification.
-- Current register storage is zero records / zero MB on the server: this package has no connected records API or database.
-- Document forms create an in-browser preview and print/PDF export. Customer links carry Base64url-encoded data in the URL fragment; this is not encryption and the links are not stored, expiring, or revocable by a backend. Avoid confidential information in those links.
-- To persist, search, archive, or revoke records centrally, configure a secure server-side API and database first.
+The e-Bilty, quotation and bill templates include a decorative digital company seal. It is not a handwritten signature, government certification or proof of carrier acceptance.
+
+This version adds Google OAuth and Google Drive endpoints. Once `GOOGLE-DRIVE-SETUP.md` is completed, the Save to Google Drive buttons create PDF copies in the private `Verified Movers Documents` folder. Drive file metadata stores the document number, type, customer, phone, route, date and amount. The register retrieves and searches that metadata and downloads PDFs through an authenticated endpoint.
+
+Before configuration, saved records are still zero: code is included, but Google OAuth and Vercel environment variables must be configured before the remote Drive connection works. This implementation uses Drive metadata instead of a separate database or Google Sheet.
